@@ -29,7 +29,9 @@ if __name__ == '__main__':
     assert components[0] == "Hello world!", "Node script returned wrong output"
     assert components[1] == "Hello, George, from Tenerife!", "Node script returned wrong output"
 
-    genezio_local()
+    os.chdir("../server/")
+
+    process = genezio_local()
 
     os.chdir("../client/")
 
@@ -42,5 +44,6 @@ if __name__ == '__main__':
     assert components[0] == "Hello world!", "Node script returned wrong output"
     assert components[1] == "Hello, George, from Tenerife!", "Node script returned wrong output"
 
+    process.kill()
     print("Test passed!")
 

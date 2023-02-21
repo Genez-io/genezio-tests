@@ -6,7 +6,7 @@
   import { Remote } from "./remote.js"
   
   export class User {
-      static remote = new Remote("https://h4vxor45vcvzowifydshotxhva0tscbn.lambda-url.us-east-1.on.aws/")
+      static remote = new Remote("http://127.0.0.1:25287/User")
   
       static async register(name, email, password) {
           return User.remote.call("User.register", name, email, password)  

@@ -9,7 +9,7 @@ from utils import run_node_script
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':
-    print("Starting hello_world for Javascript test...")
+    print("Starting webhook for Javascript test...")
 
     genezio_login("735614a4514b93b523fd90cd2342d2ed013ccf6ba38b90bea6fcc6c36a23942d775d83bb03c5539441e28fab8bd6c9acdbdde4c64bb3360bf6cfcda891d2b68f")
 
@@ -30,5 +30,20 @@ if __name__ == '__main__':
     assert components[1] == 'text in body', "Component 1 returned wrong output"
     assert components[2] == "{ name: 'John' }", "Component 2 returned wrong output"
     assert components[3] == "contents of file", "Component 3 returned wrong output"
+
+    os.chdir("../server/")
+
+    process = genezio_local()
+
+    os.chdir("../client/")
+
+    status, output = run_node_script("test-webhook-example.js", web_urls)
+
+    components = output.split("\n")
+    assert components[0] == "Ok", "Component 0 returned wrong output"
+    assert components[1] == 'text in body', "Component 1 returned wrong output"
+    assert components[2] == "{ name: 'John' }", "Component 2 returned wrong output"
+    assert components[3] == "contents of file", "Component 3 returned wrong output"
+    process.kill()
 
     print("Test passed!")

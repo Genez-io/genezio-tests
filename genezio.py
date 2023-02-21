@@ -4,6 +4,8 @@ import subprocess
 import re
 import socket
 import time
+import os
+import random
 
 def genezio_deploy(deploy_frontend):
     genezio_deploy_command = ['genezio', 'deploy']
@@ -77,30 +79,35 @@ def genezio_generate_sdk(language):
     return process.returncode, process.stderr, process.stdout
 
 def genezio_local():
-    genezio_local_command = ['genezio', 'local', "--logLevel", "info"]
+    port = random.randint(1024, 40000)
+    genezio_local_command = ['genezio', 'local', "--port", str(port), "--logLevel", "info"]
 
-    process = subprocess.Popen(genezio_local_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    process = subprocess.Popen(genezio_local_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, close_fds=True)
     start = time.time()
 
     while True:
+        process.poll()
         time.sleep(0.05)
+
         if process.returncode != None:
             line = process.stderr.readline()
             print(line)
-            print("Local has finished with status code " + str(process.returncode))
-            assert False, "Local has finished with status code " + str(process.returncode)
+            print("Local has finished with status code ")
+            process.kill()
+            assert False, "Local has finished with status code "
 
         # Test if port 8083 is listening
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        port_status = sock.connect_ex(('127.0.0.1',8083))
+        port_status = sock.connect_ex(('127.0.0.1', port))
 
         if port_status == 0:
             break
         
         end = time.time()
         if end - start > 60:
-            line = process.stderr.readline()
-            print(line)
+            process.kill()
             assert False, "Connecting to port 8083 failed"
     
-    time.sleep(2)
+    time.sleep(6)
+    return process
+
