@@ -10,10 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
@@ -24,5 +20,10 @@ jobs:
         with:
           repository: 'Genez-io/genezio'
           path: genezio
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: genezio/package-lock.json
       - run: cd genezio && npm install && npm run install-locally-dev
       - run: python test_hello.py
