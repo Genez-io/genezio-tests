@@ -35,4 +35,6 @@ def run_node_script(script):
     run_script_command = ['node', script]
     process = subprocess.run(run_script_command, capture_output=True, text=True)
 
+    print(process.stderr)
+
     return process.returncode, process.stdout

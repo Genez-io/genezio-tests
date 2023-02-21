@@ -3,7 +3,7 @@
 import os
 import requests
 import test as gnz_test
-from genezio import genezio_deploy, genezio_login
+from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_node_script
 
 NODE_FILENAME = "../client/test-hello-sdk.js"
@@ -19,6 +19,19 @@ if __name__ == '__main__':
 
     assert status == 0, "genezio deploy returned non-zero exit code"
     assert project_url != "", "genezio deploy returned empty project url"
+
+    os.chdir("../client/")
+
+    status, output = run_node_script("test-hello-sdk.js")
+
+    assert status == 0, "Node test script returned non-zero exit code"
+
+    components = output.split("\n")
+    
+    assert components[0] == "Hello world!", "Node script returned wrong output"
+    assert components[1] == "Hello, George, from Tenerife!", "Node script returned wrong output"
+
+    genezio_local()
 
     os.chdir("../client/")
 

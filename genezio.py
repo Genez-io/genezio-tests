@@ -2,6 +2,8 @@
 
 import subprocess
 import re
+import socket
+import time
 
 def genezio_deploy(deploy_frontend):
     genezio_deploy_command = ['genezio', 'deploy']
@@ -70,3 +72,24 @@ def genezio_generate_sdk(language):
     process = subprocess.run(genezio_generate_sdk_command, capture_output=True, text=True)
 
     return process.returncode, process.stderr, process.stdout
+
+def genezio_local():
+    genezio_local_command = ['genezio', 'local', "--logLevel", "info"]
+
+    process = subprocess.Popen(genezio_local_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    start = time.time()
+
+    while True:
+        time.sleep(0.05)
+        # Test if port 8083 is listening
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        port_status = sock.connect_ex(('127.0.0.1',8083))
+
+        if port_status == 0:
+            break
+        
+        end = time.time()
+        if end - start > 60:
+            assert false, "Connecting to port 8083 failed"
+    
+    time.sleep(2)
