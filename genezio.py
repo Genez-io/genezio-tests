@@ -84,6 +84,12 @@ def genezio_local():
 
     while True:
         time.sleep(0.05)
+        if process.returncode != None:
+            line = process.stderr.readline()
+            print(line)
+            print("Local has finished with status code " + str(process.returncode))
+            assert False, "Local has finished with status code " + str(process.returncode)
+
         # Test if port 8083 is listening
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         port_status = sock.connect_ex(('127.0.0.1',8083))
@@ -93,6 +99,8 @@ def genezio_local():
         
         end = time.time()
         if end - start > 60:
+            line = process.stderr.readline()
+            print(line)
             assert False, "Connecting to port 8083 failed"
     
     time.sleep(2)
