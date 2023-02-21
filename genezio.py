@@ -21,7 +21,7 @@ def genezio_login(auth_token):
     genezio_login_command = ['genezio', 'login']
 
     if (auth_token != None):
-        genezio_deploy_command.append(auth_token)
+        genezio_login_command.append(auth_token)
 
     process = subprocess.run(genezio_login_command, capture_output=True, text=True)
 

@@ -3,7 +3,7 @@
 import os
 import requests
 import test as gnz_test
-from genezio import genezio_deploy
+from genezio import genezio_deploy, genezio_login
 from utils import run_node_script
 
 NODE_FILENAME = "../client/test-hello-sdk.js"
