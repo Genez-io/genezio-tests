@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     status, output = run_node_script("test-hello-sdk.js")
 
-    assert status == 0, "Node script returned non-zero exit code"
+    assert status == 0, "Node test script returned non-zero exit code"
 
     components = output.split("\n")
     
