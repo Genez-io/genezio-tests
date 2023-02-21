@@ -31,5 +31,5 @@ if __name__ == '__main__':
     assert components[0] == "Hello world!", "Node script returned wrong output"
     assert components[1] == "Hello, George, from Tenerife!", "Node script returned wrong output"
 
-    print("Test passed!")
+    print("Test passed!!")
 
