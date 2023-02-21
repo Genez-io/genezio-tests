@@ -31,8 +31,8 @@ def contains_project(projects, name, region):
 def assert_log(condition, process, description = "N/A"):
     assert condition, colored("Test for " + str(process.args) + " failed\nDescription: " + description + "\nstderr: " + process.stderr, "red")
 
-def run_node_script(script):
-    run_script_command = ['node', script]
+def run_node_script(script, args=[]):
+    run_script_command = ['node', script] + args
     process = subprocess.run(run_script_command, capture_output=True, text=True)
 
     print(process.stderr)

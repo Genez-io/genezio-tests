@@ -15,9 +15,12 @@ def genezio_deploy(deploy_frontend):
 
     process = subprocess.run(genezio_deploy_command, capture_output=True, text=True)
 
-    m = re.match(r'Deploying your project to genezio infrastructure\.\.\..*Generating your SDK\.\.\..*Generating your SDK\.\.\..*Checking your credentials\.\.\..*Your project has been deployed and is available at ([a-zA-Z:\/.0-9-]*)', str(process.stdout).replace("\n", ""), re.DOTALL)
+    print(process.stdout)
 
-    return process.returncode, m.group(1)
+    link_regex = re.compile('((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', re.DOTALL)
+    links = re.findall(link_regex, process.stdout)
+
+    return process.returncode, links[-1][0], [x[0] for x in links[:-1]]
 
 def genezio_login(auth_token):
     genezio_login_command = ['genezio', 'login']
@@ -90,6 +93,6 @@ def genezio_local():
         
         end = time.time()
         if end - start > 60:
-            assert false, "Connecting to port 8083 failed"
+            assert False, "Connecting to port 8083 failed"
     
     time.sleep(2)
