@@ -22,5 +22,8 @@ jobs:
         with:
           repository: 'Genez-io/genezio'
       - run: npm install && npm run install-locally-dev
-      - run: cd ../genezio-tests && ls
+      - run: ls
+      - run: pwd
+      - run: cd ..
+      - run: ls
       - run: python test_hello.py
