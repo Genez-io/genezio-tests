@@ -27,9 +27,17 @@ jobs:
           cache-dependency-path: genezio/package-lock.json
       - run: cd genezio && npm install && npm run install-locally-dev
       - run: python test_hello.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
       - run: python test_todo_list.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
       - run: python test_webhooks.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
       - run: python test_unauthenticated.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
       - name: Notify slack success
         if: success()
         env:
