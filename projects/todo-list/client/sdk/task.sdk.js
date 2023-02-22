@@ -6,7 +6,7 @@
   import { Remote } from "./remote.js"
   
   export class Task {
-      static remote = new Remote("http://127.0.0.1:25287/Task")
+      static remote = new Remote("http://127.0.0.1:32798/Task")
   
       static async getAllTasksByUser(token, userId) {
           return Task.remote.call("Task.getAllTasksByUser", token, userId)  

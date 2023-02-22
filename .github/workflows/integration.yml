@@ -29,6 +29,7 @@ jobs:
       - run: python test_hello.py
       - run: python test_todo_list.py
       - run: python test_webhooks.py
+      - run: python test_unauthenticated.py
       - name: Notify slack success
         if: success()
         env:
