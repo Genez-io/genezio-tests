@@ -8,7 +8,8 @@ def test_hello():
     print("Starting hello_world test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
-    genezio_login(token)
+    print("TOKEN IS", token)
+    # genezio_login(token)
 
     # os.chdir("./projects/hello-world/server/")
     # deploy_result = genezio_deploy(False)
