@@ -109,7 +109,6 @@ def genezio_local():
             process.kill()
             return process
 
-        # Test if port 8083 is listening
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         port_status = sock.connect_ex(('127.0.0.1', port))
 
