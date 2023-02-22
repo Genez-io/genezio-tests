@@ -5,7 +5,7 @@ from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_node_script
 
 def test_hello():
-    print("Starting hello_world for Javascript test...")
+    print("Starting hello_world test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
     genezio_login(token)

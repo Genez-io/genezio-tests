@@ -4,7 +4,7 @@ import os
 from genezio import genezio_logout, genezio_login, genezio_account, genezio_deploy, genezio_local
 
 def test_unauthenticated():
-    print("Starting hello_world for Javascript test...")
+    print("Starting unauthenticated test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
     genezio_login(token)

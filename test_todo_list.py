@@ -5,7 +5,7 @@ from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_node_script
 
 def test_todo_list():
-    print("Starting todo_list for Javascript test...")
+    print("Starting todo_list test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
     genezio_login(token)

@@ -2,6 +2,7 @@ from test_hello import test_hello
 from test_todo_list import test_todo_list
 from test_unauthenticated import test_unauthenticated
 from test_webhooks import test_webhooks
+from test_binary_dependency import test_binary_dependency
 import pathlib
 import os
 
@@ -15,3 +16,5 @@ if __name__ == '__main__':
     test_unauthenticated()
     os.chdir(test_path)
     test_webhooks()
+    os.chdir(test_path)
+    test_binary_dependency()

@@ -5,7 +5,7 @@ from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_node_script
 
 def test_webhooks():
-    print("Starting webhook for Javascript test...")
+    print("Starting webhook test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
     genezio_login(token)
