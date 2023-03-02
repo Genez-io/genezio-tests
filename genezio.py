@@ -94,6 +94,36 @@ def genezio_account():
 
     return process.returncode, process.stderr, process.stdout
 
+def genezio_init(project_name):
+    genezio_local_command = ['genezio', 'init']
+    
+    # create a new process with the command and write data to stdin
+    process = subprocess.Popen(genezio_local_command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, close_fds=True)
+    
+    # write the project name to stdin after 1 second
+    time.sleep(1)
+    print("writing project name")
+    process.stdin.write(project_name + "\n")
+    process.stdin.flush()
+    
+    time.sleep(1)
+    print("writing empty string 1")
+    process.stdin.write("\n")
+    process.stdin.flush()
+    
+    time.sleep(1)
+    print("writing empty string 2")
+    process.stdin.write("\n")
+    process.stdin.flush()
+    
+    time.sleep(1)
+    print("writing empty string 3")
+    process.stdin.write("\n")
+    process.stdin.flush()
+    stdout, stderr = process.communicate()
+
+    return stdout, stderr
+
 def genezio_local():
     port = random.randint(1024, 40000)
     genezio_local_command = ['genezio', 'local', "--port", str(port), "--logLevel", "info"]
