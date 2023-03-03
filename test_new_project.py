@@ -31,6 +31,14 @@ def test_new_project():
 
     assert stderr[:-1] == "Class already exists."
     
+    # cleanup
+    
+    os.unlink("./test-jsonrpc.js")
+    os.unlink("./test-http.js")
+    os.unlink("./genezio.yaml")
+    
+    
+    
     
     print("Test passed!")
     
