@@ -38,6 +38,9 @@ jobs:
       - run: python test_unauthenticated.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
+      - run: python test_new_project.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
       - name: Notify slack success
         if: success()
         env:
