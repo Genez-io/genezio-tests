@@ -6,7 +6,7 @@
   import { Remote } from "./remote.js"
   
   export class CronExample {
-      static remote = new Remote("http://127.0.0.1:32233/CronExample")
+      static remote = new Remote("http://127.0.0.1:8083/CronExample")
   
       static async getCounter() {
           return CronExample.remote.call("CronExample.getCounter")  
