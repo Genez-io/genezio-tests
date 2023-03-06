@@ -1,4 +1,4 @@
-name: Integration Tests
+name: Integration Tests Production
 
 on: 
   schedule:
@@ -19,35 +19,35 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: 'Genez-io/genezio'
-          ref: 'dev'
+          ref: 'master'
           path: genezio
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'npm'
           cache-dependency-path: genezio/package-lock.json
-      - run: cd genezio && npm install && npm run install-locally-dev
+      - run: cd genezio && npm install && npm run install-locally
       - run: python test_hello.py
         env:
-          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_todo_list.py
         env:
-          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_webhooks.py
         env:
-          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_unauthenticated.py
         env:
-          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_new_project.py
         env:
-          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_cron.py
         env:
-          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_swift_sdk.py
         env:
-          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN }}
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - name: Notify slack success
         if: success()
         env:
