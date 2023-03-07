@@ -6,7 +6,7 @@
   import { Remote } from "./remote.js"
   
   export class BinaryDependencyTest {
-      static remote = new Remote("http://127.0.0.1:23532/BinaryDependencyTest")
+      static remote = new Remote("http://127.0.0.1:8429/BinaryDependencyTest")
   
       static async test() {
           return BinaryDependencyTest.remote.call("BinaryDependencyTest.test")  

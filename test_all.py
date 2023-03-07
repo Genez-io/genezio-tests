@@ -4,6 +4,7 @@ from test_unauthenticated import test_unauthenticated
 from test_webhooks import test_webhooks
 from test_binary_dependency import test_binary_dependency
 from test_new_project import test_new_project
+from test_create_list_delete import test_create_list_delete
 import pathlib
 import os
 
@@ -21,4 +22,6 @@ if __name__ == '__main__':
     test_binary_dependency()
     os.chdir(test_path)
     test_new_project()
+    os.chdir(test_path)
+    test_create_list_delete()
     

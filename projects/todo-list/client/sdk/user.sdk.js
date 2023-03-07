@@ -6,7 +6,7 @@
   import { Remote } from "./remote.js"
   
   export class User {
-      static remote = new Remote("http://127.0.0.1:23612/User")
+      static remote = new Remote("http://127.0.0.1:32053/User")
   
       static async register(name, email, password) {
           return User.remote.call("User.register", name, email, password)  
