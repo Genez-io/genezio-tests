@@ -1,0 +1,10 @@
+name: test-create-list-delete
+region: eu-central-1
+sdk:
+  language: js
+  options:
+    runtime: node
+  path: ./sdk/
+classes:
+  - path: ./test.js
+    type: jsonrpc

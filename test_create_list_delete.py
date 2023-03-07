@@ -2,26 +2,18 @@
 
 import os
 import shutil
-from genezio import genezio_login, genezio_init, genezio_add_class, genezio_deploy, genezio_ls, genezio_delete
+import yaml
+from genezio import genezio_login, genezio_deploy, genezio_ls, genezio_delete
 
 def test_create_list_delete():
     print("Starting listing test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
-    genezio_login(token)    
+    genezio_login(token)   
 
-    # Create a new project
-    if (not os.path.exists("./projects/listing")):
-        os.mkdir("./projects/listing")
     os.chdir("./projects/listing/")
 
-    new_project_name = "test-create-list-delete-fdhbh2942q7"
-    genezio_init(new_project_name)
-    genezio_add_class("test.js", "jsonrpc")
-
-    # Write some code to the file
-    js_code = open("../hello-world/server/hello.js", "r").read()
-    open("./test.js", "w").write(js_code)
+    new_project_name = yaml.safe_load(open("./genezio.yaml", "r").read())["name"]
 
     # Deploy the project
     deploy_result = genezio_deploy(False)
@@ -59,7 +51,7 @@ def test_create_list_delete():
 
     # cleanup
     os.chdir("../../")
-    shutil.rmtree("./projects/listing")
+    shutil.rmtree("./projects/listing/sdk")
 
     print("Test passed!")
 
