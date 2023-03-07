@@ -4,7 +4,7 @@ import os
 import shutil
 from genezio import genezio_login, genezio_init, genezio_add_class, genezio_deploy, genezio_ls, genezio_delete
 
-def test_listing():
+def test_create_list_delete():
     print("Starting listing test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
@@ -65,4 +65,4 @@ def test_listing():
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':
-    test_listing()
+    test_create_list_delete()
