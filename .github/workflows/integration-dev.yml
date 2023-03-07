@@ -27,6 +27,9 @@ jobs:
           cache: 'npm'
           cache-dependency-path: genezio/package-lock.json
       - run: cd genezio && npm install && npm run install-locally-dev
+      - run: python test_create_list_delete.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_hello.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
@@ -48,9 +51,6 @@ jobs:
       - run: python test_swift_sdk.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
-      - run: python test_create_list_delete.py
-        env:
-          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - name: Notify slack success
         if: success()
         env:
