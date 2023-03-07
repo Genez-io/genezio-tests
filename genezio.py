@@ -31,6 +31,10 @@ def genezio_deploy(deploy_frontend):
 
     process = subprocess.run(genezio_deploy_command, capture_output=True, text=True)
 
+    if process.returncode != 0:
+        print(process.stderr)
+        print(process.stdout)
+
     return DeployResult(process.returncode, process.stdout, process.stderr)
 
 def genezio_login(auth_token):
