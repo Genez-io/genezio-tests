@@ -2,12 +2,12 @@
 
 import os
 from genezio import genezio_deploy, genezio_login
-from utils import run_npm_build
+from utils import run_npm_build, run_wget
 
 def test_frontend():
     print("Starting frontend test...")
     token = os.environ.get('GENEZIO_TOKEN')
-    
+
     genezio_login(token)
 
     os.chdir("./projects/mini-frontend/server/")
@@ -22,12 +22,15 @@ def test_frontend():
     assert status == 0, "`npm run build` returned non-zero exit code"
 
     os.chdir("../server/")
-    
+
     deploy_result = genezio_deploy(True)
 
     assert deploy_result.return_code == 0, "genezio deploy --frontend returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy --frontend returned empty project url"
-    assert "https://genezio-test-frontend" in deploy_result.project_url, "genezio deploy --frontend returned wrong project url"
+    assert "asdfghj-genezio-test-frontend" in deploy_result.project_url, "genezio deploy --frontend returned wrong project url"
+
+    status = run_wget(deploy_result.project_url)
+    assert status == 0, "`wget` returned non-zero exit code"
 
     print("Test passed!")
 
