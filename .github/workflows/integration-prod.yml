@@ -39,6 +39,9 @@ jobs:
       - run: python test_webhooks.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
+      - run: python test_binary_dependencies.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_unauthenticated.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
@@ -55,6 +58,9 @@ jobs:
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_create_list_delete.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
+      - run: python test_frontend.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - name: Notify slack success
