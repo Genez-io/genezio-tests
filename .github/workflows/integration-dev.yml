@@ -42,7 +42,7 @@ jobs:
       - run: python test_webhooks.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
-      - run: python test_binary_dependencies.py
+      - run: python test_binary_dependency.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_unauthenticated.py
