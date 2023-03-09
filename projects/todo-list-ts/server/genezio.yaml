@@ -1,0 +1,16 @@
+name: todo-list-ts
+region: us-east-1
+sdk:
+  language: ts
+  options:
+    runtime: node
+  path: ../client/sdk
+frontend:
+  path: ../client/build
+classes:
+  - path: ./task.ts
+    type: jsonrpc
+    methods: []
+  - path: ./user.ts
+    type: jsonrpc
+    methods: []

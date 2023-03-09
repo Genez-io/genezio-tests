@@ -54,6 +54,9 @@ jobs:
       - run: python test_swift_sdk.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      - run: python test_todo_list_ts.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - name: Notify slack success
         if: success()
         env:
