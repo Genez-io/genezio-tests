@@ -2,7 +2,7 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_node_script
+from utils import run_node_script, run_npm_run_build
 
 def test_todo_list():
     print("Starting todo_list ts test...")
@@ -18,6 +18,7 @@ def test_todo_list():
 
     os.chdir("../client/")
 
+    run_npm_run_build()
     status, output = run_node_script("build/test-todo-list.js")
 
     assert status == 0, "Node test script returned non-zero exit code"
@@ -33,6 +34,7 @@ def test_todo_list():
 
     os.chdir("../client/")
 
+    run_npm_run_build()
     status, output = run_node_script("build/test-todo-list.js")
 
     assert status == 0, "Node test script returned non-zero exit code"
