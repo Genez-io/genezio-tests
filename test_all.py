@@ -24,4 +24,3 @@ if __name__ == '__main__':
     test_new_project()
     os.chdir(test_path)
     test_create_list_delete()
-    

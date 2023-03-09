@@ -1,6 +1,6 @@
 name: Integration Tests Production
 
-on: 
+on:
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
@@ -37,6 +37,9 @@ jobs:
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_unauthenticated.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
+      - run: python test_binary_dependency.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_new_project.py
