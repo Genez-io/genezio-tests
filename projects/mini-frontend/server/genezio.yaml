@@ -11,6 +11,5 @@ frontend:
   # Do not change the subdomain
   subdomain: asdfghj-genezio-test-frontend
 classes:
-  - path: ./task.js
+  - path: ./hello.js
     type: jsonrpc
-    methods: []

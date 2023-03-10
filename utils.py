@@ -2,27 +2,18 @@
 
 import subprocess
 
-def run_wget(url):
+def run_curl(url):
     if url == None:
-        print("You")
+        print("URL is None")
         return 1
 
-    process = subprocess.run(['wget', url], capture_output=True, text=True)
+    process = subprocess.run(['curl', url], capture_output=True, text=True)
 
     if process.returncode != 0:
         print(process.stderr)
         print(process.stdout)
 
-    return process.returncode
-
-def run_npm_build():
-    process = subprocess.run(['npm', 'run', 'build'], capture_output=True, text=True)
-
-    if process.returncode != 0:
-        print(process.stderr)
-        print(process.stdout)
-
-    return process.returncode
+    return process.returncode, process.stdout
 
 def run_node_script(script, args=[]):
     run_script_command = ['node', script] + args
