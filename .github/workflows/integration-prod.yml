@@ -57,6 +57,9 @@ jobs:
       - run: python test_create_list_delete.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
+      - run: python test_frontend.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - name: Notify slack success
         if: success()
         env:

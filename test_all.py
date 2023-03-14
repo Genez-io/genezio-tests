@@ -5,6 +5,7 @@ from test_webhooks import test_webhooks
 from test_binary_dependency import test_binary_dependency
 from test_new_project import test_new_project
 from test_create_list_delete import test_create_list_delete
+from test_frontend import test_frontend
 import pathlib
 import os
 
@@ -24,3 +25,5 @@ if __name__ == '__main__':
     test_new_project()
     os.chdir(test_path)
     test_create_list_delete()
+    os.chdir(test_path)
+    test_frontend()

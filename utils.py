@@ -2,8 +2,12 @@
 
 import subprocess
 
-def run_npm_run_build():
-    process = subprocess.run(['npm', 'run', 'build'], capture_output=True, text=True)
+def run_curl(url):
+    if url == None:
+        print("URL is None")
+        return 1
+
+    process = subprocess.run(['curl', url], capture_output=True, text=True)
 
     if process.returncode != 0:
         print(process.stderr)

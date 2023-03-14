@@ -1,0 +1,15 @@
+name: asdfghj-genezio-test-frontend
+region: eu-central-1
+cloudProvider: aws
+sdk:
+  language: js
+  options:
+    runtime: browser
+  path: ../client/src/sdk
+frontend:
+  path: ../client/build
+  # Do not change the subdomain
+  subdomain: asdfghj-genezio-test-frontend
+classes:
+  - path: ./hello.js
+    type: jsonrpc
