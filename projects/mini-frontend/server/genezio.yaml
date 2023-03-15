@@ -1,4 +1,4 @@
-name: asdfghj-genezio-test-frontend
+name: mnopqr-genezio-test-frontend
 region: eu-central-1
 cloudProvider: aws
 sdk:
@@ -9,7 +9,7 @@ sdk:
 frontend:
   path: ../client/build
   # Do not change the subdomain
-  subdomain: asdfghj-genezio-test-frontend
+  subdomain: mnopqr-genezio-test-frontend
 classes:
   - path: ./hello.js
     type: jsonrpc
