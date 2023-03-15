@@ -16,11 +16,11 @@ def test_frontend():
 
     assert deploy_result.return_code == 0, "genezio deploy --frontend returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy --frontend returned empty project url"
-    assert "asdfghj-genezio-test-frontend" in deploy_result.project_url, "genezio deploy --frontend returned wrong project url"
+    assert "mnopqr-genezio-test-frontend" in deploy_result.project_url, "genezio deploy --frontend returned wrong project url"
 
     status, output = run_curl(deploy_result.project_url)
     assert status == 0, "`curl` returned non-zero exit code"
-    assert "Hello World" in output, "frontend page doesn't contain 'Hello world'"
+    assert "Hello World" in output, "frontend page doesn't contain 'Hello World'"
 
     print("Test passed!")
 
