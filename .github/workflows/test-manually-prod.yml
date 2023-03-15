@@ -1,0 +1,35 @@
+name: Test Manually Prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      test-name:
+        description: "Name of the python test to be tested"
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v4
+      - uses: actions/checkout@v3
+        with:
+          repository: 'Genez-io/genezio'
+          ref: 'master'
+          path: genezio
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: genezio/package-lock.json
+      - run: cd genezio && npm install && npm run install-locally
+      - run: python ${{ inputs.tags }}
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
