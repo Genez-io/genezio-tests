@@ -20,7 +20,7 @@ def test_frontend():
 
     status, output = run_curl(deploy_result.project_url)
     assert status == 0, "`curl` returned non-zero exit code"
-    assert "Hello World" in output, "frontend page doesn't contain 'Hello World'"
+    assert "Hello World" in output, "page " + deploy_result.project_url + " doesn't contain 'Hello World'"
 
     print("Test passed!")
 

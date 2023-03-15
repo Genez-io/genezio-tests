@@ -10,6 +10,7 @@ def run_curl(url):
         print("URL is None")
         return 1
 
+    print("Running curl " + url)
     process = subprocess.run(['curl', url], capture_output=True, text=True)
 
     if process.returncode != 0:
