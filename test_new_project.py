@@ -10,38 +10,38 @@ def test_new_project():
     genezio_login(token)
 
     working_dir = os.path.join("projects", "new_project")
-    
+
     os.chdir(working_dir)
-    
-    genezio_init("test-new-project")
-    
-    genezio_add_class("test-jsonrpc.js", None)
-    genezio_add_class("test-http.js", "http")
-    
+
+    returnCode, _, stdout = genezio_init("test-new-project")
+    assert returnCode == 0, "`genezio init test-new-project` returned non-zero exit code"
+    assert "Your genezio project was successfully initialized" in stdout, "`genezio init test-new-project` returned wrong output"
+
+    returnCode, _, stdout = genezio_add_class("test-jsonrpc.js", None)
+    assert returnCode == 0, "`genezio addClass test-jsonrpc.js` returned non-zero exit code"
+    assert "Class added successfully" in stdout, "`genezio addClass test-jsonrpc.js` returned wrong output"
+
+    returnCode, _, stdout = genezio_add_class("test-http.js", "http")
+    assert returnCode == 0, "`genezio addClass test-http.js` returned non-zero exit code"
+    assert "Class added successfully" in stdout, "`genezio addClass test-http.js` returned wrong output"
+
     genezio_yaml = open("./genezio.yaml", "r").read()
-    
     genezio_yaml_template = open("./genezio.yaml.template", "r").read()
-    
-    assert genezio_yaml == genezio_yaml_template
 
-    assert os.path.exists("./test-jsonrpc.js")
-    assert os.path.exists("./test-http.js")
-        
-    returnCode, stderr, stdout = genezio_add_class("test-jsonrpc.js", None)
+    assert genezio_yaml == genezio_yaml_template, "genezio.yaml doesn't match genezio.yaml.template"
 
-    assert stderr[:-1] == "Class already exists."
-    
+    assert os.path.exists("./test-jsonrpc.js"), "class file test-jsonrpc.js doesn't exist"
+    assert os.path.exists("./test-http.js"), "class file test-http.js doesn't exist"
+
+    returnCode, stderr, _ = genezio_add_class("test-jsonrpc.js", None)
+    assert stderr[:-1] == "Class already exists.", "`genezio add duplicated class returned wrong output"
+
     # cleanup
-    
     os.unlink("./test-jsonrpc.js")
     os.unlink("./test-http.js")
     os.unlink("./genezio.yaml")
-    
-    
-    
-    
+
     print("Test passed!")
-    
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

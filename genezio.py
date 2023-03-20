@@ -136,7 +136,7 @@ def genezio_init(project_name):
 
     stdout, stderr = process.communicate()
 
-    return stdout, stderr
+    return process.returncode, stderr, stdout
 
 def genezio_local():
     port = random.randint(1024, 40000)
