@@ -100,33 +100,43 @@ def genezio_account():
 
 def genezio_init(project_name):
     genezio_local_command = ['genezio', 'init']
-    
+
     # create a new process with the command and write data to stdin
     process = subprocess.Popen(genezio_local_command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, close_fds=True)
-    
+
     # write the project name to stdin after 1 second
     time.sleep(1)
     print("writing project name")
     process.stdin.write(project_name + "\n")
     process.stdin.flush()
-    
+
+    # set default region
     time.sleep(1)
     print("writing empty string 1")
     process.stdin.write("\n")
     process.stdin.flush()
-    
+
+    # set default programming language
     time.sleep(1)
     print("writing empty string 2")
     process.stdin.write("\n")
     process.stdin.flush()
-    
+
+    # set default runtime
     time.sleep(1)
     print("writing empty string 3")
     process.stdin.write("\n")
     process.stdin.flush()
+
+    # set default sdk path
+    time.sleep(1)
+    print("writing empty string 4")
+    process.stdin.write("\n")
+    process.stdin.flush()
+
     stdout, stderr = process.communicate()
 
-    return stdout, stderr
+    return process.returncode, stderr, stdout
 
 def genezio_local():
     port = random.randint(1024, 40000)
@@ -148,12 +158,12 @@ def genezio_local():
 
         if port_status == 0:
             break
-        
+
         end = time.time()
         if end - start > 60:
             process.kill()
             return process
-    
+
     time.sleep(6)
     return process
 
