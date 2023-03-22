@@ -5,7 +5,10 @@ from test_webhooks import test_webhooks
 from test_binary_dependency import test_binary_dependency
 from test_new_project import test_new_project
 from test_create_list_delete import test_create_list_delete
-from test_frontend import test_frontend
+from test_todo_list_ts import test_todo_list_ts
+from test_python_sdk import test_python_sdk
+from test_swift_sdk import test_swift_sdk
+
 import pathlib
 import os
 
@@ -16,6 +19,12 @@ if __name__ == '__main__':
     os.chdir(test_path)
     test_todo_list()
     os.chdir(test_path)
+    test_todo_list_ts()
+    os.chdir(test_path)
+    test_python_sdk()
+    os.chdir(test_path)
+    test_swift_sdk()
+    os.chdir(test_path)
     test_unauthenticated()
     os.chdir(test_path)
     test_webhooks()
@@ -25,5 +34,3 @@ if __name__ == '__main__':
     test_new_project()
     os.chdir(test_path)
     test_create_list_delete()
-    os.chdir(test_path)
-    test_frontend()
