@@ -129,6 +129,7 @@ def genezio_init(project_name):
     return stdout, stderr
 
 def genezio_local():
+    port = 8083
     genezio_local_command = ['genezio', 'local', "--logLevel", "info"]
 
     process = subprocess.Popen(genezio_local_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, close_fds=True)
