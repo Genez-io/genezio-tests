@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import subprocess
+import platform
 
 def run_npm_run_build():
     process = subprocess.run(['npm', 'run', 'build'], capture_output=True, text=True)
@@ -28,3 +29,9 @@ def run_node_script(script, args=[]):
         print(process.stdout)
 
     return process.returncode, process.stdout
+
+def set_shell():
+    if platform.system() == "Windows":
+        return True
+    else:
+        return False

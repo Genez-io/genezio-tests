@@ -5,3 +5,4 @@ projects/python-sdk/client/
 projects/js-sdk/client/
 projects/ts-sdk/client/
 projects/dart-sdk/client/
+**/sdk*
