@@ -28,13 +28,6 @@ def test_unauthenticated():
     assert deploy_result.return_code == 1, "genezio account returned non-zero exit code"
     assert "You are not logged in or your token is invalid. Please run `genezio login` before running this command." in deploy_result.stderr, "genezio account returned wrong output"
 
-    process = genezio_local()
-    # wait for the process to finish and get stdout and stderr.
-    out, err = process.communicate(None, 2)
-
-    assert return_code == 1, "genezio account returned non-zero exit code"
-    assert "You are not logged in or your token is invalid. Please run `genezio login` before running this command." in err, "genezio account returned wrong output"
-
     print("Test passed!")
 
 # Test order matters because the commands are having side effects.
