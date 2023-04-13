@@ -7,16 +7,13 @@ import { Remote } from "./remote";
 
 export type Task = {_id: string, title: string, ownerId: string, solved: boolean, date: Date};
 export type GetTasksResponse = {success: boolean, tasks: Array<Task>};
-export type GetTaskResponse = {success: boolean, task: Task};
+export type GetTaskResponse = {success: boolean, task?: Task};
 export type UpdateTaskResponse = {success: boolean};
 export type DeleteTaskResponse = {success: boolean};
 
 export class TaskService {
   static remote = new Remote("http://127.0.0.1:8083/TaskService");
 
-  static async #connect() {
-    return await TaskService.remote.call("TaskService.#connect");
-  }
   static async getAllTasksByUser(token: string, userId: string): Promise<GetTasksResponse> {
     return await TaskService.remote.call("TaskService.getAllTasksByUser", token, userId);
   }

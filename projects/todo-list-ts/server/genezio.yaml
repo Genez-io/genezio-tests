@@ -8,7 +8,6 @@ sdk:
   path: ../client/sdk
 frontend:
   path: ../client/build
-  subdomain: plum-official-eel
 classes:
   - path: ./task.ts
     type: jsonrpc

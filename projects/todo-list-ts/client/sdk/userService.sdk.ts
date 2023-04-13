@@ -7,20 +7,17 @@ import { Remote } from "./remote";
 
 export type Task = {_id: string, title: string, ownerId: string, solved: boolean, date: Date};
 export type GetTasksResponse = {success: boolean, tasks: Array<Task>};
-export type GetTaskResponse = {success: boolean, task: Task};
+export type GetTaskResponse = {success: boolean, task?: Task};
 export type UpdateTaskResponse = {success: boolean};
 export type DeleteTaskResponse = {success: boolean};
-export type CreateUserResponse = {success: boolean, msg: string};
+export type CreateUserResponse = {success: boolean, msg?: string};
 export type User = {_id: string, name: string, email: string};
-export type UserLoginResponse = {success: boolean, user: User, token: string, msg: string};
+export type UserLoginResponse = {success: boolean, user?: User, token?: string, msg?: string};
 export type CheckSessionResponse = {success: boolean};
 
 export class UserService {
   static remote = new Remote("http://127.0.0.1:8083/UserService");
 
-  static async #connect() {
-    return await UserService.remote.call("UserService.#connect");
-  }
   static async register(name: string, email: string, password: string): Promise<CreateUserResponse> {
     return await UserService.remote.call("UserService.register", name, email, password);
   }
