@@ -12,6 +12,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var _a, _TaskService_connect;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Remote = exports.TaskService = void 0;
 const remote_1 = require("./remote");
@@ -39,4 +40,9 @@ class TaskService {
     }
 }
 exports.TaskService = TaskService;
+_a = TaskService, _TaskService_connect = function _TaskService_connect() {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield TaskService.remote.call("TaskService.#connect");
+    });
+};
 TaskService.remote = new remote_1.Remote("http://127.0.0.1:8083/TaskService");

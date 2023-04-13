@@ -13,8 +13,8 @@ async function makeRequest(request, url, agent) {
 
     const options = {
         hostname: hostUrl.hostname,
+        path: hostUrl.search ? hostUrl.pathname + hostUrl.search : hostUrl.pathname, 
         port: hostUrl.port,
-        path: hostUrl.pathname,
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

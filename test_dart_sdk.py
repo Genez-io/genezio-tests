@@ -22,10 +22,10 @@ def test_dart_sdk():
     f = open("../client/sdk/server.dart", "r")
     content = f.read()
 
-    assert "static Future<dynamic> method() async" in content, "Wrong exported method without parameters"
-    assert "static Future<dynamic> methodWithoutParameters() async" in content, "Wrong exported method with return type"
-    assert "static Future<dynamic> methodWithOneParameter(String test1) async" in content, "Wrong exported method with one parameter"
-    assert "static Future<dynamic> methodWithMultipleParameters(String test1, double test2, bool test3) async" in content, "Wrong exported method with multiple parameters"
+    assert "static Future<Object> method() async" in content, "Wrong exported method without parameters"
+    assert "static Future<String> methodWithoutParameters() async" in content, "Wrong exported method with return type"
+    assert "static Future<String> methodWithOneParameter(String test1) async" in content, "Wrong exported method with one parameter"
+    assert "static Future<String> methodWithMultipleParameters(String test1, double test2, bool test3) async" in content, "Wrong exported method with multiple parameters"
 
     os.chdir("../server/")
 
@@ -37,10 +37,10 @@ def test_dart_sdk():
     f = open("../client/sdk/server.dart", "r")
     content = f.read()
 
-    assert "static Future<dynamic> method() async" in content, "Wrong exported method without parameters"
-    assert "static Future<dynamic> methodWithoutParameters() async" in content, "Wrong exported method with return type"
-    assert "static Future<dynamic> methodWithOneParameter(String test1) async" in content, "Wrong exported method with one parameter"
-    assert "static Future<dynamic> methodWithMultipleParameters(String test1, double test2, bool test3) async" in content, "Wrong exported method with multiple parameters"
+    assert "static Future<Object> method() async" in content, "Wrong exported method without parameters"
+    assert "static Future<String> methodWithoutParameters() async" in content, "Wrong exported method with return type"
+    assert "static Future<String> methodWithOneParameter(String test1) async" in content, "Wrong exported method with one parameter"
+    assert "static Future<String> methodWithMultipleParameters(String test1, double test2, bool test3) async" in content, "Wrong exported method with multiple parameters"
 
     process.kill()
     print("Test passed!")

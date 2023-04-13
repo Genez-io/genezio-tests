@@ -22,7 +22,7 @@ def test_ts_sdk():
     f = open("../client/sdk/server.sdk.ts", "r")
     content = f.read()
 
-    assert "static async method(): Promise<any>" in content, "Wrong exported method without parameters"
+    assert "static async method()" in content, "Wrong exported method without parameters"
     assert "static async methodWithoutParameters(): Promise<string>" in content, "Wrong exported method with return type"
     assert "static async methodWithOneParameter(test1: string): Promise<string>" in content, "Wrong exported method with one parameter"
     assert "static async methodWithMultipleParameters(test1: string, test2: number): Promise<string>" in content, "Wrong exported method with multiple parameters"
@@ -37,7 +37,7 @@ def test_ts_sdk():
     f = open("../client/sdk/server.sdk.ts", "r")
     content = f.read()
 
-    assert "static async method(): Promise<any>" in content, "Wrong exported method without parameters"
+    assert "static async method()" in content, "Wrong exported method without parameters"
     assert "static async methodWithoutParameters(): Promise<string>" in content, "Wrong exported method with return type"
     assert "static async methodWithOneParameter(test1: string): Promise<string>" in content, "Wrong exported method with one parameter"
     assert "static async methodWithMultipleParameters(test1: string, test2: number): Promise<string>" in content, "Wrong exported method with multiple parameters"

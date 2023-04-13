@@ -8,6 +8,8 @@ from test_create_list_delete import test_create_list_delete
 from test_todo_list_ts import test_todo_list_ts
 from test_python_sdk import test_python_sdk
 from test_swift_sdk import test_swift_sdk
+from test_js_sdk import test_js_sdk
+from test_ts_sdk import test_ts_sdk
 
 import pathlib
 import os
@@ -20,6 +22,10 @@ if __name__ == '__main__':
     test_todo_list()
     os.chdir(test_path)
     test_todo_list_ts()
+    os.chdir(test_path)
+    test_js_sdk()
+    os.chdir(test_path)
+    test_ts_sdk()
     os.chdir(test_path)
     test_python_sdk()
     os.chdir(test_path)

@@ -19,7 +19,6 @@ const taskService_sdk_1 = require("./sdk/taskService.sdk");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     const email = "test" + Math.random();
     const result = yield userService_sdk_1.UserService.register("test", email, "test");
-    console.log(result);
     console.log(result.success ? "Ok" : "Error");
     const loginResult = yield userService_sdk_1.UserService.login(email, "test");
     console.log(result.success ? "Ok" : "Error");
