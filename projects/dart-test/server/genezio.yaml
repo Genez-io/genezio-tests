@@ -1,0 +1,13 @@
+name: hello-world-dart2
+region: eu-central-1
+sdk:
+  language: dart
+  options:
+    runtime: node
+  path: ../client/sdk/
+classes:
+  - path: ./lib/hello_world.dart
+    name: HelloWorldService
+    methods:
+    - name: "httpMethod"
+      type: http

@@ -68,7 +68,7 @@ jobs:
       - run: python test_python_sdk.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
-      - run: python test_dart_sdk.py
+      - run: python test_dart.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_frontend.py
