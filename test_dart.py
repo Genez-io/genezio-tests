@@ -26,6 +26,7 @@ def test_dart():
     print(output)
     assert "100Hello World121 21 210 20100 200a1000 10001000 2000b10000 1000010000 10000a20 4020 40b30 6030 60" in output, "Wrong output from dart test"
 
+    output = ""
     process = genezio_local()
 
     status, output = run_script(["dart", "run","../client/main.dart"])
