@@ -2,7 +2,7 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_dart_script
+from utils import run_script
 from os.path import exists
 
 def test_dart():
@@ -17,14 +17,18 @@ def test_dart():
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
-    status, output = run_dart_script("../client/main.dart")
+    os.chdir("../client/")
+    run_script(["dart", "pub", "get"])
+    os.chdir("../server/")
+
+    status, output = run_script(["dart", "run", "../client/main.dart"])
 
     print(output)
     assert "100Hello World121 21 210 20100 200a1000 10001000 2000b10000 1000010000 10000a20 4020 40b30 6030 60" in output, "Wrong output from dart test"
 
     process = genezio_local()
 
-    status, output = run_dart_script("../client/main.dart")
+    status, output = run_script(["dart", "run","../client/main.dart"])
 
     print(output)
     assert "100Hello World121 21 210 20100 200a1000 10001000 2000b10000 1000010000 10000a20 4020 40b30 6030 60" in output, "Wrong output from dart test"

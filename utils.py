@@ -29,8 +29,8 @@ def run_node_script(script, args=[]):
 
     return process.returncode, process.stdout
 
-def run_dart_script(file, args=[]):
-    run_script_command = ['dart', "run", file]
+def run_script(args):
+    run_script_command = args
     process = subprocess.run(run_script_command, capture_output=True, text=True)
 
     if process.returncode != 0:
