@@ -61,19 +61,34 @@ class HelloWorldService {
     this.methodWithPointReturnVoidParam = point;
   }
 
-  // TODO: we currently don't support this 
+  List<Point> replacePointsInArray(List<Point> list) {
+    return [Point(list[0].x + 10, list[0].y + 10), Point(list[1].x + 10, list[1].y + 10), Point(list[2].x + 10, list[2].y + 10)];
+  }
+
+  Map<String, Point> replacePointsInMap(Map<String, Point> map) {
+    return {
+      "hello": Point(map["hello"]!.x, map["hello"]!.y),
+    };
+  }
+
   List<int> getNumbers(int x, int y, int z) {
     return [x, y, z];
   }
 
-  // TODO: we currently don't support this
   List<String> getStrings(String x, String y, String z) {
     return [x, y, z];
   }
 
-  // TODO: we currently don't support this
   Future<List<int>> getNumbersAsFuture(int x, int y, int z) {
     return Future.value([x, y, z]);
+  }
+
+  List<Point> getPoints(int x, int y, int count) {
+    return List.generate(count, (index) => Point(x * index, y * index));
+  }
+
+  Future<List<Point>> getPointsAsync(int x, int y, int count) {
+    return Future.value(List.generate(count, (index) => Point(x * index, y * index)));
   }
 
   TestResult getTestResult() {
