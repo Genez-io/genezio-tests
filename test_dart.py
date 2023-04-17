@@ -12,6 +12,7 @@ def test_dart():
     genezio_login(token)
 
     os.chdir("./projects/dart-test/server/")
+    run_script(["dart", "pub", "get"])
     deploy_result = genezio_deploy(False)
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
