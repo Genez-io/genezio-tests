@@ -31,6 +31,8 @@ def test_ts_sdk():
 
     process = genezio_local()
 
+    assert process != None, "genezio local returned None"
+
     assert exists("../client/sdk/remote.ts") == True, "Remote ts sdk not found"
     assert exists("../client/sdk/server.sdk.ts") == True, "Class ts sdk not found"
 

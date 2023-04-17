@@ -45,6 +45,8 @@ def test_python_sdk():
 
     process = genezio_local()
 
+    assert process != None, "genezio local returned None"
+
     assert exists("../client/sdk/remote.py") == True, "Remote python sdk not found"
     assert exists("../client/sdk/server.py") == True, "Class python sdk not found"
     

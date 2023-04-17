@@ -30,6 +30,8 @@ def test_dart():
     output = ""
     process = genezio_local()
 
+    assert process != None, "genezio local returned None"
+
     status, output = run_script(["dart", "run","../client/main.dart"])
 
     print(output)

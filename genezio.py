@@ -152,7 +152,7 @@ def genezio_local():
         if process.returncode != None:
             print("process exited with code: " + str(process.returncode))
             process.kill()
-            return process
+            return None
 
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         port_status = sock.connect_ex(('127.0.0.1', port))
@@ -164,7 +164,7 @@ def genezio_local():
         if end - start > 60:
             print("Timeout while waiting for localhost.")
             process.kill()
-            return process
+            return None
 
     time.sleep(6)
     return process
