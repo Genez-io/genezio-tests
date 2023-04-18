@@ -27,6 +27,8 @@ def test_binary_dependency():
 
     process = genezio_local()
 
+    assert process != None, "genezio local returned None"
+
     os.chdir("../client/")
 
     status, output = run_node_script("test-binary-dependency.js")

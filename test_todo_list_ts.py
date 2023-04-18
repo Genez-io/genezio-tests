@@ -32,6 +32,8 @@ def test_todo_list_ts():
 
     process = genezio_local()
 
+    assert process != None, "genezio local returned None"
+
     os.chdir("../client/")
 
     run_npm_run_build()

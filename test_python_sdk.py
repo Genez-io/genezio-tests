@@ -29,21 +29,23 @@ def test_python_sdk():
 
     assert "from .remote import Remote" in content, "Wrong import statement"
     
-    assert "def method(self):" in content, "Wrong exported method without parameters"
+    assert "def method(self) -> Any:" in content, "Wrong exported method without parameters"
     assert 'return Server.remote.call("Server.method")' in content, "Wrong exported method without parameters"
     
-    assert 'def methodWithoutParameters(self):' in content, "Wrong exported method with return type"
+    assert 'def methodWithoutParameters(self) -> str:' in content, "Wrong exported method with return type"
     assert 'return Server.remote.call("Server.methodWithoutParameters")' in content, "Wrong exported method with return type"
     
-    assert 'def methodWithOneParameter(self, test1):' in content, "Wrong exported method with one parameter"
+    assert 'def methodWithOneParameter(self, test1: str) -> str:' in content, "Wrong exported method with one parameter"
     assert 'return Server.remote.call("Server.methodWithOneParameter", test1)' in content, "Wrong exported method with one parameter"
     
-    assert 'def methodWithMultipleParameters(self, test1, test2):' in content, "Wrong exported method with multiple parameters"
+    assert 'def methodWithMultipleParameters(self, test1: str, test2: float) -> str:' in content, "Wrong exported method with multiple parameters"
     assert 'return Server.remote.call("Server.methodWithMultipleParameters", test1, test2)' in content, "Wrong exported method with multiple parameters"
     
     os.chdir("../server/")
 
     process = genezio_local()
+
+    assert process != None, "genezio local returned None"
 
     assert exists("../client/sdk/remote.py") == True, "Remote python sdk not found"
     assert exists("../client/sdk/server.py") == True, "Class python sdk not found"
@@ -55,16 +57,16 @@ def test_python_sdk():
 
     assert "from .remote import Remote" in content, "Wrong import statement"
     
-    assert "def method(self):" in content, "Wrong exported method without parameters"
+    assert "def method(self) -> Any:" in content, "Wrong exported method without parameters"
     assert 'return Server.remote.call("Server.method")' in content, "Wrong exported method without parameters"
     
-    assert 'def methodWithoutParameters(self):' in content, "Wrong exported method with return type"
+    assert 'def methodWithoutParameters(self) -> str:' in content, "Wrong exported method with return type"
     assert 'return Server.remote.call("Server.methodWithoutParameters")' in content, "Wrong exported method with return type"
     
-    assert 'def methodWithOneParameter(self, test1):' in content, "Wrong exported method with one parameter"
+    assert 'def methodWithOneParameter(self, test1: str) -> str:' in content, "Wrong exported method with one parameter"
     assert 'return Server.remote.call("Server.methodWithOneParameter", test1)' in content, "Wrong exported method with one parameter"
     
-    assert 'def methodWithMultipleParameters(self, test1, test2):' in content, "Wrong exported method with multiple parameters"
+    assert 'def methodWithMultipleParameters(self, test1: str, test2: float) -> str:' in content, "Wrong exported method with multiple parameters"
     assert 'return Server.remote.call("Server.methodWithMultipleParameters", test1, test2)' in content, "Wrong exported method with multiple parameters"
     
 

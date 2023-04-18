@@ -31,6 +31,8 @@ def test_todo_list():
 
     process = genezio_local()
 
+    assert process != None, "genezio local returned None"
+
     os.chdir("../client/")
 
     status, output = run_node_script("test-todo-list.js")
