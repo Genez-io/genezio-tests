@@ -10,6 +10,6 @@ print(serverTest.test4(SuperModel("id", Model("name", "type", 1.0, Season.AUTUMN
 print(serverTest.test4(SuperModel("id", Model("name", "type", 11, Season.AUTUMN))), end="")
 print(serverTest.test5(21), end="")
 print(serverTest.test6(11, 22), end="")
-# print(serverTest.test7())
+print(serverTest.test7(), end="")
 # print(serverTest.test8(1))
 # print(serverTest.test9(Season.AUTUMN))

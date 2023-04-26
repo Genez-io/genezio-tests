@@ -51,10 +51,9 @@ export class ServerTest {
         return [n1, n2]
     }
 
-    // TODO: currently buggy
-    // async test7() {
-    //     console.log("test")
-    // }
+    async test7() {
+        console.log("test")
+    }
 
     // TODO: not currently supported
     // async test8(a: { [id: string]: number; }): Promise<{ [id: string]: number; }> {
@@ -64,7 +63,8 @@ export class ServerTest {
     //     }
     // }
 
-    test9(a: Season): Season {
-        return a;
-    }
+    // TODO: not working yet.
+    // test9(a: Season): Season {
+    //     return a;
+    // }
 }

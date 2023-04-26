@@ -21,7 +21,7 @@ def test_ts_to_python_sdk():
     status, output = run_script(["python3", "main.py"])
 
     assert status == 0, "Node test script returned non-zero exit code"
-    assert output in "Hello from server!1string2name0typeTrueFalse22[11, 22]", "Wrong output from python test: " + output
+    assert output in "Hello from server!1string2name0typeTrueFalse22[11, 22]None", "Wrong output from python test: " + output
     os.chdir("../server/")
 
     process = genezio_local()
@@ -37,7 +37,7 @@ def test_ts_to_python_sdk():
     status, output = run_script(["python3", "main.py"])
 
     assert status == 0, "Node test script returned non-zero exit code"
-    assert output in "Hello from server!1string2name0typeTrueFalse22[11, 22]", "Wrong output from python test: " + output
+    assert output in "Hello from server!1string2name0typeTrueFalse22[11, 22]None", "Wrong output from python test: " + output
 
     process.kill()
     print("Test passed!")
