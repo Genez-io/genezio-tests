@@ -8,6 +8,7 @@ sdk:
   path: ../client/sdk
 frontend:
   path: ../client/build
+  subdomain: amber-exact-squid
 classes:
   - path: ./task.ts
     type: jsonrpc

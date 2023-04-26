@@ -32,4 +32,7 @@ class Remote:
         if (response.get('error') != None):
             return response['error']['message']
         else:
-            return response['result']
+            if 'result' in response:
+                return response['result']
+            else:
+                return None
