@@ -66,7 +66,7 @@ jobs:
       - run: python test_js_sdk.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
-      - run: python test_ts_to_python.py.py
+      - run: python test_ts_to_python.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_ts_sdk.py
