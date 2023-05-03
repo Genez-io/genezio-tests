@@ -13,9 +13,6 @@ def test_todo_list_ts():
     os.chdir("./projects/todo-list-ts/server/")
     deploy_result = genezio_deploy(False)
 
-    print(deploy_result.return_code)
-    print(deploy_result.stdout)
-    print(deploy_result.stderr)
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
@@ -24,7 +21,7 @@ def test_todo_list_ts():
     run_npm_run_build()
     status, output = run_node_script("build/test-todo-list.js")
 
-    assert status == 0, "Node test script returned non-zero exit code; status code " + str(status) + " output: " + output
+    assert status == 0, "Node test script returned non-zero exit code"
 
     components = output.split("\n")
 

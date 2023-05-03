@@ -3,6 +3,8 @@ region: us-east-1
 cloudProvider: aws
 sdk:
   language: js
+  options:
+    runtime: node
   path: ./sdk/
 classes:
   - path: test-jsonrpc.js
