@@ -31,7 +31,6 @@ def genezio_deploy(deploy_frontend):
 
     process = subprocess.run(genezio_deploy_command, capture_output=True, text=True)
 
-    print("aici!")
     print(process.returncode)
     if process.returncode != 0:
         print(process.stderr)
