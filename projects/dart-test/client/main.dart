@@ -11,13 +11,6 @@ void main(List<String> args) async {
   stdout.write(testResult.point.x);
   stdout.write(testResult.point.y);
 
-  final stringReturn = await HelloWorldService.methodWithReturnSimpleString();
-  final intReturn = await HelloWorldService.methodWithReturnSimpleInt();
-  final boolReturn = await HelloWorldService.methodWithReturnSimpleBool();
-  stdout.write(stringReturn);
-  stdout.write(intReturn);
-  stdout.write(boolReturn);
-
   final result = await HelloWorldService.getComplicatedClass(1, 2);
   stdout.write('${result.a.x} ${result.a.y}');
   stdout.write('${result.b.x} ${result.b.y}');
