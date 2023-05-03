@@ -60,6 +60,9 @@ jobs:
       - run: python test_ts_sdk.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
+      - run: python test_ts_to_python.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_create_list_delete.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
