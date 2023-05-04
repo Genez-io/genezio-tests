@@ -30,6 +30,9 @@ jobs:
           cache: 'npm'
           cache-dependency-path: genezio/package-lock.json
       - run: cd genezio && npm install && npm run install-locally-dev
+      - run: python test_lambda_handler_errors.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_typescript_flutter_sdk.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
