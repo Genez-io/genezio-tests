@@ -1,0 +1,15 @@
+name: test-dart-typescript-sdk
+region: us-east-1
+cloudProvider: aws
+sdk:
+  language: ts
+  options:
+    runtime: browser
+  path: ../client/sdk
+scripts:
+  preBackendDeploy: dart pub get
+classes:
+  - path: ./lib/task.dart
+    name: "Task"
+    type: jsonrpc
+    methods: []
