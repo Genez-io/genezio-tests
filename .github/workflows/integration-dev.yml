@@ -13,8 +13,8 @@ jobs:
         with:
           ref: dev
       - uses: dart-lang/setup-dart@v1
-        with:
-            sdk: 2.19.6
+        with:	
+          sdk: 2.19.6
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
@@ -32,6 +32,15 @@ jobs:
           cache: 'npm'
           cache-dependency-path: genezio/package-lock.json
       - run: cd genezio && npm install && npm run install-locally-dev
+      - run: python test_lambda_handler_errors.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      - run: python test_typescript_flutter_sdk.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      - run: python test_dart_typescript_sdk.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_dart.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
@@ -66,6 +75,9 @@ jobs:
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_js_sdk.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      - run: python test_ts_to_python.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_ts_sdk.py
