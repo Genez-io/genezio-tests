@@ -3,6 +3,7 @@
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from os.path import exists
+from utils import cmp_files
 
 def test_dart_typescript_sdk():
     print("Starting test_dart_typescript_sdk test...")
@@ -26,12 +27,7 @@ def test_dart_typescript_sdk():
     assert exists("../client/sdk/remote.ts") == True, "Remote typescript sdk not found"
     assert exists("../client/sdk/task.sdk.ts") == True, "Class typescript sdk not found"
 
-    f = open("../client/sdk/task.sdk.ts", "r")
-    content = f.read()
-
-    template_content = open("../client/todo_list.ts.template", "r").read()
-
-    assert content == template_content, "Wrong class sdk content"
+    assert cmp_files("../client/sdk/task.sdk.ts", "../client/todo_list.ts.template") == True, "Wrong class sdk content"
 
     process.kill()
     print("Test passed!")

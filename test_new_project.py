@@ -2,6 +2,7 @@
 
 import os
 from genezio import genezio_login, genezio_init, genezio_add_class
+from utils import cmp_files
 
 def test_new_project():
     print("Starting new_project test...")
@@ -25,10 +26,7 @@ def test_new_project():
     assert returnCode == 0, "`genezio addClass test-http.js` returned non-zero exit code"
     assert "Class added successfully" in stdout, "`genezio addClass test-http.js` returned wrong output"
 
-    genezio_yaml = open("./genezio.yaml", "r").read()
-    genezio_yaml_template = open("./genezio.yaml.template", "r").read()
-
-    assert genezio_yaml == genezio_yaml_template, "genezio.yaml doesn't match genezio.yaml.template"
+    assert cmp_files("./genezio.yaml", "./genezio.yaml.template") == True, "genezio.yaml doesn't match genezio.yaml.template"
 
     assert os.path.exists("./test-jsonrpc.js"), "class file test-jsonrpc.js doesn't exist"
     assert os.path.exists("./test-http.js"), "class file test-http.js doesn't exist"
