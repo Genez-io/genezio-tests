@@ -4,8 +4,8 @@ import subprocess
 import re
 import socket
 import time
-
-from utils import set_shell
+import os
+import random
 
 # define a struct
 class DeployResult:
@@ -29,10 +29,8 @@ def genezio_deploy(deploy_frontend):
     genezio_deploy_command.append("--logLevel")
     genezio_deploy_command.append("info")
 
-    shell = set_shell()
-    process = subprocess.run(genezio_deploy_command, capture_output=True, text=True, shell=shell)
+    process = subprocess.run(genezio_deploy_command, capture_output=True, text=True, shell=True)
 
-    print(process.returncode)
     if process.returncode != 0:
         print(process.stderr)
         print(process.stdout)
@@ -45,16 +43,14 @@ def genezio_login(auth_token):
     if (auth_token != None):
         genezio_login_command.append(auth_token)
 
-    shell = set_shell()
-    process = subprocess.run(genezio_login_command, capture_output=True, text=True, shell=shell)
+    process = subprocess.run(genezio_login_command, capture_output=True, text=True, shell=True)
 
     return process.returncode, process.stderr, process.stdout
 
 def genezio_logout():
     genezio_logout_command = ['genezio', 'logout']
 
-    shell = set_shell()
-    process = subprocess.run(genezio_logout_command, capture_output=True, text=True, shell=shell)
+    process = subprocess.run(genezio_logout_command, capture_output=True, text=True, shell=True)
 
     return process.returncode, process.stderr, process.stdout
 
@@ -64,8 +60,7 @@ def genezio_add_class(class_path, class_type):
     if (class_type != None):
         genezio_login_command.append(class_type)
 
-    shell = set_shell()
-    process = subprocess.run(genezio_login_command, capture_output=True, text=True, shell=shell)
+    process = subprocess.run(genezio_login_command, capture_output=True, text=True, shell=True)
 
     return process.returncode, process.stderr, process.stdout
 
@@ -78,41 +73,36 @@ def genezio_ls(identifier, details):
     if (details == True):
         genezio_ls_command.append("--long-listed")
 
-    shell = set_shell()
-    process = subprocess.run(genezio_ls_command, capture_output=True, text=True, shell=shell)
+    process = subprocess.run(genezio_ls_command, capture_output=True, text=True, shell=True)
 
     return process.returncode, process.stderr, process.stdout
 
 def genezio_delete(project_id):
     genezio_delete_command = ['genezio', 'delete', '-f', project_id]
 
-    shell = set_shell()
-    process = subprocess.run(genezio_delete_command, capture_output=True, text=True, shell=shell)
+    process = subprocess.run(genezio_delete_command, capture_output=True, text=True, shell=True)
 
     return process.returncode, process.stderr, process.stdout
 
 def genezio_generate_sdk(language):
     genezio_generate_sdk_command = ['genezio', 'generateSdk', "-lang", language]
 
-    shell = set_shell()
-    process = subprocess.run(genezio_generate_sdk_command, capture_output=True, text=True, shell=shell)
+    process = subprocess.run(genezio_generate_sdk_command, capture_output=True, text=True, shell=True)
 
     return process.returncode, process.stderr, process.stdout
 
 def genezio_account():
     genezio_account_command = ['genezio', 'account']
 
-    shell = set_shell()
-    process = subprocess.run(genezio_account_command, capture_output=True, text=True, shell=shell)
+    process = subprocess.run(genezio_account_command, capture_output=True, text=True, shell=True)
 
     return process.returncode, process.stderr, process.stdout
 
 def genezio_init(project_name):
     genezio_local_command = ['genezio', 'init']
 
-    shell = set_shell()
     # create a new process with the command and write data to stdin
-    process = subprocess.Popen(genezio_local_command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, close_fds=True, shell=shell)
+    process = subprocess.Popen(genezio_local_command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, close_fds=True, shell=True)
 
     # write the project name to stdin after 1 second
     time.sleep(1)
@@ -152,8 +142,7 @@ def genezio_local():
     port = 8083
     genezio_local_command = ['genezio', 'local', "--logLevel", "info"]
 
-    shell = set_shell()
-    process = subprocess.Popen(genezio_local_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, close_fds=True, shell=shell)
+    process = subprocess.Popen(genezio_local_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, close_fds=True, shell=True)
     start = time.time()
 
     while True:
@@ -170,7 +159,7 @@ def genezio_local():
 
         if port_status == 0:
             break
-
+        
         end = time.time()
         if end - start > 60:
             print("Timeout while waiting for localhost.")
