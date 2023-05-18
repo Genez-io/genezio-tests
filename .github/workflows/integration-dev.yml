@@ -7,12 +7,16 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v3
+      # TODO Restore this before merge, using just for testing
         with:
-          ref: dev
-      - uses: dart-lang/setup-dart@v1
+          ref: improv/add_multiple_runners
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
@@ -60,6 +64,9 @@ jobs:
       - run: python test_unauthenticated.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      # binary dependency needs to install the node_modules corresponding to the machine arch
+      - run: npm install
+        working-directory: projects/binary-dependency/server
       - run: python test_binary_dependency.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
