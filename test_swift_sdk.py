@@ -31,6 +31,8 @@ def test_swift_sdk():
 
     process = genezio_local()
 
+    assert process != None, "genezio local returned None"
+
     assert exists("../client/sdk/remote.swift") == True, "Remote swift sdk not found"
     assert exists("../client/sdk/server.sdk.swift") == True, "Class swift sdk not found"
 

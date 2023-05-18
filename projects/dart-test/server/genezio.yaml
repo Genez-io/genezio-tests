@@ -1,0 +1,8 @@
+name: hello-world-dart2
+region: eu-central-1
+sdk:
+  language: dart
+  path: ../client/sdk/
+classes:
+  - path: ./lib/hello_world.dart
+    name: HelloWorldService

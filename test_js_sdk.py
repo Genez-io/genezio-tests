@@ -31,6 +31,8 @@ def test_js_sdk():
 
     process = genezio_local()
 
+    assert process != None, "genezio local returned None"
+
     assert exists("../client/sdk/remote.js") == True, "Remote js sdk not found"
     assert exists("../client/sdk/server.sdk.js") == True, "Class js sdk not found"
 

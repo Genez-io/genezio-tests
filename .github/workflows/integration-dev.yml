@@ -34,6 +34,18 @@ jobs:
           cache: 'npm'
           cache-dependency-path: genezio/package-lock.json
       - run: cd genezio && npm install && npm run install-locally-dev
+      - run: python test_lambda_handler_errors.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      - run: python test_typescript_flutter_sdk.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      - run: python test_dart_typescript_sdk.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      - run: python test_dart.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_todo_list_ts.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
@@ -70,13 +82,13 @@ jobs:
       - run: python test_js_sdk.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      - run: python test_ts_to_python.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_ts_sdk.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_python_sdk.py
-        env:
-          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
-      - run: python test_dart_sdk.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_frontend.py

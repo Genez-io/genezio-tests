@@ -34,7 +34,7 @@ def test_new_project():
     assert os.path.exists("./test-http.js"), "class file test-http.js doesn't exist"
 
     returnCode, stderr, _ = genezio_add_class("test-jsonrpc.js", None)
-    assert stderr[:-1] == "Class already exists.", "`genezio add duplicated class returned wrong output"
+    assert stderr[:-1] == "Class already exists.", "genezio add duplicated class returned wrong output: " + stderr[:-1]
 
     # cleanup
     os.unlink("./test-jsonrpc.js")

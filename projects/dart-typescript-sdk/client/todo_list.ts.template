@@ -1,0 +1,30 @@
+/**
+* This is an auto generated code. This code should not be modified since the file can be overwriten
+* if new genezio commands are executed.
+*/
+
+import { Remote } from "./remote";
+
+export type TaskModel = {id: string, title: string, url: string, token: string, solved: string, date: string};
+
+export class Task {
+  static remote = new Remote("http://127.0.0.1:8083/Task");
+
+  static async getAllTasksByUser(token: string): Promise<Array<TaskModel>> {
+    return await Task.remote.call("Task.getAllTasksByUser", token);
+  }
+  static async createTask(token: string, title: string, url: string): Promise<TaskModel> {
+    return await Task.remote.call("Task.createTask", token, title, url);
+  }
+  static async deleteTask(token: string, id: string): Promise<string> {
+    return await Task.remote.call("Task.deleteTask", token, id);
+  }
+  static async updateTask(id: string, token: string, title: string, url: string, solved: string): Promise<string> {
+    return await Task.remote.call("Task.updateTask", id, token, title, url, solved);
+  }
+  static async _connect(): Promise<string> {
+    return await Task.remote.call("Task._connect");
+  }
+}
+
+export { Remote };

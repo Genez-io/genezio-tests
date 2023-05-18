@@ -1,5 +1,6 @@
 name: todo-list-ts
 region: us-east-1
+cloudProvider: aws
 sdk:
   language: ts
   options:
