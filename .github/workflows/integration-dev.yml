@@ -33,6 +33,9 @@ jobs:
       - run: python test_lambda_handler_errors.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      - run: python test_dart_to_python.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
       - run: python test_typescript_flutter_sdk.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_DEV }}
