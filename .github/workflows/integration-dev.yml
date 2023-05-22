@@ -13,6 +13,8 @@ jobs:
         with:
           ref: dev
       - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 3.0.0
       - uses: actions/setup-python@v4
         with:
           python-version: "3.9"
