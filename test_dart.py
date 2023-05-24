@@ -3,7 +3,6 @@
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_script
-from os.path import exists
 
 def test_dart():
     print("Starting dart sdk test...")

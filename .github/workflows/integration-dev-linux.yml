@@ -1,0 +1,16 @@
+name: Integration Tests Linux Dev
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  integration-tests:
+    uses: Genez-io/genezio-tests/.github/workflows/integration-tests.yml@fix/GNZ-795
+    with:
+      branch: "dev"
+      os: ubuntu-latest
+    secrets:
+      genezio_token: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      slack_token: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}

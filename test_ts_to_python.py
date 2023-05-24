@@ -2,7 +2,7 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_node_script, run_npm_run_build, run_script
+from utils import run_npm_run_build, run_script
 
 def test_ts_to_python_sdk():
     print("Starting ts to python sdk test...")
