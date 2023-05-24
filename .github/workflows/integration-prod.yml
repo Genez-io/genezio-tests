@@ -10,24 +10,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 3.0.0
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
-          cache: 'pip'
+          python-version: "3.9"
+          cache: "pip"
       - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v4
       - uses: actions/checkout@v3
         with:
-          repository: 'Genez-io/genezio'
-          ref: 'master'
+          repository: "Genez-io/genezio"
+          ref: "master"
           path: genezio
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: genezio/package-lock.json
       - run: cd genezio && npm install && npm run install-locally
+      - run: python test_lambda_handler_errors.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
+      - run: python test_dart_to_python.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
+      - run: python test_typescript_flutter_sdk.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_dart_typescript_sdk.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
+      - run: python test_dart.py
         env:
           GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - run: python test_todo_list_ts.py
@@ -81,6 +96,50 @@ jobs:
           channel_id: C04QR0X8CQ2
           status: SUCCESS
           color: good
+      - name: Notify slack fail
+        if: failure()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel_id: C04QR0X8CQ2
+          status: FAILED
+          color: danger
+
+  test-dart-sdk:
+    needs: build
+    if: ${{ !failure() && !cancelled() }}
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        dart_sdk: [2.19.6, 3.0.0]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ matrix.dart_sdk }}
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+          cache: "pip"
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v4
+      - uses: actions/checkout@v3
+        with:
+          repository: "Genez-io/genezio"
+          ref: "dev"
+          path: genezio
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+          cache-dependency-path: genezio/package-lock.json
+      - run: cd genezio && npm install && npm run install-locally-dev
+      - run: python test_dart.py
+        env:
+          GENEZIO_TOKEN: ${{ secrets.GENEZIO_TOKEN_PROD }}
       - name: Notify slack fail
         if: failure()
         env:
