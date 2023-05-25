@@ -9,9 +9,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository for scheduled events
+        if: ${{ github.event_name == 'schedule' }}
+        uses: actions/checkout@v3
         with:
           ref: dev
+      - name: Checkout repository for manually triggered events
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: 3.0.0
@@ -121,9 +128,16 @@ jobs:
       matrix:
         dart_sdk: [2.19.6, 3.0.0]
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository for scheduled events
+        if: ${{ github.event_name == 'schedule' }}
+        uses: actions/checkout@v3
         with:
           ref: dev
+      - name: Checkout repository for manually triggered events
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: ${{ matrix.dart_sdk }}
