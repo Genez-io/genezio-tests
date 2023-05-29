@@ -12,4 +12,4 @@ jobs:
       branch: "master"
       os: ubuntu-latest
     secrets:
-      token: ${{ secrets.GENEZIO_TOKEN_PROD }}
+      genezio_token: ${{ secrets.GENEZIO_TOKEN_PROD }}
