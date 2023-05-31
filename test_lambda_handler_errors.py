@@ -2,51 +2,44 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_script
-from os.path import exists
+from utils import run_node_script
 
-def test_python_sdk():
-    print("Starting python sdk test...")
+def test_lambda_handler_errors():
+    print("Starting test_lambda_handler_errors test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
     genezio_login(token)
 
-    os.chdir("./projects/python-sdk/server/")
+    os.chdir("./projects/lambda-handler-errors/server/")
     deploy_result = genezio_deploy(False)
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
-    assert exists("../client/sdk/remote.py") == True, "Remote swift sdk not found"
-    assert exists("../client/sdk/server.py") == True, "Class python sdk not found"
-    
     os.chdir("../client/")
 
-    status, output = run_script(["python3", "main.py"])
+    status, output = run_node_script("test.js")
 
     assert status == 0, "Node test script returned non-zero exit code"
-    assert output in "Nonestringstringstring", "Wrong output from python test: " + output
+    assert output == "Ok\n", "Node script returned wrong output"
+
     os.chdir("../server/")
 
     process = genezio_local()
 
     assert process != None, "genezio local returned None"
 
-    assert exists("../client/sdk/remote.py") == True, "Remote python sdk not found"
-    assert exists("../client/sdk/server.py") == True, "Class python sdk not found"
-    
     os.chdir("../client/")
 
-    status, output = run_script(["python3", "main.py"])
+    status, output = run_node_script("test.js")
 
     assert status == 0, "Node test script returned non-zero exit code"
-    assert output in "Nonestringstringstring", "Wrong output from python test: " + output    
+    assert output == "Ok\n", "Node script returned wrong output"
 
     process.kill()
     print("Test passed!")
 
 
-
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':
-    test_python_sdk()
+    test_lambda_handler_errors()

@@ -61,6 +61,18 @@ class HelloWorldService {
     this.methodWithPointReturnVoidParam = point;
   }
 
+  String methodWithReturnSimpleString() {
+    return "hello";
+  }
+
+  int methodWithReturnSimpleInt() {
+    return 42;
+  }
+
+  bool methodWithReturnSimpleBool() {
+    return true;
+  }
+
   List<Point> replacePointsInArray(List<Point> list) {
     return [Point(list[0].x + 10, list[0].y + 10), Point(list[1].x + 10, list[1].y + 10), Point(list[2].x + 10, list[2].y + 10)];
   }
