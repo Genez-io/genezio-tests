@@ -3,7 +3,6 @@
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_script
-from os.path import exists
 
 def test_dart():
     print("Starting dart sdk test...")
@@ -25,7 +24,7 @@ def test_dart():
     status, output = run_script(["dart", "run", "../client/main.dart"])
 
     print(output)
-    assert "100Hello World121 21 210 20100 200a1000 10001000 2000b10000 1000010000 10000a20 4020 40b30 6030 60" in output, "Wrong output from dart test"
+    assert "100Hello World12hello42true1 21 210 20100 200a1000 10001000 2000b10000 1000010000 10000a20 4020 40b30 6030 603 1 2 33 1 2 33 1 2 33 0 0 1 2 2 43 0 0 1 2 2 43 11 12 13 14 15 161 1 2" in output, "Wrong output from dart test"
 
     output = ""
     process = genezio_local()
@@ -35,7 +34,7 @@ def test_dart():
     status, output = run_script(["dart", "run","../client/main.dart"])
 
     print(output)
-    assert "100Hello World121 21 210 20100 200a1000 10001000 2000b10000 1000010000 10000a20 4020 40b30 6030 60" in output, "Wrong output from dart test"
+    assert "100Hello World12hello42true1 21 210 20100 200a1000 10001000 2000b10000 1000010000 10000a20 4020 40b30 6030 603 1 2 33 1 2 33 1 2 33 0 0 1 2 2 43 0 0 1 2 2 43 11 12 13 14 15 161 1 2" in output, "Wrong output from dart test"
     process.kill()
     print("Test passed!")
 

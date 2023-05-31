@@ -1,0 +1,162 @@
+name: Integration Tests Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      genezio_branch:
+        description: "genezio cli branch to run tests on."
+        required: true
+        type: string
+      os:
+        description: "OS to run tests on. Possible values: ubuntu-latest, windows-latest"
+        required: true
+        type: string
+      genezio_tests_branch:
+        description: "Branch to run tests on."
+        required: true
+        type: string
+    secrets:
+      genezio_token:
+        description: "Genezio token for the specified environment"
+        required: true
+      slack_token:
+        description: "Slack token for notifications"
+        required: true
+
+jobs:
+  test:
+    runs-on: ${{ inputs.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        tests: [
+            [
+              test_typescript_flutter_sdk.py, # 54s
+              test_dart_typescript_sdk.py, # 2m 42s
+            ],
+            [
+              test_lambda_handler_errors.py, # 30s
+              test_dart.py, # 1m 16s
+              test_todo_list_ts.py, # 1m 44s
+            ],
+            [
+              test_create_list_delete.py, # 1m
+              test_hello.py, # 35s
+              test_todo_list.py, # 1m 25s
+              test_webhooks.py, # 33s
+            ],
+            [
+              test_unauthenticated.py, # 6s
+              test_binary_dependency.py, # 45s
+              test_new_project.py, # 10s
+              test_cron.py, # 2m 35s
+            ],
+            [
+              test_swift_sdk.py, # 31s
+              test_js_sdk.py, # 33s
+              test_ts_to_python.py, #33s
+              test_ts_sdk.py, # 33s
+              test_python_sdk.py, # 33s
+              test_frontend.py, # 33s
+            ],
+          ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.genezio_tests_branch }}
+      - name: Set up Dart
+        uses: dart-lang/setup-dart@v1
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+          cache: "pip"
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v4
+      - uses: actions/checkout@v3
+        with:
+          repository: "Genez-io/genezio"
+          ref: ${{ inputs.genezio_branch }}
+          path: genezio
+      - uses: actions/setup-node@v3
+        id: node
+        with:
+          node-version: 16
+      - name: Get node_modules cache
+        uses: actions/cache@v3.0.2
+        id: node_modules
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.node-version }}
+      - name: Install genezio cli prod - if Prod
+        if: inputs.genezio_branch == 'master'
+        run: cd genezio && npm install && npm run install-locally
+      - name: Install genezio cli dev - if not Prod
+        if: inputs.genezio_branch != 'master'
+        run: cd genezio && npm install && npm run install-locally-dev
+      - name: Install npm dependencies for each subproject - if Linux
+        if: runner.os == 'Linux'
+        run: |
+          for dir in projects/*/*/; do
+            # Check if the directory contains a package.json file
+            if [ -f "$dir/package.json" ]; then
+              cd $dir
+              npm install
+              cd -
+            fi
+          done
+      - name: Install npm dependencies for each subproject - if Windows
+        if: runner.os == 'Windows'
+        run: |
+          foreach ($dir in Get-ChildItem -Path "projects/*/*") {
+            # Check if the directory contains a package.json file
+            if (Test-Path -Path "$dir\package.json" -PathType Leaf) {
+              cd $dir
+              npm install
+            }
+          }
+      - run: python ${{ matrix.tests[0] }}
+        if: matrix.tests[0] != null
+        env:
+          GENEZIO_TOKEN: ${{ secrets.genezio_token }}
+      - run: python ${{ matrix.tests[1] }}
+        if: matrix.tests[1] != null
+        env:
+          GENEZIO_TOKEN: ${{ secrets.genezio_token }}
+      - run: python ${{ matrix.tests[2] }}
+        if: matrix.tests[2] != null
+        env:
+          GENEZIO_TOKEN: ${{ secrets.genezio_token }}
+      - run: python ${{ matrix.tests[3] }}
+        if: matrix.tests[3] != null
+        env:
+          GENEZIO_TOKEN: ${{ secrets.genezio_token }}
+      - run: python ${{ matrix.tests[4] }}
+        if: matrix.tests[4] != null
+        env:
+          GENEZIO_TOKEN: ${{ secrets.genezio_token }}
+  notify:
+    if: always()
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Notify slack success
+        if: needs.test.result == 'success'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.slack_token }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel_id: C04QR0X8CQ2
+          status: SUCCESS
+          color: good
+      - name: Notify slack fail
+        if: needs.test.result == 'failure'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.slack_token }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel_id: C04QR0X8CQ2
+          status: FAILED
+          color: danger

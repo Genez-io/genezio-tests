@@ -1,0 +1,11 @@
+name: typescript-flutter-sdk
+region: eu-central-1
+cloudProvider: aws
+sdk:
+  language: dart
+  path: ../client/sdk
+classes:
+  - path: ./ChatBackend.ts
+    name: "ChatBackend"
+    type: jsonrpc
+    methods: []

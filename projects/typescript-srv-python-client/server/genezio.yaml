@@ -1,0 +1,9 @@
+name: typescript-srv-python-client
+region: us-east-1
+sdk:
+  language: python
+  path: ../client/sdk
+classes:
+  - path: ./index.ts
+    type: jsonrpc
+    methods: []
