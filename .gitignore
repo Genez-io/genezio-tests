@@ -1,5 +1,10 @@
 __pycache__/
 .DS_Store
+projects/swift-sdk/client/
+projects/python-sdk/client/
+projects/js-sdk/client/
+projects/ts-sdk/client/
+projects/dart-sdk/client/
 projects/swift-sdk/client/sdk/
 projects/binary-dependency/client/sdk/
 projects/crons/client/sdk/

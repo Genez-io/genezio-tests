@@ -6,6 +6,8 @@ dotenv.config();
 const OPENAI_MODEL_GPT3_5 = 'gpt-3.5-turbo';
 const OPENAI_MODEL_GPT_4 = 'gpt-4';
 const OPENAI_MODEL_DAVINCI = 'text-davinci-003';
+const MONGODB_URI =
+    "mongodb+srv://genezio:genezio@cluster0.c6qmwnq.mongodb.net/?retryWrites=true&w=majority";
 
 const characters: { [name: string]: string } = {
   "yoda": "Respond to me as if you are Yoda from Star Wars:",
@@ -29,7 +31,7 @@ export class ChatBackend {
    * Private method used to connect to the DB.
    */
   #connect() {
-    mongoose.connect(process.env.MONGODB_URI!).catch((e) => {
+    mongoose.connect(MONGODB_URI!).catch((e) => {
       console.log(`Error connecting to database: ${e}`);
       throw e;
     });

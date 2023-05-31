@@ -10,7 +10,7 @@ def test_todo_list_ts():
 
     genezio_login(token)
 
-    os.chdir("./projects/todo-list-ts/server/")
+    os.chdir(os.path.join('projects', 'todo-list-ts', 'server'))
     deploy_result = genezio_deploy(False)
 
     print(deploy_result.return_code)
@@ -19,10 +19,10 @@ def test_todo_list_ts():
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
-    os.chdir("../client/")
+    os.chdir(os.path.join('..', 'client'))
 
     run_npm_run_build()
-    status, output = run_node_script("build/test-todo-list.js")
+    status, output = run_node_script(os.path.join('build', 'test-todo-list.js'))
 
     assert status == 0, "Node test script returned non-zero exit code; status code " + str(status) + " output: " + output
 
@@ -31,16 +31,17 @@ def test_todo_list_ts():
     for i in range(0, 8):
         assert components[i] == "Ok", "Component " + str(i) + " returned wrong output"
 
-    os.chdir("../server/")
+    os.chdir(os.path.join('..', 'server'))
 
     process = genezio_local()
 
-    assert process != None, "genezio local returned None"
 
-    os.chdir("../client/")
+    assert process != None, "genezio local returned None"
+    os.chdir(os.path.join('..', 'client'))
+
 
     run_npm_run_build()
-    status, output = run_node_script("build/test-todo-list.js")
+    status, output = run_node_script(os.path.join('build', 'test-todo-list.js'))
 
     assert status == 0, "Node test script returned non-zero exit code"
 

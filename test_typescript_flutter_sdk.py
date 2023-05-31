@@ -3,6 +3,7 @@
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from os.path import exists
+from utils import compare_files
 
 def test_typescript_flutter_sdk():
     print("Starting test_typescript_flutter_sdk test...")
@@ -26,12 +27,7 @@ def test_typescript_flutter_sdk():
     assert exists("../client/sdk/remote.dart") == True, "Remote dart sdk not found"
     assert exists("../client/sdk/chat_backend.dart") == True, "Class dart sdk not found"
 
-    f = open("../client/sdk/chat_backend.dart", "r")
-    content = f.read()
-    
-    template_content = open("../client/chat_backend.dart.template", "r").read()
-
-    assert content == template_content, "Wrong class sdk content"
+    assert compare_files("../client/sdk/chat_backend.dart", "../client/chat_backend.dart.template") == True, "Wrong class sdk content"
 
     process.kill()
     print("Test passed!")
