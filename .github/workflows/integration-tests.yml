@@ -3,12 +3,16 @@ name: Integration Tests Reusable Workflow
 on:
   workflow_call:
     inputs:
-      branch:
+      genezio_branch:
         description: "genezio cli branch to run tests on."
         required: true
         type: string
       os:
         description: "OS to run tests on. Possible values: ubuntu-latest, windows-latest"
+        required: true
+        type: string
+      genezio_tests_branch:
+        description: "Branch to run tests on."
         required: true
         type: string
     secrets:
@@ -59,9 +63,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        # TODO Restore this before merge, using just for testing
         with:
-          ref: fix/GNZ-795
+          ref: ${{ inputs.genezio_tests_branch }}
       - name: Set up Dart
         uses: dart-lang/setup-dart@v1
       - name: Set up Python
@@ -74,7 +77,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: "Genez-io/genezio"
-          ref: ${{ inputs.branch }}
+          ref: ${{ inputs.genezio_branch }}
           path: genezio
       - uses: actions/setup-node@v3
         id: node
@@ -88,10 +91,10 @@ jobs:
             **/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.node-version }}
       - name: Install genezio cli prod - if Prod
-        if: inputs.branch == 'master'
+        if: inputs.genezio_branch == 'master'
         run: cd genezio && npm install && npm run install-locally
       - name: Install genezio cli dev - if not Prod
-        if: inputs.branch != 'master'
+        if: inputs.genezio_branch != 'master'
         run: cd genezio && npm install && npm run install-locally-dev
       - name: Install npm dependencies for each subproject - if Linux
         if: runner.os == 'Linux'

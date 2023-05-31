@@ -7,10 +7,11 @@ on:
 
 jobs:
   integration-tests:
-    uses: Genez-io/genezio-tests/.github/workflows/integration-tests.yml@fix/GNZ-795
+    uses: Genez-io/genezio-tests/.github/workflows/integration-tests.yml@main
     with:
-      branch: "dev"
+      genezio_branch: "dev"
       os: ubuntu-latest
+      genezio_tests_branch: "dev"
     secrets:
       genezio_token: ${{ secrets.GENEZIO_TOKEN_DEV }}
       slack_token: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
