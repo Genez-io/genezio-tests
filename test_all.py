@@ -3,7 +3,7 @@ from test_todo_list import test_todo_list
 from test_unauthenticated import test_unauthenticated
 from test_webhooks import test_webhooks
 from test_binary_dependency import test_binary_dependency
-from test_new_project import test_new_project
+from test_genezio_cmds import test_genezio_misc_cmds
 from test_create_list_delete import test_create_list_delete
 from test_todo_list_ts import test_todo_list_ts
 from test_python_sdk import test_python_sdk
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     os.chdir(test_path)
     test_binary_dependency()
     os.chdir(test_path)
-    test_new_project()
+    test_genezio_misc_cmds()
     os.chdir(test_path)
     test_create_list_delete()
     os.chdir(test_path)

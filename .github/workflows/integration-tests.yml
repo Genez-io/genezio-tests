@@ -48,7 +48,7 @@ jobs:
             [
               test_unauthenticated.py, # 6s
               test_binary_dependency.py, # 45s
-              test_new_project.py, # 10s
+              test_genezio_misc_cmds.py, # 10s
               test_cron.py, # 2m 35s
             ],
             [
