@@ -1,0 +1,33 @@
+name: Integration Tests Custom Run
+
+on:
+  workflow_dispatch:
+    inputs:
+      genezio_branch:
+        description: "genezio cli branch to run tests on."
+        required: true
+        type: string
+        default: "master"
+      os:
+        description: "OS to run tests on"
+        required: true
+        type: choice
+        options:
+          - ubuntu-latest
+          - windows-latest
+      genezio_tests_branch:
+        description: "genezio tests branch to run tests on."
+        required: true
+        type: string
+        default: "main"
+
+jobs:
+  integration-tests:
+    uses: ./.github/workflows/integration-tests.yml
+    with:
+      genezio_branch: ${{ inputs.genezio_branch }}
+      os: ${{ inputs.os }}
+      genezio_tests_branch: ${{ inputs.genezio_tests_branch }}
+    secrets:
+      genezio_token: ${{ secrets.GENEZIO_TOKEN_DEV }}
+      slack_token: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
