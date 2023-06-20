@@ -4,26 +4,26 @@ on:
   workflow_dispatch:
     inputs:
       genezio_branch:
-        description: "Branch to test"
+        description: "genezio cli branch to run tests on."
         required: true
         type: string
         default: "master"
       os:
-        description: "OS to run tests on. Possible values: ubuntu-latest, windows-latest"
+        description: "OS to run tests on"
         required: true
         type: choice
         options:
           - ubuntu-latest
           - windows-latest
       genezio_tests_branch:
-        description: "Branch to run tests on."
+        description: "genezio tests branch to run tests on."
         required: true
         type: string
         default: "main"
 
 jobs:
   integration-tests:
-    uses: Genez-io/genezio-tests/.github/workflows/integration-tests.yml@main
+    uses: ./.github/workflows/integration-tests.yml
     with:
       genezio_branch: ${{ inputs.genezio_branch }}
       os: ${{ inputs.os }}
