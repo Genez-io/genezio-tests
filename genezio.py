@@ -61,13 +61,13 @@ def genezio_logout():
     return process.returncode, process.stderr, process.stdout
 
 def genezio_add_class(class_path, class_type):
-    genezio_login_args = ['genezio', 'addClass', class_path]
+    genezio_add_args = ['genezio', 'addClass', class_path]
 
     if (class_type != None):
-        genezio_login_args.append(class_type)
+        genezio_add_args.append(class_type)
 
-    genezio_login_command = ' '.join(genezio_login_args) if use_shell else genezio_login_args
-    process = subprocess.run(genezio_login_command, capture_output=True, text=True, shell=use_shell)
+    genezio_add_class = ' '.join(genezio_add_args) if use_shell else genezio_add_args
+    process = subprocess.run(genezio_add_class, capture_output=True, text=True, shell=use_shell)
 
     return process.returncode, process.stderr, process.stdout
 
@@ -109,52 +109,6 @@ def genezio_account():
 
     return process.returncode, process.stderr, process.stdout
 
-def genezio_init(project_name):
-    genezio_local_args = ['genezio', 'init']
-
-    genezio_local_command = ' '.join(genezio_local_args) if use_shell else genezio_local_args
-    # create a new process with the command and write data to stdin
-    process = subprocess.Popen(genezio_local_command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, close_fds=True, shell=use_shell)
-
-    # write the project name to stdin after 1 second
-    time.sleep(1)
-    print("writing project name")
-    process.stdin.write(project_name + "\n")
-    process.stdin.flush()
-
-    # set default region
-    time.sleep(1)
-    print("writing empty string 1")
-    process.stdin.write("\n")
-    process.stdin.flush()
-
-    # set default programming language
-    time.sleep(1)
-    print("writing empty string 2")
-    process.stdin.write("\n")
-    process.stdin.flush()
-
-    # set default sdk path
-    time.sleep(1)
-    print("writing empty string 3")
-    process.stdin.write("\n")
-    process.stdin.flush()
-    
-    # Windows hack: write empty string to stdin to continue
-    if (os.name == "nt"):
-        time.sleep(1)
-        print("writing empty string 4")
-        process.stdin.write("\n")
-        process.stdin.flush()
-
-    stdout, stderr = process.communicate()
-
-    if process.returncode != 0:
-        print(stderr)
-        print(stdout)
-
-    return process.returncode, stderr, stdout
-
 def genezio_local():
     port = 8083
     genezio_local_args = ['genezio', 'local', "--logLevel", "info"]
@@ -177,7 +131,7 @@ def genezio_local():
 
         if port_status == 0:
             break
-        
+
         end = time.time()
         if end - start > 60:
             print("Timeout while waiting for localhost.")
