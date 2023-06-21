@@ -4,6 +4,16 @@ import os
 from genezio import genezio_login, genezio_add_class
 from utils import compare_files
 
+GENEZIO_YAML_CONTENT = """
+name: test-new-project
+region: us-east-1
+cloudProvider: aws
+sdk:
+  language: ts
+  path: ./sdk/
+classes: []
+"""
+
 def test_genezio_misc_cmds():
     print("Starting new_project test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -13,6 +23,10 @@ def test_genezio_misc_cmds():
     working_dir = os.path.join("projects", "new_project")
 
     os.chdir(working_dir)
+
+    # Create a file named `genezio.yaml`
+    with open("genezio.yaml", "w") as f:
+        f.write(GENEZIO_YAML_CONTENT)
 
     returnCode, _, stdout = genezio_add_class("test-jsonrpc.js", None)
     assert returnCode == 0, "`genezio addClass test-jsonrpc.js` returned non-zero exit code"
@@ -33,6 +47,7 @@ def test_genezio_misc_cmds():
     # cleanup
     os.unlink("./test-jsonrpc.js")
     os.unlink("./test-http.js")
+    os.unlink("./genezio.yaml")
 
     print("Test passed!")
 
