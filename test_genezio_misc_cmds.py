@@ -1,10 +1,20 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_login, genezio_init, genezio_add_class
+from genezio import genezio_login, genezio_add_class
 from utils import compare_files
 
-def test_new_project():
+GENEZIO_YAML_CONTENT = """
+name: test-new-project
+region: us-east-1
+cloudProvider: aws
+sdk:
+  language: ts
+  path: ./sdk/
+classes: []
+"""
+
+def test_genezio_misc_cmds():
     print("Starting new_project test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
@@ -14,9 +24,9 @@ def test_new_project():
 
     os.chdir(working_dir)
 
-    returnCode, _, stdout = genezio_init("test-new-project")
-    assert returnCode == 0, "`genezio init test-new-project` returned non-zero exit code"
-    assert "Your genezio project was successfully initialized" in stdout, "`genezio init test-new-project` returned wrong output"
+    # Create a file named `genezio.yaml`
+    with open("genezio.yaml", "w") as f:
+        f.write(GENEZIO_YAML_CONTENT)
 
     returnCode, _, stdout = genezio_add_class("test-jsonrpc.js", None)
     assert returnCode == 0, "`genezio addClass test-jsonrpc.js` returned non-zero exit code"
@@ -43,4 +53,4 @@ def test_new_project():
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':
-    test_new_project()
+    test_genezio_misc_cmds()

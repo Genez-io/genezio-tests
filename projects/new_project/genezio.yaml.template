@@ -2,7 +2,7 @@ name: test-new-project
 region: us-east-1
 cloudProvider: aws
 sdk:
-  language: js
+  language: ts
   path: ./sdk/
 classes:
   - path: test-jsonrpc.js
