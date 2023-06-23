@@ -4,5 +4,4 @@ import {Server} from "./sdk/server.sdk.js"
   
   const res = await Server.method();
   console.log(res);
-  // console.log(res === "Error: Error from server" ? "Ok" : "Error");
 })();

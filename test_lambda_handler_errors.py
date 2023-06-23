@@ -21,7 +21,7 @@ def test_lambda_handler_errors():
     status, output = run_node_script("test.js")
 
     assert status == 0, "Node test script returned non-zero exit code " + status
-    assert output == "Ok\n", "Node script returned wrong output " + output
+    assert output == "Error: Error from server\n", "Node script returned wrong output " + output
 
     os.chdir("../server/")
 
@@ -34,7 +34,7 @@ def test_lambda_handler_errors():
     status, output = run_node_script("test.js")
 
     assert status == 0, "Node test script returned non-zero exit code " + status
-    assert output == "Ok\n", "Node script returned wrong output " + output
+    assert output == "Error: Error from server\n", "Node script returned wrong output " + output
 
     process.kill()
     print("Test passed!")
