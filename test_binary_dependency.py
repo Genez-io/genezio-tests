@@ -11,7 +11,7 @@ def test_binary_dependency():
     genezio_login(token)
 
     os.chdir("./projects/binary-dependency/server/")
-    deploy_result = genezio_deploy(False)
+    deploy_result = genezio_deploy(False, ["--install-deps"])
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
@@ -25,7 +25,7 @@ def test_binary_dependency():
 
     os.chdir("../server/")
 
-    process = genezio_local()
+    process = genezio_local(["--install-deps"])
 
     assert process != None, "genezio local returned None"
 
