@@ -17,6 +17,11 @@ from test_ts_sdk import test_ts_sdk
 from test_dart import test_dart
 from test_typescript_flutter_sdk import test_typescript_flutter_sdk
 from test_lambda_handler_errors import test_lambda_handler_errors
+from test_kotlin_sdk import test_kotlin
+from test_kotlin_to_ts import test_kotlin_srv_ts_cli
+from test_kotlin_to_python import test_kotlin_srv_py_cli
+from test_kotlin_to_dart import test_kotlin_srv_dart_cli
+from test_kotlin_to_js import test_kotlin_srv_js_cli
 
 import glob
 import pathlib
@@ -48,4 +53,10 @@ if __name__ == '__main__':
     test_frontend()
     test_js_sdk()
     test_hello()
+    test_kotlin()
+    test_kotlin_srv_js_cli()
+    test_kotlin_srv_ts_cli()
+    test_kotlin_srv_py_cli()
+    test_kotlin_srv_dart_cli()
+    
 

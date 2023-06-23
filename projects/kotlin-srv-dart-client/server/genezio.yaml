@@ -1,0 +1,14 @@
+name: kotlin-srv-dart-cli
+region: eu-central-1
+sdk:
+  language: dart
+  options:
+    runtime: dart
+  path: ../client/sdk
+classes:
+  - path: ./app/src/main/kotlin/geneziokotlin/SampleClass.kt
+    name: HelloWorldService
+cloudProvider: aws
+  
+
+

@@ -1,0 +1,14 @@
+name: kotlin-srv-py-cli
+region: eu-central-1
+sdk:
+  language: python
+  options:
+    runtime: python
+  path: ../client/sdk
+classes:
+  - path: ./app/src/main/kotlin/geneziokotlin/SampleClass.kt
+    name: HelloWorldService
+cloudProvider: aws
+  
+
+

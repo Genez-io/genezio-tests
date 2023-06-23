@@ -1,0 +1,14 @@
+name: kotlin-srv-js-cli
+region: eu-central-1
+sdk:
+  language: js
+  options:
+    runtime: node
+  path: ../client/sdk
+classes:
+  - path: ./app/src/main/kotlin/geneziokotlin/SampleClass.kt
+    name: HelloWorldService
+cloudProvider: aws
+  
+
+

@@ -1,0 +1,14 @@
+name: kotlin-srv-ts-cli
+region: eu-central-1
+sdk:
+  language: ts
+  options:
+    runtime: node
+  path: ../client/sdk
+classes:
+  - path: ./app/src/main/kotlin/geneziokotlin/SampleClass.kt
+    name: HelloWorldService
+cloudProvider: aws
+  
+
+

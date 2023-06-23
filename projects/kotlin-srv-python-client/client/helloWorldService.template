@@ -1,0 +1,55 @@
+# This is an auto generated code. This code should not be modified since the file can be overwriten 
+# if new genezio commands are executed.
+  
+from .remote import Remote
+from typing import Any, List
+from enum import IntEnum, Enum
+from datetime import datetime
+from collections.abc import Mapping
+from .Point import Point
+from .TestResult import TestResult
+from .ComplicatedClass import ComplicatedClass
+
+
+class HelloWorldService:
+  remote = Remote("http://127.0.0.1:8083/HelloWorldService")
+
+  def methodWithVoidReturnVoid(self) -> Any:
+    return HelloWorldService.remote.call("HelloWorldService.methodWithVoidReturnVoid")
+
+  def methodWithStringReturnVoid(self, string: str) -> Any:
+    return HelloWorldService.remote.call("HelloWorldService.methodWithStringReturnVoid", string)
+
+  def methodWithPointReturnVoid(self, point: Point) -> Any:
+    return HelloWorldService.remote.call("HelloWorldService.methodWithPointReturnVoid", point)
+
+  def methodWithReturnSimpleString(self, test: str) -> str:
+    return HelloWorldService.remote.call("HelloWorldService.methodWithReturnSimpleString", test)
+
+  def methodWithReturnSimpleInt(self, test: int) -> int:
+    return HelloWorldService.remote.call("HelloWorldService.methodWithReturnSimpleInt", test)
+
+  def methodWithReturnSimpleBool(self) -> bool:
+    return HelloWorldService.remote.call("HelloWorldService.methodWithReturnSimpleBool")
+
+  def replacePointsInArray(self, list: List[Point]) -> List[Point]:
+    return HelloWorldService.remote.call("HelloWorldService.replacePointsInArray", list)
+
+  def replacePointsInMap(self, map: Any) -> Any:
+    return HelloWorldService.remote.call("HelloWorldService.replacePointsInMap", map)
+
+  def getNumbers(self, x: int, y: int, z: int) -> List[int]:
+    return HelloWorldService.remote.call("HelloWorldService.getNumbers", x, y, z)
+
+  def getStrings(self, x: str, y: str, z: str) -> List[str]:
+    return HelloWorldService.remote.call("HelloWorldService.getStrings", x, y, z)
+
+  def getPoints(self, x: int, y: int, count: int) -> List[Point]:
+    return HelloWorldService.remote.call("HelloWorldService.getPoints", x, y, count)
+
+  def getTestResult(self) -> TestResult:
+    return TestResult(**(HelloWorldService.remote.call("HelloWorldService.getTestResult")))
+
+  def getComplicatedClass(self, x: int, y: int) -> ComplicatedClass:
+    return ComplicatedClass(**(HelloWorldService.remote.call("HelloWorldService.getComplicatedClass", x, y)))
+

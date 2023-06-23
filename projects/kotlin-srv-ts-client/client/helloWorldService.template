@@ -1,0 +1,56 @@
+/**
+* This is an auto generated code. This code should not be modified since the file can be overwriten
+* if new genezio commands are executed.
+*/
+
+import { Remote } from "./remote";
+import { Point } from "./Point.template";
+import { TestResult } from "./TestResult";
+import { ComplicatedClass } from "./ComplicatedClass";
+
+
+export class HelloWorldService {
+  static remote = new Remote("http://127.0.0.1:8083/HelloWorldService");
+
+  static async methodWithVoidReturnVoid() {
+    return await HelloWorldService.remote.call("HelloWorldService.methodWithVoidReturnVoid");
+  }
+  static async methodWithStringReturnVoid(string_: string) {
+    return await HelloWorldService.remote.call("HelloWorldService.methodWithStringReturnVoid", string_);
+  }
+  static async methodWithPointReturnVoid(point: Point) {
+    return await HelloWorldService.remote.call("HelloWorldService.methodWithPointReturnVoid", point);
+  }
+  static async methodWithReturnSimpleString(test: string): Promise<string> {
+    return await HelloWorldService.remote.call("HelloWorldService.methodWithReturnSimpleString", test);
+  }
+  static async methodWithReturnSimpleInt(test: number): Promise<number> {
+    return await HelloWorldService.remote.call("HelloWorldService.methodWithReturnSimpleInt", test);
+  }
+  static async methodWithReturnSimpleBool(): Promise<boolean> {
+    return await HelloWorldService.remote.call("HelloWorldService.methodWithReturnSimpleBool");
+  }
+  static async replacePointsInArray(list: Array<Point>): Promise<Array<Point>> {
+    return await HelloWorldService.remote.call("HelloWorldService.replacePointsInArray", list);
+  }
+  static async replacePointsInMap(map: any): Promise<any> {
+    return await HelloWorldService.remote.call("HelloWorldService.replacePointsInMap", map);
+  }
+  static async getNumbers(x: number, y: number, z: number): Promise<Array<number>> {
+    return await HelloWorldService.remote.call("HelloWorldService.getNumbers", x, y, z);
+  }
+  static async getStrings(x: string, y: string, z: string): Promise<Array<string>> {
+    return await HelloWorldService.remote.call("HelloWorldService.getStrings", x, y, z);
+  }
+  static async getPoints(x: number, y: number, count: number): Promise<Array<Point>> {
+    return await HelloWorldService.remote.call("HelloWorldService.getPoints", x, y, count);
+  }
+  static async getTestResult(): Promise<TestResult> {
+    return await HelloWorldService.remote.call("HelloWorldService.getTestResult");
+  }
+  static async getComplicatedClass(x: number, y: number): Promise<ComplicatedClass> {
+    return await HelloWorldService.remote.call("HelloWorldService.getComplicatedClass", x, y);
+  }
+}
+
+export { Remote };
