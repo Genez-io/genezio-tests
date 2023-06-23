@@ -13,15 +13,15 @@ def test_lambda_handler_errors():
     os.chdir("./projects/lambda-handler-errors/server/")
     deploy_result = genezio_deploy(False)
 
-    assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
-    assert deploy_result.project_url != "", "genezio deploy returned empty project url"
+    assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code " + deploy_result.return_code
+    assert deploy_result.project_url != "", "genezio deploy returned empty project url " + deploy_result.project_url
 
     os.chdir("../client/")
 
     status, output = run_node_script("test.js")
 
-    assert status == 0, "Node test script returned non-zero exit code"
-    assert output == "Ok\n", "Node script returned wrong output"
+    assert status == 0, "Node test script returned non-zero exit code " + status
+    assert output == "Ok\n", "Node script returned wrong output " + output
 
     os.chdir("../server/")
 
@@ -33,8 +33,8 @@ def test_lambda_handler_errors():
 
     status, output = run_node_script("test.js")
 
-    assert status == 0, "Node test script returned non-zero exit code"
-    assert output == "Ok\n", "Node script returned wrong output"
+    assert status == 0, "Node test script returned non-zero exit code " + status
+    assert output == "Ok\n", "Node script returned wrong output " + output
 
     process.kill()
     print("Test passed!")
