@@ -35,6 +35,8 @@ def run_node_script(script, args=[]):
     run_script_command = ' '.join(run_script_args) if use_shell else run_script_args
     process = subprocess.run(run_script_command, capture_output=True, text=True, shell=use_shell)
 
+    print(process.stdout)
+    print(process.stderr)
     if process.returncode != 0:
         print(process.stderr)
         print(process.stdout)
