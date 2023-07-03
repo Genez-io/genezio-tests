@@ -24,13 +24,16 @@ class DeployResult:
             self.web_urls = [x[0] for x in links[:-1]]
             self.project_url = links[-1][0]
 
-def genezio_deploy(deploy_frontend):
+def genezio_deploy(deploy_frontend, args=[]):
     genezio_deploy_args = ['genezio', 'deploy']
 
     if (deploy_frontend == True):
         genezio_deploy_args.append("--frontend")
     genezio_deploy_args.append("--logLevel")
     genezio_deploy_args.append("info")
+
+    for arg in args:
+        genezio_deploy_args.append(arg)
 
     genezio_deploy_command = ' '.join(genezio_deploy_args) if use_shell else genezio_deploy_args
     process = subprocess.run(genezio_deploy_command, capture_output=True, text=True, shell=use_shell)
@@ -109,9 +112,9 @@ def genezio_account():
 
     return process.returncode, process.stderr, process.stdout
 
-def genezio_local():
+def genezio_local(args=[]):
     port = 8083
-    genezio_local_args = ['genezio', 'local', "--logLevel", "info"]
+    genezio_local_args = ['genezio', 'local', "--logLevel", "info"] + args
 
     genezio_local_command = ' '.join(genezio_local_args) if use_shell else genezio_local_args
     process = subprocess.Popen(genezio_local_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, close_fds=True, shell=use_shell)

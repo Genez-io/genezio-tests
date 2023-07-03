@@ -1,4 +1,4 @@
-enum Season {
+export enum Season {
     SPRING,
     SUMMER,
     AUTUMN,

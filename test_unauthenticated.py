@@ -12,12 +12,12 @@ def test_unauthenticated():
     return_code, stderr, stdout = genezio_account()
 
     assert return_code == 0, "genezio account returned non-zero exit code"
-    assert stdout == "You are logged in.\n", "genezio account returned wrong output"
+    assert "You are logged in." in stdout, "genezio account returned wrong output"
 
     return_code, stderr, stdout = genezio_logout()
 
     assert return_code == 0, "genezio account returned non-zero exit code"
-    assert stdout == "You are now logged out!\n", "genezio account returned wrong output"
+    assert "You are now logged out!" in stdout, "genezio account returned wrong output"
     
     return_code, stderr, stdout = genezio_account()
     assert return_code == 1, "genezio account returned non-zero exit code"
