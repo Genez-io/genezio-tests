@@ -26,6 +26,8 @@ on:
 jobs:
   test:
     runs-on: ${{ inputs.os }}
+    env:
+      GENEZIO_NO_TELEMETRY: '1'
     strategy:
       fail-fast: false
       matrix:
