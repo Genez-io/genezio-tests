@@ -46,6 +46,7 @@ jobs:
               test_hello.py, # 35s
               test_todo_list.py, # 1m 25s
               test_webhooks.py, # 33s
+              test_ts_dev_stage.py, # 33s
             ],
             [
               test_unauthenticated.py, # 6s
