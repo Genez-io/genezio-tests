@@ -17,6 +17,6 @@ projects/todo-list-ts/client/sdk/
 projects/ts-sdk/client/sdk/
 projects/typescript-srv-python-client/client/sdk/
 projects/webhook/client/sdk/
-
+.idea/
 # Ignore all sdks
 **/sdk*
