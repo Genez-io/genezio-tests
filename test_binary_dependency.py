@@ -37,6 +37,9 @@ def test_binary_dependency():
     assert output == "Ok\n", "Node script returned wrong output"
 
     process.kill()
+    print("genezio local stdout: " + process.stdout.read())
+    print("genezio local stderr: " + process.stderr.read())
+
     print("Test passed!")
 
 
