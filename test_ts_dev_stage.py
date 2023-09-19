@@ -11,7 +11,7 @@ def test_ts_sdk():
     genezio_login(token)
 
     os.chdir("./projects/ts-sdk/server/")
-    deploy_result = genezio_deploy(False, args=["--stage dev"])
+    deploy_result = genezio_deploy(False, args=["--stage", "dev"])
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
