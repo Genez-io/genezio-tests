@@ -37,6 +37,15 @@ def test_binary_dependency():
     assert output == "Ok\n", "Node script returned wrong output"
 
     process.kill()
+
+    os.chdir("../server/")
+    with open("stdout.txt", "r") as f:
+        stdout = f.read()
+        print(stdout)
+    with open("stderr.txt", "r") as f:
+        stderr = f.read()
+        print(stderr)
+
     print("Test passed!")
 
 
