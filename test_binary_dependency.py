@@ -38,7 +38,7 @@ def test_binary_dependency():
 
     process.kill()
 
-    os.chdir("../server/")
+    os.chdir("../")
     with open("stdout.txt", "r") as f:
         stdout = f.read()
         print(stdout)

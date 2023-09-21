@@ -117,7 +117,7 @@ def genezio_local(args=[]):
     genezio_local_args = ['genezio', 'local', "--logLevel", "info"] + args
 
     genezio_local_command = ' '.join(genezio_local_args) if use_shell else genezio_local_args
-    with open("stdout.txt","wb") as out_logs, open("stderr.txt","wb") as out_err:
+    with open("../stdout.txt","wb") as out_logs, open("../stderr.txt","wb") as out_err:
         process = subprocess.Popen(genezio_local_command, stdout=out_logs, stderr=out_err, text=True, close_fds=True, shell=use_shell)
     start = time.time()
 
