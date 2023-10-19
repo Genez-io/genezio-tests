@@ -19,10 +19,10 @@ jobs:
 
     - name: Install PNPM
       run: |
-        npm install -g pnpm
+        npm install -g pnpm & pnpm setup
     - name: Install genezio globally
       run: |
-        pnpm add -g genezio & pnpm config set global-dir ~/.pnpm-global & pnpm config set store-dir ~/.pnpm-store
+        pnpm add -g genezio
     - name: Check genezio version with regex major.minor.patch
       run: |
         PATH="$(pnpm config get global-dir)/node_modules/.bin:$PATH" genezio --version | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$'
