@@ -44,7 +44,7 @@ jobs:
       - name: Notify slack fail
         if: needs.test.result == 'failure'
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.slack_token }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
         uses: voxmedia/github-action-slack-notify-build@v1
         with:
           channel_id: C04QR0X8CQ2
