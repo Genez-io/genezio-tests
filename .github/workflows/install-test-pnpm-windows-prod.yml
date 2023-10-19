@@ -16,13 +16,9 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 16
-
-    - name: Install PNPM
-      run: |
-        npm install -g pnpm
-    - name: Set up PNPM
-      run: |
-        pnpm setup
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
     - name: Install genezio globally
       run: |
         pnpm add -g genezio
