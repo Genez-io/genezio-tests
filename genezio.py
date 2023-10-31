@@ -116,8 +116,12 @@ def genezio_local(args=[]):
     port = 8083
     genezio_local_args = ['genezio', 'local', "--logLevel", "info"] + args
 
+    # Define the file paths
+    stdout_file = os.path.join("..", "stdout.txt")
+    stderr_file = os.path.join("..", "stderr.txt")
+
     genezio_local_command = ' '.join(genezio_local_args) if use_shell else genezio_local_args
-    with open("../stdout.txt","wb") as out_logs, open("../stderr.txt","wb") as out_err:
+    with open(stdout_file, "wb") as out_logs, open(stderr_file,"wb") as out_err:
         process = subprocess.Popen(genezio_local_command, stdout=out_logs, stderr=out_err, text=True, close_fds=True, shell=use_shell)
     start = time.time()
 
@@ -128,10 +132,10 @@ def genezio_local(args=[]):
         if process.returncode != None:
             print("process exited with code: " + str(process.returncode))
             process.kill()
-            with open("stdout.txt", "r") as f:
+            with open(stdout_file, "r") as f:
                 stdout = f.read()
                 print(stdout)
-            with open("stderr.txt", "r") as f:
+            with open(stderr_file, "r") as f:
                 stderr = f.read()
                 print(stderr)
             return None
@@ -146,10 +150,10 @@ def genezio_local(args=[]):
         if end - start > 60:
             print("Timeout while waiting for localhost.")
             process.kill()
-            with open("stdout.txt", "r") as f:
+            with open(stdout_file, "r") as f:
                 stdout = f.read()
                 print(stdout)
-            with open("stderr.txt", "r") as f:
+            with open(stderr_file, "r") as f:
                 stderr = f.read()
                 print(stderr)
             return None
