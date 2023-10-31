@@ -1,6 +1,7 @@
 name: todo-list-ts
 region: us-east-1
 cloudProvider: aws
+packageManager: npm
 sdk:
   language: ts
   options:

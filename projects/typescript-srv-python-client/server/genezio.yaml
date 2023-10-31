@@ -1,5 +1,6 @@
 name: typescript-srv-python-client
 region: us-east-1
+packageManager: npm
 sdk:
   language: python
   path: ../client/sdk
