@@ -1,6 +1,7 @@
 name: typescript-flutter-sdk
 region: eu-central-1
 cloudProvider: aws
+packageManager: npm
 sdk:
   language: dart
   path: ../client/sdk

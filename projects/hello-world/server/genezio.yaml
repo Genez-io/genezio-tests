@@ -1,5 +1,6 @@
 name: hello-world
 region: eu-central-1
+packageManager: npm
 sdk:
   language: js
   options:

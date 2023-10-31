@@ -8,6 +8,7 @@ GENEZIO_YAML_CONTENT = """
 name: test-new-project
 region: us-east-1
 cloudProvider: aws
+packageManager: npm
 sdk:
   language: ts
   path: ./sdk/

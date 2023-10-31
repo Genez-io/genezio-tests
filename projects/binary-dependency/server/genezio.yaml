@@ -19,6 +19,7 @@
 
 name: binary-dependency
 region: us-east-1
+packageManager: npm
 sdk:
   options:
     runtime: node

@@ -1,5 +1,6 @@
 name: test-create-list-delete
 region: eu-central-1
+packageManager: npm
 sdk:
   language: js
   options:
