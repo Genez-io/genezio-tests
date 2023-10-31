@@ -2,6 +2,7 @@
 # Add the paths to classes that you want to deploy in "classes".
 
 name: swift-sdk-example
+packageManager: npm
 sdk:
   language: python
   path: ../client/sdk/
