@@ -4,8 +4,7 @@ import os
 from genezio import genezio_login, genezio_add_class
 from utils import compare_files
 
-GENEZIO_YAML_CONTENT = """
-name: test-new-project
+GENEZIO_YAML_CONTENT = """name: test-new-project
 region: us-east-1
 cloudProvider: aws
 packageManager: npm
@@ -16,7 +15,7 @@ classes: []
 """
 
 def test_genezio_misc_cmds():
-    print("Starting new_project test...")
+    print("Starting genezio misc test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
     genezio_login(token)
