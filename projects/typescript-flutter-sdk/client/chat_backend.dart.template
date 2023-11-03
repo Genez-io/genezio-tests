@@ -2,6 +2,7 @@
 /// if new genezio commands are executed.
 
 import 'remote.dart';
+import './models/models.dart';
 
 
 class ChatBackend {
