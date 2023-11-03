@@ -5,10 +5,4 @@ packageManager: npm
 sdk:
   language: ts
   path: ./sdk/
-classes:
-  - path: test-jsonrpc.js
-    type: jsonrpc
-    methods: []
-  - path: test-http.js
-    type: http
-    methods: []
+classes: []
