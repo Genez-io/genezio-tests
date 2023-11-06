@@ -3,6 +3,7 @@
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from os.path import exists
+from utils import kill_process
 
 def test_ts_sdk():
     print("Starting typescript dev stage test...")
@@ -44,7 +45,8 @@ def test_ts_sdk():
     assert "static async methodWithOneParameter(test1: string): Promise<string>" in content, "Wrong exported method with one parameter"
     assert "static async methodWithMultipleParameters(test1: string, test2: number): Promise<string>" in content, "Wrong exported method with multiple parameters"
 
-    process.kill()
+    kill_process(process)
+    
     print("Test passed!")
 
 

@@ -3,6 +3,7 @@
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from os.path import exists
+from utils import kill_process
 
 def test_swift_sdk():
     print("Starting swift sdk test...")
@@ -44,7 +45,7 @@ def test_swift_sdk():
     assert "static func methodWithOneParameter(test1: String) async -> String" in content, "Wrong exported method with one parameter"
     assert "static func methodWithMultipleParameters(test1: String, test2: Double) async -> String" in content, "Wrong exported method with multiple parameters"
 
-    process.kill()
+    kill_process(process)
     print("Test passed!")
 
 

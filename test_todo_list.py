@@ -2,7 +2,7 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_node_script
+from utils import run_node_script, kill_process
 
 def test_todo_list():
     print("Starting todo_list test...")
@@ -44,7 +44,7 @@ def test_todo_list():
     for i in range(0, 8):
         assert components[i] == "Ok", "Component " + str(i) + " returned wrong output"
 
-    process.kill()
+    kill_process(process)
     print("Test passed!")
 
 

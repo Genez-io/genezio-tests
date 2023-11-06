@@ -2,7 +2,7 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_node_script, run_npm_run_build
+from utils import run_node_script, run_npm_run_build, kill_process
 
 def test_todo_list_ts():
     print("Starting todo_list ts test...")
@@ -50,7 +50,7 @@ def test_todo_list_ts():
     for i in range(0, 8):
         assert components[i] == "Ok", "Component " + str(i) + " returned wrong output"
 
-    process.kill()
+    kill_process(process)
     print("Test passed!")
 
 # Test order matters because the commands are having side effects.

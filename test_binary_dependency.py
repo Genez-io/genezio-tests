@@ -2,7 +2,7 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_node_script
+from utils import run_node_script, kill_process
 
 def test_binary_dependency():
     print("Starting binary_dependency test...")
@@ -36,7 +36,7 @@ def test_binary_dependency():
     assert status == 0, "Node test script returned non-zero exit code"
     assert output == "Ok\n", "Node script returned wrong output"
 
-    process.kill()
+    kill_process(process)
 
     os.chdir("../")
     with open("stdout.txt", "r") as f:

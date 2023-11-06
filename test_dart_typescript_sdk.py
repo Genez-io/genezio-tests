@@ -3,7 +3,7 @@
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from os.path import exists
-from utils import compare_files
+from utils import compare_files, kill_process
 
 def test_dart_typescript_sdk():
     print("Starting test_dart_typescript_sdk test...")
@@ -29,7 +29,7 @@ def test_dart_typescript_sdk():
 
     assert compare_files("../client/sdk/task.sdk.ts", "../client/todo_list.ts.template") == True, "Wrong class sdk content"
 
-    process.kill()
+    kill_process(process)
     print("Test passed!")
 
 # Test order matters because the commands are having side effects.

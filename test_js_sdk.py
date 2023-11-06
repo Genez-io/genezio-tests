@@ -3,6 +3,7 @@
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from os.path import exists
+from utils import kill_process
 
 def test_js_sdk():
     print("Starting javascript sdk test...")
@@ -44,7 +45,7 @@ def test_js_sdk():
     assert "static async methodWithOneParameter(test1)" in content, "Wrong exported method with one parameter"
     assert "static async methodWithMultipleParameters(test1, test2)" in content, "Wrong exported method with multiple parameters"
 
-    process.kill()
+    kill_process(process)
     print("Test passed!")
 
 
