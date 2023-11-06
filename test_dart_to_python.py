@@ -2,7 +2,7 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_script, run_node_script, run_npm_run_build
+from utils import run_script, run_node_script, run_npm_run_build, kill_process
 from os.path import exists
 
 def test_dart_to_python():
@@ -41,7 +41,7 @@ def test_dart_to_python():
     assert status == 0, "Node test script returned non-zero exit code"
     assert output in "100string12hello42True[1, 2, 3]['string1', 'string2', 'string3'][1, 2, 3][{'x': 0, 'y': 0}, {'x': 1, 'y': 2}, {'x': 2, 'y': 4}][{'x': 0, 'y': 0}, {'x': 1, 'y': 2}, {'x': 2, 'y': 4}][{'x': 11, 'y': 12}, {'x': 13, 'y': 14}, {'x': 15, 'y': 16}]", "Wrong output from python test: " + output
 
-    process.kill()
+    kill_process(process)
     print("Test passed!")
 
 # Test order matters because the commands are having side effects.

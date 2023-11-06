@@ -5,7 +5,7 @@ import re
 import socket
 import time
 import os
-import random
+from utils import kill_process
 
 # We are using shell=True on Windows for subprocess.run()
 use_shell = os.name == 'nt'
@@ -131,7 +131,7 @@ def genezio_local(args=[]):
 
         if process.returncode != None:
             print("process exited with code: " + str(process.returncode))
-            process.kill()
+            kill_process(process)
             with open(stdout_file, "r") as f:
                 stdout = f.read()
                 print(stdout)
@@ -149,7 +149,7 @@ def genezio_local(args=[]):
         end = time.time()
         if end - start > 60:
             print("Timeout while waiting for localhost.")
-            process.kill()
+            kill_process(process)
             with open(stdout_file, "r") as f:
                 stdout = f.read()
                 print(stdout)

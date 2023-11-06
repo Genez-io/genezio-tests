@@ -3,7 +3,7 @@
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from os.path import exists
-from utils import compare_files
+from utils import compare_files, kill_process
 
 def test_typescript_flutter_sdk():
     print("Starting test_typescript_flutter_sdk test...")
@@ -29,7 +29,7 @@ def test_typescript_flutter_sdk():
 
     assert compare_files("../client/sdk/chat_backend.dart", "../client/chat_backend.dart.template") == True, "Wrong class sdk content"
 
-    process.kill()
+    kill_process(process)
     print("Test passed!")
 
 

@@ -2,7 +2,7 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_script
+from utils import run_script, kill_process
 from os.path import exists
 
 def test_python_sdk():
@@ -42,7 +42,7 @@ def test_python_sdk():
     assert status == 0, "Node test script returned non-zero exit code"
     assert output in "Nonestringstringstring", "Wrong output from python test: " + output    
 
-    process.kill()
+    kill_process(process)
     print("Test passed!")
 
 
