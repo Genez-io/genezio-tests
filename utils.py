@@ -2,6 +2,9 @@
 
 import subprocess
 import os
+import difflib
+import psutil
+import signal
 
 # We are using shell=True on Windows for subprocess.run()
 use_shell = os.name == 'nt'
@@ -65,5 +68,29 @@ def compare_files(path1, path2):
         content1 = content1.replace('\r\n', '\n')
         content2 = content2.replace('\r\n', '\n')
         
+        # Print a diff for debugging in case the files are different
+        if (content1 != content2):
+            diff = difflib.Differ().compare(content1.splitlines(True), content2.splitlines(True))
+            print('Diff:\n')
+            print(''.join(diff))
+
         # Compare the contents
         return content1 == content2
+
+
+def kill_process(process: subprocess.Popen[str]):
+    if use_shell:
+        try:
+            parent = psutil.Process(process.pid)
+        except psutil.NoSuchProcess:
+            print(f"Kill of process with pid {process.pid} was requested, but this process does not exist")
+            return
+        
+        children = parent.children(recursive=True)
+        # Kill all children
+        for child in children:
+            child.kill() 
+        # Kill the process
+        parent.kill()
+    else:
+        process.kill()

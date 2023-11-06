@@ -2,7 +2,7 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_node_script
+from utils import run_node_script, kill_process
 
 def test_webhooks():
     print("Starting webhook test...")
@@ -43,7 +43,7 @@ def test_webhooks():
     assert components[1] == 'text in body', "Component 1 returned wrong output"
     assert components[2] == "{ name: 'John' }", "Component 2 returned wrong output"
     assert components[3] == "contents of file", "Component 3 returned wrong output"
-    process.kill()
+    kill_process(process)
 
     os.chdir("../")
     print("Test passed!")

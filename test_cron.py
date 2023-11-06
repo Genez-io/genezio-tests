@@ -2,7 +2,7 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_node_script
+from utils import run_node_script, kill_process
 import time
 
 def test_hello():
@@ -62,7 +62,7 @@ def test_hello():
 
     assert numberAfterOneMinute > number, "Cron job did not run"
 
-    process.kill()
+    kill_process(process)
     print("Test passed!")
 
 

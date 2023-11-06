@@ -2,7 +2,7 @@
 
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_node_script
+from utils import run_node_script, kill_process
 
 def test_hello():
     print("Starting hello_world test...")
@@ -44,7 +44,7 @@ def test_hello():
     assert components[0] == "Hello world!", "Node script returned wrong output"
     assert components[1] == "Hello, George, from Tenerife!", "Node script returned wrong output"
 
-    process.kill()
+    kill_process(process)
     print("Test passed!")
 
 
