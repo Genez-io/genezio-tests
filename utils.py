@@ -56,14 +56,12 @@ def run_script(args):
 # function that compares 2 files and returns true if they are the same
 # the function needs to ingnore line endings as '\n' and '\r\n' are the same
 def compare_files(path1, path2):
-    with open(path1, 'r', encoding='utf-8') as file1, open(path2, 'r', encoding='utf-8') as file2:
-        # Read the contents of both files
-        content1 = file1.read()
-        content2 = file2.read()
-        
-        # Normalize line endings
-        content1 = content1.replace('\r\n', '\n')
-        content2 = content2.replace('\r\n', '\n')
-        
-        # Compare the contents
-        return content1 == content2
+    with open(path1, 'r') as file1:
+        with open(path2, 'r') as file2:
+            line1 = file1.readline()
+            line2 = file2.readline()
+            if line1.rstrip() != line2.rstrip():
+                print(line1, line2)
+                return False
+
+    return True
