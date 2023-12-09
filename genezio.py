@@ -74,17 +74,17 @@ def genezio_add_class(class_path, class_type):
 
     return process.returncode, process.stderr, process.stdout
 
-def genezio_ls(identifier, details):
-    genezio_ls_args = ['genezio', 'ls']
+def genezio_list(identifier, details):
+    genezio_list_args = ['genezio', 'list']
 
     if (identifier != None):
-        genezio_ls_args.append(identifier)
+        genezio_list_args.append(identifier)
 
     if (details == True):
-        genezio_ls_args.append("--long-listed")
+        genezio_list_args.append("--long-listed")
 
-    genezio_ls_command = ' '.join(genezio_ls_args) if use_shell else genezio_ls_args
-    process = subprocess.run(genezio_ls_command, capture_output=True, text=True, shell=use_shell)
+    genezio_list_command = ' '.join(genezio_list_args) if use_shell else genezio_list_args
+    process = subprocess.run(genezio_list_command, capture_output=True, text=True, shell=use_shell)
 
     return process.returncode, process.stderr, process.stdout
 

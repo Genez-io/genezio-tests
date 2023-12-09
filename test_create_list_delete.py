@@ -3,7 +3,7 @@
 import os
 import shutil
 import yaml
-from genezio import genezio_login, genezio_deploy, genezio_ls, genezio_delete
+from genezio import genezio_login, genezio_deploy, genezio_list, genezio_delete
 
 def test_create_list_delete():
     print("Starting listing test...")
@@ -21,19 +21,19 @@ def test_create_list_delete():
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
     # List the projects
-    returncode, _, stdout = genezio_ls(None, False)
-    assert returncode == 0, "genezio ls returned non-zero exit code"
+    returncode, _, stdout = genezio_list(None, False)
+    assert returncode == 0, "genezio list returned non-zero exit code"
     assert stdout.__contains__(new_project_name), "genezio ls did not list the added project"
 
     projects = stdout.split("\n")
     projects = list(filter(lambda x: x != "", projects))
     projects = list(filter(lambda x: x.__contains__(new_project_name), projects))
-    assert len(projects) == 1, "genezio ls listed more than one project with the same name"
+    assert len(projects) == 1, "genezio list listed more than one project with the same name"
 
     # List the project by name
-    returncode, _, stdout = genezio_ls(new_project_name, True)
-    assert returncode == 0, "genezio ls <name> returned non-zero exit code"
-    assert stdout.__contains__(new_project_name), "genezio ls <name> did not list the added project"
+    returncode, _, stdout = genezio_list(new_project_name, True)
+    assert returncode == 0, "genezio list <name> returned non-zero exit code"
+    assert stdout.__contains__(new_project_name), "genezio list <name> did not list the added project"
     
     # Get the project id
     project_id = stdout.split("ID: ")[1].split(",")[0]
@@ -45,9 +45,9 @@ def test_create_list_delete():
     assert "Your project has been deleted" in stdout, "genezio delete did not return the correct message"
 
     # List the projects again to check deleted project
-    returncode, _, stdout = genezio_ls(None, False)
-    assert returncode == 0, "genezio ls returned non-zero exit code"
-    assert not stdout.__contains__(new_project_name), "genezio ls listed the deleted project"
+    returncode, _, stdout = genezio_list(None, False)
+    assert returncode == 0, "genezio list returned non-zero exit code"
+    assert not stdout.__contains__(new_project_name), "genezio list listed the deleted project"
 
     # cleanup
     os.chdir("../../")
