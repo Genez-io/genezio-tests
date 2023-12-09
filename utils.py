@@ -78,7 +78,7 @@ def compare_files(path1, path2):
         return content1 == content2
 
 
-def kill_process(process: subprocess.Popen[str]):
+def kill_process(process: subprocess.Popen):
     if use_shell:
         try:
             parent = psutil.Process(process.pid)
