@@ -7,7 +7,7 @@ on:
         description: "genezio cli branch to run tests on."
         required: true
         type: string
-        default: "master"
+        default: "main"
       os:
         description: "OS to run tests on"
         required: true

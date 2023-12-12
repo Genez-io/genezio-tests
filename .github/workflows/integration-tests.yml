@@ -94,10 +94,10 @@ jobs:
             **/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.node-version }}
       - name: Install genezio cli prod - if Prod
-        if: inputs.genezio_branch == 'master'
+        if: inputs.genezio_branch == 'main'
         run: cd genezio && npm install && npm run install-locally
       - name: Install genezio cli dev - if not Prod
-        if: inputs.genezio_branch != 'master'
+        if: inputs.genezio_branch != 'main'
         run: cd genezio && npm install && npm run install-locally-dev
       - name: Install npm dependencies for each subproject - if Linux
         if: runner.os == 'Linux'
