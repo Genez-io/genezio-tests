@@ -85,7 +85,7 @@ jobs:
       - uses: actions/setup-node@v3
         id: node
         with:
-          node-version: 16
+          node-version: 18
       - name: Get node_modules cache
         uses: actions/cache@v3.0.2
         id: node_modules
