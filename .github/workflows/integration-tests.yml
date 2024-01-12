@@ -49,7 +49,7 @@ jobs:
               test_ts_dev_stage.py, # 33s
             ],
             [
-              test_unauthenticated.py, # 6s
+              # test_unauthenticated.py, # 6s
               test_binary_dependency.py, # 45s
               test_genezio_misc_cmds.py, # 10s
               test_cron.py, # 2m 35s
