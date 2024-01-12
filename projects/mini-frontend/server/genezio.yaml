@@ -1,6 +1,6 @@
 name: mnopqr-genezio-test-frontend
 region: eu-central-1
-cloudProvider: aws
+cloudProvider: genezio
 packageManager: npm
 sdk:
   language: js

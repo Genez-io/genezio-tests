@@ -1,6 +1,6 @@
 name: test-new-project
 region: us-east-1
-cloudProvider: aws
+cloudProvider: genezio
 packageManager: npm
 sdk:
   language: ts

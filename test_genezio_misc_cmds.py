@@ -6,7 +6,7 @@ from utils import compare_files
 
 GENEZIO_YAML_CONTENT = """name: test-new-project
 region: us-east-1
-cloudProvider: aws
+cloudProvider: genezio
 packageManager: npm
 sdk:
   language: ts
