@@ -1,6 +1,5 @@
 name: test-dart-typescript-sdk
 region: us-east-1
-cloudProvider: aws
 sdk:
   language: ts
   options:
