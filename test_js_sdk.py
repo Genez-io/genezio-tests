@@ -20,8 +20,8 @@ def test_js_sdk():
     assert exists("../client/sdk/remote.js") == True, "Remote js sdk not found"
     assert exists("../client/sdk/server.sdk.js") == True, "Class js sdk not found"
 
-    f = open("../client/sdk/server.sdk.js", "r")
-    content = f.read()
+    with open("../client/sdk/server.sdk.js", "r") as f:
+        content = f.read()
 
     assert "static async method()" in content, "Wrong exported method without parameters"
     assert "static async methodWithoutParameters()" in content, "Wrong exported method with return type"
@@ -37,8 +37,8 @@ def test_js_sdk():
     assert exists("../client/sdk/remote.js") == True, "Remote js sdk not found"
     assert exists("../client/sdk/server.sdk.js") == True, "Class js sdk not found"
 
-    f = open("../client/sdk/server.sdk.js", "r")
-    content = f.read()
+    with open("../client/sdk/server.sdk.js", "r") as f:
+        content = f.read()
 
     assert "static async method()" in content, "Wrong exported method without parameters"
     assert "static async methodWithoutParameters()" in content, "Wrong exported method with return type"

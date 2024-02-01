@@ -20,8 +20,8 @@ def test_swift_sdk():
     assert exists("../client/sdk/remote.swift") == True, "Remote swift sdk not found"
     assert exists("../client/sdk/server.sdk.swift") == True, "Class swift sdk not found"
 
-    f = open("../client/sdk/server.sdk.swift", "r")
-    content = f.read()
+    with open("../client/sdk/server.sdk.swift", "r") as f:
+        content = f.read()
 
     assert "static func method() async -> Any" in content, "Wrong exported method without parameters"
     assert "static func methodWithoutParameters() async -> String" in content, "Wrong exported method with return type"
@@ -37,8 +37,8 @@ def test_swift_sdk():
     assert exists("../client/sdk/remote.swift") == True, "Remote swift sdk not found"
     assert exists("../client/sdk/server.sdk.swift") == True, "Class swift sdk not found"
 
-    f = open("../client/sdk/server.sdk.swift", "r")
-    content = f.read()
+    with open("../client/sdk/server.sdk.swift", "r") as f:
+        content = f.read()
 
     assert "static func method() async -> Any" in content, "Wrong exported method without parameters"
     assert "static func methodWithoutParameters() async -> String" in content, "Wrong exported method with return type"

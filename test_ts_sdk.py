@@ -20,8 +20,8 @@ def test_ts_sdk():
     assert exists("../client/sdk/remote.ts") == True, "Remote ts sdk not found"
     assert exists("../client/sdk/server.sdk.ts") == True, "Class ts sdk not found"
 
-    f = open("../client/sdk/server.sdk.ts", "r")
-    content = f.read()
+    with open("../client/sdk/server.sdk.ts", "r") as f:
+        content = f.read()
 
     assert "static async method()" in content, "Wrong exported method without parameters"
     assert "static async methodWithoutParameters(): Promise<string>" in content, "Wrong exported method with return type"
@@ -37,8 +37,8 @@ def test_ts_sdk():
     assert exists("../client/sdk/remote.ts") == True, "Remote ts sdk not found"
     assert exists("../client/sdk/server.sdk.ts") == True, "Class ts sdk not found"
 
-    f = open("../client/sdk/server.sdk.ts", "r")
-    content = f.read()
+    with open("../client/sdk/server.sdk.ts", "r") as f:
+        content = f.read()
 
     assert "static async method()" in content, "Wrong exported method without parameters"
     assert "static async methodWithoutParameters(): Promise<string>" in content, "Wrong exported method with return type"
