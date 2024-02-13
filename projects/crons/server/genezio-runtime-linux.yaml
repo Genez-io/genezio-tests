@@ -1,0 +1,18 @@
+# File that configures what classes will be deployed in Genezio Infrastructure.
+# Add the paths to classes that you want to deploy in "classes".
+
+name: cron-example-capybara-linux
+packageManager: npm
+cloudProvider: capybaraLinux
+sdk:
+  language: js
+  options:
+    runtime: node
+  path: ../client/sdk/
+classes:
+  - path: "./index.js"
+    type: jsonrpc
+    methods:
+      - name: "sayHiEveryMinute"
+        type: cron
+        cronString: "* * * * *"

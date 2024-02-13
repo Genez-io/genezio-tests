@@ -62,6 +62,13 @@ jobs:
               test_python_sdk.py, # 33s
               test_frontend.py, # 33s
             ],
+            [
+              test_runtime_binary_dependency.py, # TBD
+              test_runtime_cron.py, # TBD
+              test_runtime_hello.py, # TBD
+              test_runtime_todo_list.py, # TBD
+              test_runtime_webhooks.py, # TBD
+            ],
           ]
     steps:
       - name: Checkout code
@@ -138,6 +145,10 @@ jobs:
           GENEZIO_TOKEN: ${{ secrets.genezio_token }}
       - run: python ${{ matrix.tests[4] }}
         if: matrix.tests[4] != null
+        env:
+          GENEZIO_TOKEN: ${{ secrets.genezio_token }}
+      - run: python ${{ matrix.tests[5] }}
+        if: matrix.tests[5] != null
         env:
           GENEZIO_TOKEN: ${{ secrets.genezio_token }}
   notify:
