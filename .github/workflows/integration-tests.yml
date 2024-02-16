@@ -67,7 +67,8 @@ jobs:
               test_runtime_cron.py, # TBD
               test_runtime_hello.py, # TBD
               test_runtime_todo_list.py, # TBD
-              test_runtime_webhooks.py, # TBD
+              # TODO: enable once runtime properly supports webhooks.
+              # test_runtime_webhooks.py, # TBD
             ],
           ]
     steps:
