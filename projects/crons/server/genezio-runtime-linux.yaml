@@ -1,0 +1,15 @@
+name: cron-example-capybara-linux
+packageManager: npm
+cloudProvider: capybaraLinux
+sdk:
+  language: js
+  options:
+    runtime: node
+  path: ../client/sdk/
+classes:
+  - path: "./index.js"
+    type: jsonrpc
+    methods:
+      - name: "sayHiEveryMinute"
+        type: cron
+        cronString: "* * * * *"

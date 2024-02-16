@@ -24,8 +24,8 @@ class DeployResult:
             self.web_urls = [x[0] for x in links[:-1]]
             self.project_url = links[-1][0]
 
-def genezio_deploy(deploy_frontend, args=[]):
-    genezio_deploy_args = ['genezio', 'deploy']
+def genezio_deploy(deploy_frontend, with_config="./genezio.yaml", args=[]):
+    genezio_deploy_args = ['genezio', 'deploy', '--config', with_config]
 
     if (deploy_frontend == True):
         genezio_deploy_args.append("--frontend")
