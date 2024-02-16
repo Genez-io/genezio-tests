@@ -7,7 +7,7 @@ on:
 
 jobs:
   integration-tests:
-    uses: Genez-io/genezio-tests/.github/workflows/integration-tests.yml@main
+    uses: Genez-io/genezio-tests/.github/workflows/integration-tests.yml@dev
     with:
       genezio_branch: "dev"
       os: windows-latest
