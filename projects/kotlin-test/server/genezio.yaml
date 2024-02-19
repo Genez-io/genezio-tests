@@ -1,0 +1,14 @@
+name: hello-world-kotlin-test
+region: eu-central-1
+sdk:
+  language: kt
+  options:
+    runtime: kotlin
+  path: ../client/app/src/main/kotlin/sdk
+classes:
+  - path: ./app/src/main/kotlin/geneziokotlin/SampleClass.kt
+    name: HelloWorldService
+cloudProvider: aws
+  
+
+
