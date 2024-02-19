@@ -9,24 +9,24 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 16
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
 
-    - name: Install Yarn
-      run: |
-        npm install -g yarn
-    - name: Install genezio globally
-      run: |
-        yarn global add genezio
-    - name: Check genezio version with regex major.minor.patch
-      run: |
-        PATH="$(yarn global bin):$PATH" genezio --version | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$'
-      
+      - name: Install Yarn
+        run: |
+          npm install -g yarn
+      - name: Install genezio globally
+        run: |
+          yarn global add genezio
+      - name: Check genezio version with regex major.minor.patch
+        run: |
+          PATH="$(yarn global bin):$PATH" genezio --version | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$'
+
   notify:
     if: always()
     runs-on: ubuntu-latest
@@ -50,4 +50,3 @@ jobs:
           channel_id: C04QR0X8CQ2
           status: FAILED
           color: danger
-
