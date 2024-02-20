@@ -1,6 +1,7 @@
 import {Server} from "./sdk/server.sdk.js"
 
 (async () => {
-  const res = await Server.method();
-  console.log(res);
+  await Server.method().catch((error) => {
+    console.log(error);
+  })
 })();

@@ -5,6 +5,7 @@
 
 import { Remote } from "./remote";
 
+
 export type TaskModel = {id: string, title: string, url: string, token: string, solved: string, date: string};
 
 export class Task {

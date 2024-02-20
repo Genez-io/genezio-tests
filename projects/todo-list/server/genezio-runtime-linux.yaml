@@ -1,0 +1,22 @@
+name: todo-list-capybara-linux
+region: us-east-1
+packageManager: npm
+cloudProvider: capybaraLinux
+sdk:
+  language: js
+  options:
+    runtime: node
+  path: ../client/sdk
+classes:
+  - path: ./task.js
+    type: jsonrpc
+    methods: []
+  - path: ./user.js
+    type: jsonrpc
+    methods: []
+  - path: ./cron.js
+    type: jsonrpc
+    methods:
+      - name: deleteAllData
+        type: cron
+        cronString: 0 12 * * *

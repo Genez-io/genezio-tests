@@ -1,0 +1,11 @@
+name: binary-dependency-capybara-linux
+region: us-east-1
+packageManager: npm
+cloudProvider: capybaraLinux
+sdk:
+  options:
+    runtime: node
+  language: js
+  path: ../client/sdk/
+classes:
+  - path: ./index.js
