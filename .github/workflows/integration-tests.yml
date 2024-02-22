@@ -63,12 +63,13 @@ jobs:
               test_frontend.py, # 33s
             ],
             [
-              test_runtime_binary_dependency.py, # TBD
-              test_runtime_cron.py, # TBD
-              test_runtime_hello.py, # TBD
-              test_runtime_todo_list.py, # TBD
+              # Enable once the runtime is deployed in production
+              # test_runtime_binary_dependency.py,
+              # test_runtime_cron.py,
+              # test_runtime_hello.py,
+              # test_runtime_todo_list.py,
               # TODO: enable once runtime properly supports webhooks.
-              # test_runtime_webhooks.py, # TBD
+              # test_runtime_webhooks.py,
             ],
           ]
     steps:
