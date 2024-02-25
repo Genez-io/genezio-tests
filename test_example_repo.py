@@ -5,11 +5,11 @@ from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import kill_process
 
 
-def test_example_repo(language: str, repoNameExample: str, path: str):
-	print("Starting {} test...".format(language + " " + repoNameExample))
+def test_example_repo(language: str, repo_name_example: str, path: str):
+	print("Starting {} test...".format(language + " " + repo_name_example))
 	token = os.environ.get('GENEZIO_TOKEN')
 
-	os.chdir(os.path.join(path, "projects", "examples", "genezio-examples", language, repoNameExample))
+	os.chdir(os.path.join(path, "projects", "examples", "genezio-examples", language, repo_name_example))
 
 	genezio_login(token)
 
@@ -23,8 +23,3 @@ def test_example_repo(language: str, repoNameExample: str, path: str):
 	assert process != None, "genezio local returned None"
 	kill_process(process)
 	print("Test passed!")
-
-
-# Test order matters because the commands are having side effects.
-if __name__ == '__main__':
-	test_example_repo("typescript", "webhook", os.getcwd())
