@@ -13,7 +13,7 @@ def run_npm_run_build():
     npm_run_build_args = ['npm', 'run', 'build']
 
     npm_run_build_command = ' '.join(npm_run_build_args) if use_shell else npm_run_build_args
-    process = subprocess.run(npm_run_build_command, capture_output=True, text=True, shell=use_shell)
+    process = subprocess.run(npm_run_build_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
 
 def run_curl(url):
     if url == None:
@@ -24,7 +24,7 @@ def run_curl(url):
     curl_args = ['curl', url]
 
     curl_command = ' '.join(curl_args) if use_shell else curl_args
-    process = subprocess.run(curl_command, capture_output=True, text=True, shell=use_shell)
+    process = subprocess.run(curl_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
 
     if process.returncode != 0:
         print(process.stderr)
@@ -36,7 +36,7 @@ def run_node_script(script, args=[]):
     run_script_args = ['node', script] + args
 
     run_script_command = ' '.join(run_script_args) if use_shell else run_script_args
-    process = subprocess.run(run_script_command, capture_output=True, text=True, shell=use_shell)
+    process = subprocess.run(run_script_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
 
     print(process.stdout)
     print(process.stderr)
@@ -48,7 +48,7 @@ def run_node_script(script, args=[]):
 
 def run_script(args):
     run_script_command = ' '.join(args) if use_shell else args
-    process = subprocess.run(run_script_command, capture_output=True, text=True, shell=use_shell)
+    process = subprocess.run(run_script_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
 
     if process.returncode != 0:
         print(process.stderr)
