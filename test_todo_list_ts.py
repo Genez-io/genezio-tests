@@ -14,8 +14,6 @@ def test_todo_list_ts():
     deploy_result = genezio_deploy(False)
 
     print(deploy_result.return_code)
-    print(deploy_result.stdout)
-    print(deploy_result.stderr)
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
