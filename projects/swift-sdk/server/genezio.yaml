@@ -1,10 +1,16 @@
-# File that configures what classes will be deployed in Genezio Infrastructure.
-# Add the paths to classes that you want to deploy in "classes".
-
 name: swift-sdk-example
-packageManager: npm
-sdk:
-  language: swift
-  path: ../client/sdk/
-classes:
-  - path: "./index.ts"
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: ts
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - path: index.ts
+          type: jsonrpc
+    sdk:
+        path: ../client/sdk/
+        language: swift

@@ -1,15 +1,20 @@
 name: cron-example-capybara-linux
-packageManager: npm
-cloudProvider: capybaraLinux
-sdk:
-  language: js
-  options:
-    runtime: node
-  path: ../client/sdk/
-classes:
-  - path: "./index.js"
-    type: jsonrpc
-    methods:
-      - name: "sayHiEveryMinute"
-        type: cron
-        cronString: "* * * * *"
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: js
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: capybaraLinux
+    classes:
+        - path: index.js
+          type: jsonrpc
+          methods:
+              - name: sayHiEveryMinute
+                type: cron
+                cronString: "* * * * *"
+    sdk:
+        path: ../client/sdk/
+        language: js

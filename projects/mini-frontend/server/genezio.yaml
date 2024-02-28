@@ -1,16 +1,22 @@
 name: mnopqr-genezio-test-frontend
 region: eu-central-1
-cloudProvider: genezio
-packageManager: npm
-sdk:
-  language: js
-  options:
-    runtime: browser
-  path: ../client/src/sdk
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: js
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - path: hello.js
+          type: jsonrpc
+    sdk:
+        path: ../client/src/sdk
+        language: js
 frontend:
-  path: ../client/build
-  # Do not change the subdomain
-  subdomain: mnopqr-genezio-test-frontend
-classes:
-  - path: ./hello.js
-    type: jsonrpc
+    path: ../client
+    language: ts
+    # Do not change the subdomain
+    subdomain: mnopqr-genezio-test-frontend
+    publish: ../client/build
