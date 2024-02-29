@@ -1,8 +1,13 @@
 name: test-new-project
 region: us-east-1
-cloudProvider: genezio
-packageManager: npm
-sdk:
-  language: ts
-  path: ./sdk/
-classes: []
+yamlVersion: 2
+backend:
+  path: .
+  language:
+    name: ts
+    runtime: nodejs18.x
+    packageManager: npm
+  cloudProvider: genezio
+  sdk:
+    path: ./sdk/
+    language: ts

@@ -1,14 +1,20 @@
 name: test-dart-typescript-sdk
 region: us-east-1
-sdk:
-  language: ts
-  options:
-    runtime: browser
-  path: ../client/sdk
-scripts:
-  preBackendDeploy: dart pub get
-classes:
-  - path: ./lib/task.dart
-    name: "Task"
-    type: jsonrpc
-    methods: []
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: dart
+        runtime: nodejs18.x
+        packageManager: npm
+    scripts:
+        deploy:
+            - dart pub get
+    cloudProvider: genezio
+    classes:
+        - name: Task
+          path: lib/task.dart
+          type: jsonrpc
+    sdk:
+        path: ../client/sdk
+        language: ts

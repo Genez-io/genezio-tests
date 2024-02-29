@@ -1,11 +1,16 @@
 name: hello-world
 region: eu-central-1
-packageManager: npm
-sdk:
-  language: js
-  options:
-    runtime: node
-  path: ../client/sdk/
-classes:
-  - path: ./hello.js
-    type: jsonrpc
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: js
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - path: hello.js
+          type: jsonrpc
+    sdk:
+        path: ../client/sdk/
+        language: js

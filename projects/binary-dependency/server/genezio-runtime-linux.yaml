@@ -1,11 +1,16 @@
 name: binary-dependency-capybara-linux
 region: us-east-1
-packageManager: npm
-cloudProvider: capybaraLinux
-sdk:
-  options:
-    runtime: node
-  language: js
-  path: ../client/sdk/
-classes:
-  - path: ./index.js
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: js
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: capybaraLinux
+    classes:
+        - path: index.js
+          type: jsonrpc
+    sdk:
+        path: ../client/sdk/
+        language: js

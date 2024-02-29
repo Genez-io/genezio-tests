@@ -1,17 +1,20 @@
-# File that configures what classes will be deployed in Genezio Infrastructure.
-# Add the paths to classes that you want to deploy in "classes".
-
 name: cron-example
-packageManager: npm
-sdk:
-  language: js
-  options:
-    runtime: node
-  path: ../client/sdk/
-classes:
-  - path: "./index.js"
-    type: jsonrpc
-    methods:
-      - name: "sayHiEveryMinute"
-        type: cron
-        cronString: "* * * * *"
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: js
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - path: index.js
+          type: jsonrpc
+          methods:
+              - name: sayHiEveryMinute
+                type: cron
+                cronString: "* * * * *"
+    sdk:
+        path: ../client/sdk/
+        language: js

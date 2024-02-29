@@ -1,12 +1,16 @@
 name: hello-world-capybara-linux
 region: eu-central-1
-packageManager: npm
-cloudProvider: capybaraLinux
-sdk:
-  language: js
-  options:
-    runtime: node
-  path: ../client/sdk/
-classes:
-  - path: ./hello.js
-    type: jsonrpc
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: js
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: capybaraLinux
+    classes:
+        - path: hello.js
+          type: jsonrpc
+    sdk:
+        path: ../client/sdk/
+        language: js

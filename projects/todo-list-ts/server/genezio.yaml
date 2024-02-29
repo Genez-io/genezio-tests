@@ -1,17 +1,22 @@
 name: todo-list-ts
 region: us-east-1
-packageManager: npm
-sdk:
-  language: ts
-  options:
-    runtime: node
-  path: ../client/sdk
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: ts
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - path: task.ts
+          type: jsonrpc
+        - path: user.ts
+          type: jsonrpc
+    sdk:
+        path: ../client/sdk
+        language: ts
 frontend:
-  path: ../client/build
-classes:
-  - path: ./task.ts
-    type: jsonrpc
-    methods: []
-  - path: ./user.ts
-    type: jsonrpc
-    methods: []
+    path: ../client
+    language: ts
+    publish: ../client/build
