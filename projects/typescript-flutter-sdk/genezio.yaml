@@ -1,0 +1,22 @@
+name: typescript-flutter-sdk
+region: eu-central-1
+yamlVersion: 2
+backend:
+    path: ./server
+    language:
+        name: ts
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - name: ChatBackend
+          path: ChatBackend.ts
+          type: jsonrpc
+    sdk:
+        path: ../client/sdk
+        language: dart
+
+frontend:
+    path: ./client
+    scripts:
+        install: npm install

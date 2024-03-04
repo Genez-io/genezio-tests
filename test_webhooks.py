@@ -10,7 +10,7 @@ def test_webhooks():
 
     genezio_login(token)
 
-    os.chdir("./projects/webhook/server/")
+    os.chdir("./projects/webhook/")
 
     deploy_result = genezio_deploy(False)
 

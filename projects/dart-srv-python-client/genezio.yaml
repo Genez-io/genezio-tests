@@ -1,0 +1,17 @@
+name: dart-srv-python-client
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: ./server
+    language:
+        name: dart
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - name: HelloWorldService
+          path: lib/server.dart
+          type: jsonrpc
+    sdk:
+        path: ../client/sdk
+        language: python

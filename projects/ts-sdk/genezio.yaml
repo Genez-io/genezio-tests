@@ -1,0 +1,20 @@
+name: typescript-sdk-example
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: ./server
+    language:
+        name: ts
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - path: index.ts
+          type: jsonrpc
+    sdk:
+        path: ./client/sdk/
+        language: ts
+frontend:
+    path: ./client
+    scripts:
+        install: npm install

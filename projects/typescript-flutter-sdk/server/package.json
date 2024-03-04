@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@genezio/types": "^1.0.14",
     "dotenv": "^16.0.3",
     "mongoose": "^7.1.0",
     "openai": "^3.2.1"

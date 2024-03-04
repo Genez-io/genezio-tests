@@ -1,5 +1,8 @@
-const multipart = require("parse-multipart-data");
+import {GenezioDeploy, GenezioMethod} from "@genezio/types";
 
+import multipart from "parse-multipart-data";
+
+@GenezioDeploy()
 export class HelloWorldHttpExample {
 
   /**
@@ -8,6 +11,7 @@ export class HelloWorldHttpExample {
    * @param {*} request 
    * @returns 
    */
+  @GenezioMethod({ type: "http" })
   handleSimpleTextRequest(request) {
     console.log(`Request received with simple text ${JSON.stringify(request.body)}!`)
 
@@ -22,6 +26,7 @@ export class HelloWorldHttpExample {
   /**
    * Method that handles a simple HTTP request which receives a JSON payload in the body and returns the same payload as JSON.
    */
+  @GenezioMethod({ type: "http" })
   handleJsonBody(request) {
     console.log(`Request received with body ${request.body}!`)
     if (!request.body.name) {
@@ -43,6 +48,7 @@ export class HelloWorldHttpExample {
   /**
   * Method that handles a simple HTTP request with query parameters and returns "Ok".
   */
+   @GenezioMethod({ type: "http" })
   handleQueryParams(request) {
     console.log(`Request received with query params ${request.queryStringParameters}!`)
     if (!request.queryStringParameters.name) {
@@ -58,6 +64,7 @@ export class HelloWorldHttpExample {
   /**
    * Method that receives a file using multipart and returns the file as binary.
    */
+  @GenezioMethod({ type: "http" })
   handleMultipartData(request) {
     console.log("Request receive with multipart data", request)
 

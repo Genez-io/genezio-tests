@@ -1,4 +1,4 @@
-import { CronExample } from "./sdk/cronExample.sdk.js"
+import { CronExample } from "@genezio-sdk/cron-example_us-east-1"
 
 /**
  * Client that makes requests to the HelloWorldService deployed on genezio.

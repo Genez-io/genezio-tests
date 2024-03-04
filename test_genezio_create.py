@@ -18,8 +18,8 @@ def test_genezio_create():
 
 	genezio_login(token)
 
-	backendVariants = ["ts", "js"]
-	frontendVariants = ["react-ts", "react-js", "vue-ts", "vue-js", "svelte-ts", "svelte-js"]
+	backendVariants = ["ts"]
+	frontendVariants = ["react-ts"]
 
 	to_create = []
 

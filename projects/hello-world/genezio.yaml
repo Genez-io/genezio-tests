@@ -1,0 +1,23 @@
+name: hello-world
+region: eu-central-1
+yamlVersion: 2
+backend:
+    path: ./server
+    language:
+        name: js
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - path: hello.js
+          type: jsonrpc
+    scripts:
+        deploy:
+            - npm install
+        local:
+            - npm install
+frontend:
+    path: ./client
+    scripts:
+      install: npm install
+      start: node test-hello-sdk.js

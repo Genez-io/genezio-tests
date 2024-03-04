@@ -1,3 +1,6 @@
+import {GenezioDeploy} from "@genezio/types";
+
+@GenezioDeploy()
 export class CronExample {
     constructor() {
         this.counter = 0
