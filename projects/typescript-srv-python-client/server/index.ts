@@ -1,3 +1,5 @@
+import {GenezioDeploy} from "@genezio/types";
+
 export enum Season {
     SPRING,
     SUMMER,
@@ -17,6 +19,7 @@ export type SuperModel = {
     model: Model
 }
 
+@GenezioDeploy()
 export class ServerTest {
     async test(): Promise<string> {
         return "Hello from server!";

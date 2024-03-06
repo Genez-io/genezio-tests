@@ -10,7 +10,7 @@ def test_frontend():
 
     genezio_login(token)
 
-    os.chdir("./projects/mini-frontend/server/")
+    os.chdir("./projects/mini-frontend/")
 
     deploy_result = genezio_deploy(True)
 

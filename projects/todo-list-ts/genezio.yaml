@@ -15,6 +15,9 @@ backend:
             - npm install
 frontend:
     path: ./client
+    language: ts
     publish: ./build
     scripts:
-        install: npm install
+        deploy:
+            - npm install
+    subdomain: teal-successive-vulture

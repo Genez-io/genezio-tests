@@ -20,4 +20,3 @@ frontend:
     path: ./client
     scripts:
       install: npm install
-      start: node test-hello-sdk.js

@@ -11,13 +11,13 @@ def test_runtime_linux_cron():
 
     genezio_login(token)
 
-    os.chdir("./projects/crons/server/")
+    os.chdir("./projects/crons/")
     deploy_result = genezio_deploy(False, "./genezio-runtime-linux.yaml")
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     status, output = run_node_script("test-cron.js")
 
@@ -36,13 +36,13 @@ def test_runtime_linux_cron():
 
     assert numberAfterOneMinute > number, "Cron job did not run"
 
-    os.chdir("../server/")
+    os.chdir("../")
 
     process = genezio_local()
 
     assert process != None, "genezio local returned None"
 
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     status, output = run_node_script("test-cron.js")
 

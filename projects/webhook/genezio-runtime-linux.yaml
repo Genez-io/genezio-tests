@@ -15,7 +15,8 @@ backend:
       - npm install
 
 frontend:
-    path: ./client
-    scripts:
-        install: npm install
-        start: node test-webhook-example.js
+  path: ./client
+  language: js
+  scripts:
+    deploy: npm install
+    local: npm install

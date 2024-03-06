@@ -11,31 +11,31 @@ def test_python_sdk():
 
     genezio_login(token)
 
-    os.chdir("./projects/python-sdk/server/")
+    os.chdir("./projects/python-sdk/")
     deploy_result = genezio_deploy(False)
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
-    assert exists("../client/sdk/remote.py") == True, "Remote swift sdk not found"
-    assert exists("../client/sdk/server.py") == True, "Class python sdk not found"
+    assert exists("./client/sdk/remote.py") == True, "Remote swift sdk not found"
+    assert exists("./client/sdk/server.py") == True, "Class python sdk not found"
     
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     status, output = run_script(["python3", "main.py"])
 
     assert status == 0, "Node test script returned non-zero exit code"
     assert output in "Nonestringstringstring", "Wrong output from python test: " + output
-    os.chdir("../server/")
+    os.chdir("../")
 
     process = genezio_local()
 
     assert process != None, "genezio local returned None"
 
-    assert exists("../client/sdk/remote.py") == True, "Remote python sdk not found"
-    assert exists("../client/sdk/server.py") == True, "Class python sdk not found"
+    assert exists("./client/sdk/remote.py") == True, "Remote python sdk not found"
+    assert exists("./client/sdk/server.py") == True, "Class python sdk not found"
     
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     status, output = run_script(["python3", "main.py"])
 

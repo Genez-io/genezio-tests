@@ -15,6 +15,5 @@ backend:
             - npm install
 frontend:
     path: ./client
-    scripts:
-        install: npm install
-        start: node test-todo-list.js
+    language: js
+    scripts: {}

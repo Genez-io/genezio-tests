@@ -1,5 +1,5 @@
-import { UserService } from "./sdk/userService.sdk"
-import { TaskService } from "./sdk/taskService.sdk"
+import { UserService } from "@genezio-sdk/todo-list-ts_us-east-1"
+import { TaskService } from "@genezio-sdk/todo-list-ts_us-east-1"
 
 /**
  * Client that makes requests to the HelloWorldService deployed on genezio.

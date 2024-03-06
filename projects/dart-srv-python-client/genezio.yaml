@@ -13,5 +13,6 @@ backend:
           path: lib/server.dart
           type: jsonrpc
     sdk:
-        path: ../client/sdk
+        type: folder
+        path: ./client/sdk
         language: python

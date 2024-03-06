@@ -2,14 +2,18 @@ name: test-create-list-delete
 region: eu-central-1
 yamlVersion: 2
 backend:
-    path: ./server
+    path: ./
     language:
         name: js
         runtime: nodejs18.x
         packageManager: npm
-    cloudProvider: genezio
+    cloudProvider: capybaraLinux
     scripts:
         deploy:
             - npm install
         local:
             - npm install
+    sdk:
+        type: folder
+        language: js
+        path: ./sdk

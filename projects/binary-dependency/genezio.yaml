@@ -7,14 +7,14 @@ backend:
         name: js
         runtime: nodejs18.x
         packageManager: npm
-    cloudProvider: genezio
+    cloudProvider: capybaraLinux
     scripts:
         deploy:
-            - npm install
+            - npm install --install-deps
         local:
-            - npm install
+            - npm install --install-deps
 frontend:
     path: ./client
+    language: js
     scripts:
-      install: npm install
-      start: node test-binary-dependency.js
+        deploy: npm install --install-deps

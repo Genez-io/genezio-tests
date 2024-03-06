@@ -10,7 +10,7 @@ def test_runtime_linux_webhooks():
 
     genezio_login(token)
 
-    os.chdir("./projects/webhook/server/")
+    os.chdir("./projects/webhook/")
 
     deploy_result = genezio_deploy(False, "./genezio-runtime-linux.yaml")
 
@@ -18,7 +18,7 @@ def test_runtime_linux_webhooks():
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
     assert len(deploy_result.web_urls) == 4, "incorrect number of web urls exported"
 
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     status, output = run_node_script("test-webhook-example.js", deploy_result.web_urls)
 
@@ -28,13 +28,13 @@ def test_runtime_linux_webhooks():
     assert components[2] == "{ name: 'John' }", "Component 2 returned wrong output"
     assert components[3] == "contents of file", "Component 3 returned wrong output"
 
-    os.chdir("../server/")
+    os.chdir("../")
 
     process = genezio_local()
 
     assert process != None, "genezio local returned None"
 
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     status, output = run_node_script("test-webhook-example.js", deploy_result.web_urls)
 

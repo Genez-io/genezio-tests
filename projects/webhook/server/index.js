@@ -48,7 +48,7 @@ export class HelloWorldHttpExample {
   /**
   * Method that handles a simple HTTP request with query parameters and returns "Ok".
   */
-   @GenezioMethod({ type: "http" })
+  @GenezioMethod({ type: "http" })
   handleQueryParams(request) {
     console.log(`Request received with query params ${request.queryStringParameters}!`)
     if (!request.queryStringParameters.name) {

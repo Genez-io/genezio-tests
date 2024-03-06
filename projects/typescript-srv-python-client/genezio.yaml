@@ -12,5 +12,6 @@ backend:
         - path: index.ts
           type: jsonrpc
     sdk:
+        type: folder
         path: ./client/sdk
         language: python
