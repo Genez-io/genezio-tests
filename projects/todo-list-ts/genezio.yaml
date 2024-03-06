@@ -20,4 +20,4 @@ frontend:
     scripts:
         deploy:
             - npm install
-    subdomain: teal-successive-vulture
+    subdomain: orange-severe-louse

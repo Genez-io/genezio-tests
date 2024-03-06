@@ -18,7 +18,6 @@ def test_unauthenticated():
     assert "You are now logged out." in stdout, "genezio account returned wrong output"
     
     return_code, stderr, stdout = genezio_account()
-    print(return_code)
     assert return_code == 1, "genezio account returned non-zero exit code"
     assert "You are not logged in or your token is invalid. Please run `genezio login` before running this command." in stderr, "genezio account returned wrong output"
 

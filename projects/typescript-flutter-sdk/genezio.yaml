@@ -8,17 +8,6 @@ backend:
         runtime: nodejs18.x
         packageManager: npm
     cloudProvider: genezio
-    classes:
-        - name: ChatBackend
-          path: ChatBackend.ts
-          type: jsonrpc
-    sdk:
-        type: folder
-        path: ./client/sdk
-        language: dart
-
 frontend:
     path: ./client
-    language: ts
-    scripts:
-        install: npm install
+    language: dart

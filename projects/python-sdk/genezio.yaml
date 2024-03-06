@@ -1,4 +1,4 @@
-name: swift-sdk-example
+name: python-sdk-example
 region: us-east-1
 yamlVersion: 2
 backend:
@@ -8,10 +8,9 @@ backend:
         runtime: nodejs18.x
         packageManager: npm
     cloudProvider: genezio
-    classes:
-        - path: index.ts
-          type: jsonrpc
-
+    scripts:
+        deploy: npm install
+        local: npm install
 frontend:
     path: ./client
     language: python

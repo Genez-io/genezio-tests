@@ -16,15 +16,6 @@ def test_lambda_handler_errors():
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code " + str(deploy_result.return_code)
     assert deploy_result.project_url != "", "genezio deploy returned empty project url " + deploy_result.project_url
 
-    os.chdir("./client/")
-
-    status, output = run_node_script("test.js")
-
-    assert status == 0, "Node test script returned non-zero exit code " + str(status)
-    assert output.startswith("Error: Error from server"), "Node script returned wrong output " + output
-
-    os.chdir("../")
-
     process = genezio_local()
 
     assert process != None, "genezio local returned None"
@@ -33,7 +24,7 @@ def test_lambda_handler_errors():
 
     status, output = run_node_script("test.js")
 
-    assert status == 0, "Node test script returned non-zero exit code " + status
+    assert status == 0, "Node test script returned non-zero exit code " + str(status)
     assert output.startswith("Error: Error from server"), "Node script returned wrong output " + output
 
     kill_process(process)

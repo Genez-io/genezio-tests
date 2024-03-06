@@ -8,9 +8,6 @@ backend:
         runtime: nodejs18.x
         packageManager: npm
     cloudProvider: genezio
-    classes:
-        - path: hello.js
-          type: jsonrpc
     scripts:
         deploy:
             - npm install
@@ -20,4 +17,4 @@ frontend:
     path: ./client
     language: js
     scripts:
-      install: npm install
+        deploy: npm install @genezio-sdk/hello-world_eu-central-1

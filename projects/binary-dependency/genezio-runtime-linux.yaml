@@ -16,5 +16,4 @@ backend:
 frontend:
     path: ./client
     language: js
-    scripts:
-      install: npm install
+    scripts: {}

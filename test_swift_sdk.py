@@ -28,8 +28,6 @@ def test_swift_sdk():
     assert "static func methodWithOneParameter(test1: String) async -> String" in content, "Wrong exported method with one parameter"
     assert "static func methodWithMultipleParameters(test1: String, test2: Double) async -> String" in content, "Wrong exported method with multiple parameters"
 
-    os.chdir("../")
-
     process = genezio_local()
 
     assert process != None, "genezio local returned None"

@@ -13,7 +13,3 @@ backend:
             - npm install
         local:
             - npm install
-    sdk:
-        type: folder
-        language: js
-        path: ./sdk

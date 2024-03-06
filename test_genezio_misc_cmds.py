@@ -6,12 +6,14 @@ from utils import compare_files
 
 GENEZIO_YAML_CONTENT = """name: test-new-project
 region: us-east-1
-cloudProvider: genezio
-packageManager: npm
-sdk:
-  language: ts
-  path: ./sdk/
-classes: []
+yamlVersion: 2
+backend:
+  path: .
+  language:
+    name: ts
+    runtime: nodejs18.x
+    packageManager: npm
+  cloudProvider: genezio
 """
 
 def test_genezio_misc_cmds():

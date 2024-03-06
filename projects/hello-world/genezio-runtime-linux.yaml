@@ -8,9 +8,6 @@ backend:
         runtime: nodejs18.x
         packageManager: npm
     cloudProvider: capybaraLinux
-    classes:
-        - path: hello.js
-          type: jsonrpc
     scripts:
         deploy:
             - npm install
@@ -18,5 +15,4 @@ backend:
             - npm install
 frontend:
     path: ./client
-    scripts:
-      install: npm install
+    scripts: {}

@@ -8,10 +8,6 @@ backend:
         runtime: nodejs18.x
         packageManager: npm
     cloudProvider: genezio
-    classes:
-        - path: index.ts
-          type: jsonrpc
-    sdk:
-        type: folder
-        path: ./client/sdk/
-        language: swift
+frontend:
+    path: ./client
+    language: swift

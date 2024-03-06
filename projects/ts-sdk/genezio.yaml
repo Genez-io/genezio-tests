@@ -7,7 +7,7 @@ backend:
         name: ts
         runtime: nodejs18.x
         packageManager: npm
-    cloudProvider: capybaraLinux
+    cloudProvider: genezio
     scripts:
         deploy:
             - npm install
@@ -16,4 +16,6 @@ backend:
 frontend:
     path: ./client
     language: ts
-    scripts: {}
+    scripts:
+        deploy:
+            - npm install @genezio-sdk/typescript-sdk-example_us-east-1

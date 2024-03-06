@@ -8,3 +8,8 @@ backend:
         runtime: nodejs18.x
         packageManager: npm
     cloudProvider: genezio
+frontend:
+    path: ./client
+    language: js
+    scripts:
+        deploy: npm install @genezio-sdk/javascript-sdk-example_us-east-1

@@ -17,7 +17,7 @@ def test_python_sdk():
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
-    assert exists("./client/sdk/remote.py") == True, "Remote swift sdk not found"
+    assert exists("./client/sdk/remote.py") == True, "Remote python sdk not found"
     assert exists("./client/sdk/server.py") == True, "Class python sdk not found"
     
     os.chdir("./client/")

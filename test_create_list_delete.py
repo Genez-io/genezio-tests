@@ -49,10 +49,6 @@ def test_create_list_delete():
     assert returncode == 0, "genezio list returned non-zero exit code"
     assert not stdout.__contains__(new_project_name), "genezio list listed the deleted project"
 
-    # cleanup
-    os.chdir("../../")
-    shutil.rmtree("./projects/listing/sdk")
-
     print("Test passed!")
 
 # Test order matters because the commands are having side effects.
