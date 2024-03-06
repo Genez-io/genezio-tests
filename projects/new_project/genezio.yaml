@@ -1,8 +1,0 @@
-name: test-new-project
-region: us-east-1
-cloudProvider: genezio
-packageManager: npm
-sdk:
-  language: ts
-  path: ./sdk/
-classes: []
