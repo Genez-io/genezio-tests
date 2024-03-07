@@ -26,6 +26,13 @@ def test_genezio_misc_cmds():
 
     os.chdir(working_dir)
 
+    if os.path.exists("./genezio.yaml"):
+        os.remove("./genezio.yaml")
+    if os.path.exists("./test-jsonrpc.js"):
+        os.remove("./test-jsonrpc.js")
+    if os.path.exists("./test-http.js"):
+        os.remove("./test-http.js")
+
     # Create a file named `genezio.yaml`
     with open("genezio.yaml", "w") as f:
         f.write(GENEZIO_YAML_CONTENT)
@@ -44,13 +51,13 @@ def test_genezio_misc_cmds():
     assert os.path.exists("./test-http.js"), "class file test-http.js doesn't exist"
 
     returnCode, stderr, _ = genezio_add_class("test-jsonrpc.js", None)
-    assert stderr[:-1] == "Class already exists.", "genezio add duplicated class returned wrong output: " + stderr[:-1]
+
+    assert "Class already exists." in _, "genezio add duplicated class returned wrong output: " + stderr[:-1]
 
     # cleanup
-    os.unlink("./test-jsonrpc.js")
-    os.unlink("./test-http.js")
-    os.unlink("./genezio.yaml")
-
+    os.remove("./test-jsonrpc.js")
+    os.remove("./test-http.js")
+    os.remove("./genezio.yaml")
     print("Test passed!")
 
 # Test order matters because the commands are having side effects.

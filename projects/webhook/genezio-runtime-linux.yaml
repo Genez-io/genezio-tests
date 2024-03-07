@@ -19,4 +19,3 @@ frontend:
   language: js
   scripts:
     deploy: npm install
-    local: npm install

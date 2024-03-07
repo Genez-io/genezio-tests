@@ -1,4 +1,4 @@
-import {GenezioDeploy} from "@genezio/types";
+import {GenezioDeploy, GenezioMethod} from "@genezio/types";
 
 @GenezioDeploy()
 export class CronExample {
@@ -6,6 +6,7 @@ export class CronExample {
         this.counter = 0
     }
 
+    @GenezioMethod({type:"cron",cronString:"* * * * *"})
     sayHiEveryMinute() {
         this.counter += 1
     }

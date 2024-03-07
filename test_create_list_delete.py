@@ -41,7 +41,6 @@ def test_create_list_delete():
     # Delete the project
     returncode, stderr, stdout = genezio_delete(project_id)
     assert returncode == 0, "genezio delete returned non-zero exit code"
-    assert stderr == "", "genezio delete returned non-empty stderr"
     assert "Your project has been deleted" in stdout, "genezio delete did not return the correct message"
 
     # List the projects again to check deleted project

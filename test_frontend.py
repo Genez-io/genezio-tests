@@ -4,6 +4,7 @@ import os
 from genezio import genezio_deploy, genezio_login
 from utils import run_curl
 
+
 def test_frontend():
     print("Starting frontend test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -23,6 +24,7 @@ def test_frontend():
     assert "Hello World" in output, "page " + deploy_result.project_url + " doesn't contain 'Hello World'"
 
     print("Test passed!")
+
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

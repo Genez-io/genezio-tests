@@ -21,7 +21,7 @@ def test_unauthenticated():
     os.chdir("./projects/hello-world/")
     deploy_result = genezio_deploy(False)
     assert deploy_result.return_code == 1, "genezio deploy returned non-zero exit code"
-    assert "You are not logged in." in deploy_result.stderr, "genezio deploy returned wrong output"
+    assert "You are not logged in." in deploy_result.stdout, "genezio deploy returned wrong output"
 
     print("Test passed!")
 

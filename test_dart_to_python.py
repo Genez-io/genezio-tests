@@ -5,6 +5,7 @@ from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_script, run_node_script, run_npm_run_build, kill_process
 from os.path import exists
 
+
 def test_dart_to_python():
     print("Starting dart sdk test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -43,6 +44,7 @@ def test_dart_to_python():
 
     kill_process(process)
     print("Test passed!")
+
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

@@ -23,7 +23,7 @@ def test_todo_list_ts():
 
 
     run_npm_run_build()
-    status, output = run_node_script(os.path.join('build', 'test-todo-list.cjs'))
+    status, output = run_node_script(os.path.join('build', 'test-todo-list.js'))
 
     assert status == 0, "Node test script returned non-zero exit code"
 

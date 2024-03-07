@@ -4,6 +4,7 @@ import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_node_script, kill_process
 
+
 def test_binary_dependency():
     print("Starting binary_dependency test...")
     token = os.environ.get('GENEZIO_TOKEN')
