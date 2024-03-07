@@ -22,7 +22,7 @@ def test_lambda_handler_errors():
 
     os.chdir("./client/")
 
-    status, output = run_node_script("test.js")
+    status, output = run_node_script("test.cjs")
 
     assert status == 0, "Node test script returned non-zero exit code " + str(status)
     assert output.startswith("Error: Error from server"), "Node script returned wrong output " + output

@@ -18,7 +18,7 @@ def test_runtime_linux_hello():
 
     os.chdir("./client/")
 
-    status, output = run_node_script("test-hello-sdk.js")
+    status, output = run_node_script("test-hello-sdk.cjs")
 
     assert status == 0, "Node test script returned non-zero exit code"
 
@@ -35,7 +35,7 @@ def test_runtime_linux_hello():
 
     os.chdir("./client/")
 
-    status, output = run_node_script("test-hello-sdk.js")
+    status, output = run_node_script("test-hello-sdk.cjs")
 
     assert status == 0, "Node test script returned non-zero exit code"
 

@@ -1,5 +1,5 @@
-import { User } from "@genezio-sdk/todo-list_us-east-1"
-import { Task } from "@genezio-sdk/todo-list_us-east-1"
+const {User} = require("@genezio-sdk/todo-list_us-east-1");
+const {Task} = require("@genezio-sdk/todo-list_us-east-1");
 
 /**
  * Client that makes requests to the HelloWorldService deployed on genezio.
