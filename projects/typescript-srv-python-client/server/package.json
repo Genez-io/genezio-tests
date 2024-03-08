@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^20.3.1"
+    "@genezio/types": "^1.0.14",
+    "@types/node": "^20.11.25"
   }
 }

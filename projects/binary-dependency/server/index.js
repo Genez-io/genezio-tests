@@ -1,5 +1,6 @@
-const bcrypt = require('bcrypt');
-
+import {GenezioDeploy} from "@genezio/types";
+import bcrypt from 'bcrypt';
+@GenezioDeploy()
 export class BinaryDependencyTest {
     async test() {
         const saltRounds = 10;

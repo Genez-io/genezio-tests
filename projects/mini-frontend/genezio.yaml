@@ -1,0 +1,16 @@
+name: mnopqr-genezio-test-frontend
+region: eu-central-1
+yamlVersion: 2
+backend:
+    path: ./server
+    language:
+        name: js
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+frontend:
+    path: ./client
+    language: ts
+    # Do not change the subdomain
+    subdomain: mnopqr-genezio-test-frontend
+    publish: ./build

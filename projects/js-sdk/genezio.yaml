@@ -1,0 +1,15 @@
+name: javascript-sdk-example
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: ./server
+    language:
+        name: ts
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+frontend:
+    path: ./client
+    language: js
+    scripts:
+        deploy: npm install @genezio-sdk/javascript-sdk-example

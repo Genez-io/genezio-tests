@@ -3,8 +3,9 @@ import { UserModel } from "./models/user"
 import { ActiveSession } from "./models/activeSession"
 import { mongoose } from "mongoose"
 import { MONGO_DB_URI } from "./helper"
+import {GenezioDeploy, GenezioMethod} from "@genezio/types";
 
-
+@GenezioDeploy()
 export class Cron {
   constructor() {
     this.#connect();
@@ -19,9 +20,10 @@ export class Cron {
 
   /**
    * Method that will be called by the cron job.
-   * 
+   *
    * The method will delete all the data from the DB.
    */
+  @GenezioMethod({type: "cron", cron: "0 12 * * *"})
   async deleteAllData() {
     console.log("Deleting all data from the DB");
     try {

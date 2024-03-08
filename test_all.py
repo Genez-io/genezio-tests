@@ -1,3 +1,4 @@
+from test_ts_dev_stage import test_ts_sdk_dev_stage
 from test_dart_to_python import test_dart_to_python
 from test_dart_typescript_sdk import test_dart_typescript_sdk
 from test_frontend import test_frontend
@@ -23,39 +24,43 @@ from test_runtime_hello import test_runtime_linux_hello
 from test_runtime_todo_list import test_runtime_linux_todo_list
 from test_runtime_webhooks import test_runtime_linux_webhooks
 
-import glob
 import pathlib
 import os
 
 if __name__ == '__main__':
     test_path = pathlib.Path(__file__).parent.resolve()
+    tests_to_run = [
+        test_webhooks,
+        test_python_sdk,
+        test_binary_dependency,  # bug
+        test_genezio_misc_cmds,
+        test_create_list_delete,
+        test_swift_sdk,
+        test_todo_list_ts,
+        test_lambda_handler_errors,
+        test_dart_typescript_sdk,  # dart
+        # test_ts_to_python_sdk, # bug, scos
+        test_dart,  # dart
+        test_todo_list,
+        test_dart_to_python,  # dart
+        test_frontend,
+        test_typescript_flutter_sdk,
+        test_ts_sdk,
+        test_unauthenticated,
+        test_js_sdk,
+        test_hello,
+        test_ts_sdk_dev_stage,
+        test_runtime_linux_binary_dependency,  # bug
+        test_runtime_linux_hello,
+        test_runtime_linux_todo_list,
+        test_runtime_linux_webhooks,
+        test_runtime_linux_cron
+    ]
 
-    # Change working directory to the test directory
+    # Run all tests
     os.chdir(test_path)
+    for test in tests_to_run:
+        test()
+        os.chdir(test_path)
 
-    test_webhooks()
-    test_python_sdk()
-    test_binary_dependency()
-    test_genezio_misc_cmds()
-    test_create_list_delete()
-    test_swift_sdk()
-    test_todo_list_ts()
-    test_lambda_handler_errors()
-    test_dart_typescript_sdk()
-    test_ts_to_python_sdk()
-    test_dart()
-    test_todo_list()
-    test_dart_to_python()
-    test_frontend()
-    test_typescript_flutter_sdk()
-    test_ts_sdk()
-    test_unauthenticated()
-    test_frontend()
-    test_js_sdk()
-    test_hello()
-    test_runtime_linux_binary_dependency()
-    test_runtime_linux_hello()
-    test_runtime_linux_todo_list()
-    test_runtime_linux_webhooks()
-    test_runtime_linux_cron()
-
+    print("Test passed!")

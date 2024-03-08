@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const userService_sdk_1 = require("./sdk/userService.sdk");
-const taskService_sdk_1 = require("./sdk/taskService.sdk");
+const todo_list_ts_1 = require("@genezio-sdk/todo-list-ts");
+const todo_list_ts_2 = require("@genezio-sdk/todo-list-ts");
 /**
  * Client that makes requests to the HelloWorldService deployed on genezio.
  *
@@ -18,18 +18,18 @@ const taskService_sdk_1 = require("./sdk/taskService.sdk");
  */
 (() => __awaiter(void 0, void 0, void 0, function* () {
     const email = "test" + Math.random();
-    const result = yield userService_sdk_1.UserService.register("test", email, "test");
+    const result = yield todo_list_ts_1.UserService.register("test", email, "test");
     console.log(result.success ? "Ok" : "Error");
-    const loginResult = yield userService_sdk_1.UserService.login(email, "test");
+    const loginResult = yield todo_list_ts_1.UserService.login(email, "test");
     console.log(result.success ? "Ok" : "Error");
-    const checkSessionResult = yield userService_sdk_1.UserService.checkSession(loginResult.token);
+    const checkSessionResult = yield todo_list_ts_1.UserService.checkSession(loginResult.token);
     console.log(checkSessionResult.success ? "Ok" : "Error");
-    const getAllTasksResult = yield taskService_sdk_1.TaskService.getAllTasksByUser(loginResult.token, loginResult.user._id);
+    const getAllTasksResult = yield todo_list_ts_2.TaskService.getAllTasksByUser(loginResult.token, loginResult.user._id);
     console.log(getAllTasksResult.success ? "Ok" : "Error");
     console.log(getAllTasksResult.tasks.length === 0 ? "Ok" : "Error");
-    const createTaskResult = yield taskService_sdk_1.TaskService.createTask(loginResult.token, "test", loginResult.user._id);
+    const createTaskResult = yield todo_list_ts_2.TaskService.createTask(loginResult.token, "test", loginResult.user._id);
     console.log(createTaskResult.success ? "Ok" : "Error");
-    const getAllTasks2Result = yield taskService_sdk_1.TaskService.getAllTasksByUser(loginResult.token, loginResult.user._id);
+    const getAllTasks2Result = yield todo_list_ts_2.TaskService.getAllTasksByUser(loginResult.token, loginResult.user._id);
     console.log(getAllTasks2Result.success ? "Ok" : "Error");
     console.log(getAllTasks2Result.tasks.length === 1 ? "Ok" : "Error");
 }))();

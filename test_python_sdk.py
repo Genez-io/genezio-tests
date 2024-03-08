@@ -5,46 +5,46 @@ from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_script, kill_process
 from os.path import exists
 
+
 def test_python_sdk():
     print("Starting python sdk test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
     genezio_login(token)
 
-    os.chdir("./projects/python-sdk/server/")
+    os.chdir("./projects/python-sdk/")
     deploy_result = genezio_deploy(False)
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
-    assert exists("../client/sdk/remote.py") == True, "Remote swift sdk not found"
-    assert exists("../client/sdk/server.py") == True, "Class python sdk not found"
-    
-    os.chdir("../client/")
+    assert exists("./client/sdk/remote.py") == True, "Remote python sdk not found"
+    assert exists("./client/sdk/server.py") == True, "Class python sdk not found"
+
+    os.chdir("./client/")
 
     status, output = run_script(["python3", "main.py"])
 
     assert status == 0, "Node test script returned non-zero exit code"
     assert output in "Nonestringstringstring", "Wrong output from python test: " + output
-    os.chdir("../server/")
+    os.chdir("../")
 
     process = genezio_local()
 
     assert process != None, "genezio local returned None"
 
-    assert exists("../client/sdk/remote.py") == True, "Remote python sdk not found"
-    assert exists("../client/sdk/server.py") == True, "Class python sdk not found"
-    
-    os.chdir("../client/")
+    assert exists("./client/sdk/remote.py") == True, "Remote python sdk not found"
+    assert exists("./client/sdk/server.py") == True, "Class python sdk not found"
+
+    os.chdir("./client/")
 
     status, output = run_script(["python3", "main.py"])
 
     assert status == 0, "Node test script returned non-zero exit code"
-    assert output in "Nonestringstringstring", "Wrong output from python test: " + output    
+    assert output in "Nonestringstringstring", "Wrong output from python test: " + output
 
     kill_process(process)
     print("Test passed!")
-
 
 
 # Test order matters because the commands are having side effects.

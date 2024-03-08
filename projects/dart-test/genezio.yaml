@@ -1,0 +1,18 @@
+name: hello-world-dart2
+region: eu-central-1
+yamlVersion: 2
+backend:
+    path: ./server
+    language:
+        name: dart
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - name: HelloWorldService
+          path: lib/hello_world.dart
+          type: jsonrpc
+    sdk:
+        type: folder
+        path: ./client/sdk/
+        language: dart

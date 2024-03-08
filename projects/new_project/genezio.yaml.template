@@ -8,6 +8,3 @@ backend:
     runtime: nodejs18.x
     packageManager: npm
   cloudProvider: genezio
-  sdk:
-    path: ./sdk/
-    language: ts

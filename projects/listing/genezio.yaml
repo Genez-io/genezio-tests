@@ -2,15 +2,12 @@ name: test-create-list-delete
 region: eu-central-1
 yamlVersion: 2
 backend:
-    path: .
+    path: ./
     language:
         name: js
         runtime: nodejs18.x
         packageManager: npm
     cloudProvider: genezio
-    classes:
-        - path: test.js
-          type: jsonrpc
-    sdk:
-        path: ./sdk/
-        language: js
+    scripts:
+        deploy: npm install
+        local: npm install
