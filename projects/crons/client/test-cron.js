@@ -1,4 +1,4 @@
-const { CronExample } = require("@genezio-sdk/cron-example_us-east-1");
+const { CronExample } = require("@genezio-sdk/cron-example");
 /**
  * Client that makes requests to the HelloWorldService deployed on genezio.
  * 

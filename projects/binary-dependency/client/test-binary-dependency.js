@@ -1,4 +1,4 @@
-import { BinaryDependencyTest } from "@genezio-sdk/binary-dependency_us-east-1"
+import { BinaryDependencyTest } from "@genezio-sdk/binary-dependency"
 
 (async () => {
     const result = await BinaryDependencyTest.test()

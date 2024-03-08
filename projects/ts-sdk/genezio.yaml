@@ -16,4 +16,4 @@ frontend:
     language: ts
     scripts:
         deploy:
-            - npm install @genezio-sdk/typescript-sdk-example_us-east-1
+            - npm install @genezio-sdk/typescript-sdk-example

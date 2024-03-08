@@ -15,4 +15,4 @@ frontend:
     path: ./client
     language: js
     scripts:
-        deploy: npm install @genezio-sdk/cron-example_us-east-1
+        deploy: npm install @genezio-sdk/cron-example

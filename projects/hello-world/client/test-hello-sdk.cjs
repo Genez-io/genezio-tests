@@ -1,4 +1,4 @@
-const {HelloWorldService} = require("@genezio-sdk/hello-world_eu-central-1");
+const {HelloWorldService} = require("@genezio-sdk/hello-world");
 /**
  * Client that makes requests to the HelloWorldService deployed on genezio.
  * 
