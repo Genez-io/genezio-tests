@@ -49,9 +49,6 @@ def test_genezio_create():
         print(project["name"] + " test passed!")
         os.chdir("..")
 
-    for project in to_create:
-        os.remove(project["name"])
-
     print("Test passed!")
 
 if __name__ == '__main__':
