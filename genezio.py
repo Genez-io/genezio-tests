@@ -177,7 +177,6 @@ def genezio_local(args=[]):
 def genezio_create(name_value, region_value, backend_value, frontend_value):
     genezio_create_args = ['genezio', 'create', "fullstack", '--name', name_value, '--region', region_value,
                            '--backend', backend_value, '--frontend', frontend_value]
-    print(genezio_create_args)
     genezio_create_command = ' '.join(genezio_create_args) if use_shell else genezio_create_args
     process = subprocess.run(genezio_create_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
 
