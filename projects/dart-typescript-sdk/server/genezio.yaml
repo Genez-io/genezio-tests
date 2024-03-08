@@ -2,7 +2,7 @@ name: test-dart-typescript-sdk
 region: us-east-1
 yamlVersion: 2
 backend:
-    path: ./server
+    path: ./
     language:
         name: dart
         runtime: nodejs18.x
@@ -12,9 +12,10 @@ backend:
     cloudProvider: genezio
     classes:
         - name: Task
-          path: lib/task.dart
+          path: ./lib/task.dart
           type: jsonrpc
-    sdk:
-        type: folder
-        path: ./client/sdk
-        language: ts
+frontend:
+    path: ../client
+    language: ts
+    scripts:
+        deploy: npm install @genezio-sdk/test-dart-typescript-sdk

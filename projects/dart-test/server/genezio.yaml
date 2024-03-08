@@ -1,8 +1,8 @@
-name: dart-srv-python-client
-region: us-east-1
+name: hello-world-dart2
+region: eu-central-1
 yamlVersion: 2
 backend:
-    path: ./server
+    path: ./
     language:
         name: dart
         runtime: nodejs18.x
@@ -10,5 +10,8 @@ backend:
     cloudProvider: genezio
     classes:
         - name: HelloWorldService
-          path: lib/server.dart
+          path: lib/hello_world.dart
           type: jsonrpc
+frontend:
+    path: ../client
+    language: dart
