@@ -5,6 +5,7 @@ from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_node_script, kill_process
 import time
 
+
 def test_runtime_linux_cron():
     print("Starting cron linux runtime test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -26,7 +27,7 @@ def test_runtime_linux_cron():
     print("Testing on remote server...")
     print("First request. Number is " + str(number))
 
-    time.sleep(61) 
+    time.sleep(61)
 
     status, output = run_node_script("test-cron.js")
 
@@ -51,7 +52,7 @@ def test_runtime_linux_cron():
     print("Testing on local server...")
     print("First request. Number is " + str(number))
 
-    time.sleep(61) 
+    time.sleep(61)
 
     status, output = run_node_script("test-cron.js")
 
@@ -64,7 +65,6 @@ def test_runtime_linux_cron():
 
     kill_process(process)
     print("Test passed!")
-
 
 
 # Test order matters because the commands are having side effects.

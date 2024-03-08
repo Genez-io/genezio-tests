@@ -4,6 +4,7 @@ import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_npm_run_build, run_script, kill_process
 
+
 def test_ts_to_python_sdk():
     print("Starting ts to python sdk test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -41,6 +42,7 @@ def test_ts_to_python_sdk():
 
     kill_process(process)
     print("Test passed!")
+
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

@@ -4,6 +4,7 @@ import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_node_script, kill_process
 
+
 def test_todo_list():
     print("Starting todo_list test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -27,13 +28,12 @@ def test_todo_list():
     assert status == 0, "Node test script returned non-zero exit code"
 
     components = output.split("\n")
-    
+
     for i in range(0, 8):
         assert components[i] == "Ok", "Component " + str(i) + " returned wrong output"
 
     kill_process(process)
     print("Test passed!")
-
 
 
 # Test order matters because the commands are having side effects.

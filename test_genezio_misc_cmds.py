@@ -16,6 +16,7 @@ backend:
   cloudProvider: genezio
 """
 
+
 def test_genezio_misc_cmds():
     print("Starting genezio misc test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -45,7 +46,8 @@ def test_genezio_misc_cmds():
     assert returnCode == 0, "`genezio addClass test-http.js` returned non-zero exit code"
     assert "Class added successfully" in stdout, "`genezio addClass test-http.js` returned wrong output"
 
-    assert compare_files("./genezio.yaml", "./genezio.yaml.template") == True, "genezio.yaml doesn't match genezio.yaml.template"
+    assert compare_files("./genezio.yaml",
+                         "./genezio.yaml.template") == True, "genezio.yaml doesn't match genezio.yaml.template"
 
     assert os.path.exists("./test-jsonrpc.js"), "class file test-jsonrpc.js doesn't exist"
     assert os.path.exists("./test-http.js"), "class file test-http.js doesn't exist"
@@ -59,6 +61,7 @@ def test_genezio_misc_cmds():
     os.remove("./test-http.js")
     os.remove("./genezio.yaml")
     print("Test passed!")
+
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

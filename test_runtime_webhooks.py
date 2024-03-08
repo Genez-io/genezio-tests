@@ -4,6 +4,7 @@ import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_node_script, kill_process
 
+
 def test_runtime_linux_webhooks():
     print("Starting webhook linux runtime test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -47,6 +48,7 @@ def test_runtime_linux_webhooks():
 
     os.chdir("../")
     print("Test passed!")
+
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

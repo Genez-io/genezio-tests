@@ -5,31 +5,32 @@ from genezio import genezio_deploy, genezio_login, genezio_local
 from os.path import exists
 from utils import kill_process
 
+
 def check_output():
-	assert exists(
-		"./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/cjs/remote.d.ts") == True, "Remote js cjs sdk not found"
-	assert exists(
-		"./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/cjs/server.sdk.d.ts") == True, "Class js cjs sdk not found"
-	assert exists(
-		"./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/esm/remote.d.ts") == True, "Remote js esm sdk not found"
-	assert exists(
-		"./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/esm/server.sdk.d.ts") == True, "Class js esm sdk not found"
+    assert exists(
+        "./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/cjs/remote.d.ts") == True, "Remote js cjs sdk not found"
+    assert exists(
+        "./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/cjs/server.sdk.d.ts") == True, "Class js cjs sdk not found"
+    assert exists(
+        "./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/esm/remote.d.ts") == True, "Remote js esm sdk not found"
+    assert exists(
+        "./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/esm/server.sdk.d.ts") == True, "Class js esm sdk not found"
 
-	with open("./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/cjs/server.sdk.d.ts", "r") as f:
-		content = f.read()
+    with open("./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/cjs/server.sdk.d.ts", "r") as f:
+        content = f.read()
 
-	assert "static method()" in content, "Wrong exported method without parameters"
-	assert "static methodWithoutParameters()" in content, "Wrong exported method with return type"
-	assert "static methodWithOneParameter(test1: any)" in content, "Wrong exported method with one parameter"
-	assert "static methodWithMultipleParameters(test1: any, test2: any)" in content, "Wrong exported method with multiple parameters"
+    assert "static method()" in content, "Wrong exported method without parameters"
+    assert "static methodWithoutParameters()" in content, "Wrong exported method with return type"
+    assert "static methodWithOneParameter(test1: any)" in content, "Wrong exported method with one parameter"
+    assert "static methodWithMultipleParameters(test1: any, test2: any)" in content, "Wrong exported method with multiple parameters"
 
-	with open("./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/esm/server.sdk.d.ts", "r") as f:
-		content = f.read()
+    with open("./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/esm/server.sdk.d.ts", "r") as f:
+        content = f.read()
 
-	assert "static method()" in content, "Wrong exported method without parameters"
-	assert "static methodWithoutParameters()" in content, "Wrong exported method with return type"
-	assert "static methodWithOneParameter(test1: any)" in content, "Wrong exported method with one parameter"
-	assert "static methodWithMultipleParameters(test1: any, test2: any)" in content, "Wrong exported method with multiple parameters"
+    assert "static method()" in content, "Wrong exported method without parameters"
+    assert "static methodWithoutParameters()" in content, "Wrong exported method with return type"
+    assert "static methodWithOneParameter(test1: any)" in content, "Wrong exported method with one parameter"
+    assert "static methodWithMultipleParameters(test1: any, test2: any)" in content, "Wrong exported method with multiple parameters"
 
 
 def test_js_sdk():
@@ -54,7 +55,6 @@ def test_js_sdk():
 
     kill_process(process)
     print("Test passed!")
-
 
 
 # Test order matters because the commands are having side effects.

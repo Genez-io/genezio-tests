@@ -1,15 +1,15 @@
 #!/usr/bin/python3
 
 import os
-import shutil
 import yaml
 from genezio import genezio_login, genezio_deploy, genezio_list, genezio_delete
+
 
 def test_create_list_delete():
     print("Starting listing test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
-    genezio_login(token)   
+    genezio_login(token)
 
     os.chdir("./projects/listing/")
 
@@ -34,7 +34,7 @@ def test_create_list_delete():
     returncode, _, stdout = genezio_list(new_project_name, True)
     assert returncode == 0, "genezio list <name> returned non-zero exit code"
     assert stdout.__contains__(new_project_name), "genezio list <name> did not list the added project"
-    
+
     # Get the project id
     project_id = stdout.split("ID: ")[1].split(",")[0]
 
@@ -49,6 +49,7 @@ def test_create_list_delete():
     assert not stdout.__contains__(new_project_name), "genezio list listed the deleted project"
 
     print("Test passed!")
+
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

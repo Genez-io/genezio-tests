@@ -4,6 +4,7 @@ import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_node_script, run_npm_run_build, kill_process
 
+
 def test_todo_list_ts():
     print("Starting todo_list ts test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -21,7 +22,6 @@ def test_todo_list_ts():
     assert process != None, "genezio local returned None"
     os.chdir("./client")
 
-
     run_npm_run_build()
     status, output = run_node_script(os.path.join('build', 'test-todo-list.js'))
 
@@ -34,6 +34,7 @@ def test_todo_list_ts():
 
     kill_process(process)
     print("Test passed!")
+
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

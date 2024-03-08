@@ -4,6 +4,7 @@ import os
 from genezio import genezio_deploy, genezio_login, genezio_local
 from utils import run_node_script, kill_process
 
+
 def test_runtime_linux_binary_dependency():
     print("Starting binary_dependency linux runtime test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -11,7 +12,8 @@ def test_runtime_linux_binary_dependency():
     genezio_login(token)
 
     os.chdir("./projects/binary-dependency/")
-    deploy_result = genezio_deploy(deploy_frontend=False, with_config="./genezio-runtime-linux.yaml", args=["--install-deps"])
+    deploy_result = genezio_deploy(deploy_frontend=False, with_config="./genezio-runtime-linux.yaml",
+                                   args=["--install-deps"])
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"

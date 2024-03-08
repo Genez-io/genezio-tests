@@ -5,6 +5,7 @@ from genezio import genezio_deploy, genezio_login, genezio_local
 from os.path import exists
 from utils import kill_process
 
+
 def test_swift_sdk():
     print("Starting swift sdk test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -45,7 +46,6 @@ def test_swift_sdk():
 
     kill_process(process)
     print("Test passed!")
-
 
 
 # Test order matters because the commands are having side effects.
