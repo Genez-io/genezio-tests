@@ -9,15 +9,11 @@ backend:
         packageManager: npm
     cloudProvider: genezio
     scripts:
-        deploy:
-            - npm install
-        local:
-            - npm install
+        deploy: npm install
+        local: npm install
 frontend:
     path: ./client
     language: ts
     publish: ./build
     scripts:
-        deploy:
-            - npm install
-    subdomain: orange-severe-louse
+        deploy: npm install

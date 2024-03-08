@@ -8,11 +8,11 @@ from utils import kill_process
 
 def check_output():
     assert exists(
-        "./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/cjs/remote.d.ts") == True, "Remote js cjs sdk not found"
+        "./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/node_modules/genezio-remote/dist/cjs/remote.d.ts") == True, "Remote js cjs sdk not found"
     assert exists(
         "./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/cjs/server.sdk.d.ts") == True, "Class js cjs sdk not found"
     assert exists(
-        "./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/esm/remote.d.ts") == True, "Remote js esm sdk not found"
+        "./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/node_modules/genezio-remote/dist/esm/remote.d.ts") == True, "Remote js esm sdk not found"
     assert exists(
         "./client/node_modules/@genezio-sdk/javascript-sdk-example_us-east-1/esm/server.sdk.d.ts") == True, "Class js esm sdk not found"
 

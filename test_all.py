@@ -1,3 +1,4 @@
+from test_ts_dev_stage import test_ts_sdk_dev_stage
 from test_dart_to_python import test_dart_to_python
 from test_dart_typescript_sdk import test_dart_typescript_sdk
 from test_frontend import test_frontend
@@ -38,7 +39,7 @@ if __name__ == '__main__':
         test_todo_list_ts,
         test_lambda_handler_errors,
         test_dart_typescript_sdk,  # dart
-        # test_ts_to_python_sdk, # bug, scos
+        test_ts_to_python_sdk, # bug, scos
         test_dart,  # dart
         test_todo_list,
         test_dart_to_python,  # dart
@@ -48,6 +49,7 @@ if __name__ == '__main__':
         test_unauthenticated,
         test_js_sdk,
         test_hello,
+        test_ts_sdk_dev_stage,
         test_runtime_linux_binary_dependency,  # bug
         test_runtime_linux_hello,
         test_runtime_linux_todo_list,

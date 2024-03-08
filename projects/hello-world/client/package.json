@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@genezio-sdk/hello-world_eu-central-1": "^1.0.0-prod"
+    "@genezio-sdk/hello-world_eu-central-1": "npm:@genezio-sdk/hello-world@^1.0.0-prod"
   }
 }

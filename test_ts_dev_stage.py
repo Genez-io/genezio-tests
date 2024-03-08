@@ -8,11 +8,11 @@ from utils import kill_process
 
 def check_output():
     assert exists(
-        "./client/node_modules/@genezio-sdk/typescript-sdk-example_us-east-1/cjs/remote.d.ts") == True, "Remote ts cjs sdk not found"
+        "./client/node_modules/@genezio-sdk/typescript-sdk-example_us-east-1/node_modules/genezio-remote/dist/cjs/remote.d.ts") == True, "Remote ts cjs sdk not found"
     assert exists(
         "./client/node_modules/@genezio-sdk/typescript-sdk-example_us-east-1/cjs/server.sdk.d.ts") == True, "Class ts cjs sdk not found"
     assert exists(
-        "./client/node_modules/@genezio-sdk/typescript-sdk-example_us-east-1/esm/remote.d.ts") == True, "Remote ts sdk esm not found"
+        "./client/node_modules/@genezio-sdk/typescript-sdk-example_us-east-1/node_modules/genezio-remote/dist/esm/remote.d.ts") == True, "Remote ts sdk esm not found"
     assert exists(
         "./client/node_modules/@genezio-sdk/typescript-sdk-example_us-east-1/esm/server.sdk.d.ts") == True, "Class ts esm sdk not found"
 
@@ -33,7 +33,7 @@ def check_output():
     assert "static methodWithMultipleParameters(test1: string, test2: number): Promise<string>" in content, "Wrong exported method with multiple parameters"
 
 
-def test_ts_sdk():
+def test_ts_sdk_dev_stage():
     print("Starting typescript dev stage test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
@@ -60,4 +60,4 @@ def test_ts_sdk():
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':
-    test_ts_sdk()
+    test_ts_sdk_dev_stage()

@@ -9,13 +9,10 @@ backend:
         packageManager: npm
     cloudProvider: genezio
     scripts:
-        deploy:
-            - npm install
-        local:
-            - npm install
+        deploy: npm install
+        local: npm install
 frontend:
     path: ./client
     language: js
     scripts:
-        deploy:
-            - npm install
+        deploy: npm install

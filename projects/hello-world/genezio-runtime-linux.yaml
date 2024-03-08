@@ -9,10 +9,8 @@ backend:
         packageManager: npm
     cloudProvider: capybaraLinux
     scripts:
-        deploy:
-            - npm install
-        local:
-            - npm install
+        deploy: npm install
+        local: npm install
 frontend:
     path: ./client
     language: js
