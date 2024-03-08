@@ -10,6 +10,9 @@ def test_swift_sdk():
     print("Starting swift sdk test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
+    if os.path.exists("./projects/swift-sdk/client") is False:
+        os.makedirs("./projects/swift-sdk/client")
+
     genezio_login(token)
 
     os.chdir("./projects/swift-sdk/")

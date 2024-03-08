@@ -37,6 +37,9 @@ def test_js_sdk():
     print("Starting javascript sdk test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
+    if os.path.exists("./projects/js-sdk/client") is False:
+        os.makedirs("./projects/js-sdk/client")
+
     genezio_login(token)
 
     os.chdir("./projects/js-sdk/")

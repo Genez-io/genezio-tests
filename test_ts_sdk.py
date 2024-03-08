@@ -37,6 +37,9 @@ def test_ts_sdk():
     print("Starting typescript sdk test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
+    if os.path.exists("./projects/ts-sdk/client") is False:
+        os.makedirs("./projects/ts-sdk/client")
+
     genezio_login(token)
 
     os.chdir("./projects/ts-sdk/")
