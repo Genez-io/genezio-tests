@@ -38,7 +38,7 @@ def genezio_deploy(deploy_frontend, with_config="./genezio.yaml", args=[]):
         genezio_deploy_args.append(arg)
 
     genezio_deploy_command = ' '.join(genezio_deploy_args) if use_shell else genezio_deploy_args
-    process = subprocess.run(genezio_deploy_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
+    process = subprocess.run(genezio_deploy_command, capture_output=True, text=True, shell=use_shell)
 
     if process.returncode != 0:
         print(process.stderr)
@@ -54,7 +54,7 @@ def genezio_login(auth_token):
         genezio_login_args.append(auth_token)
 
     genezio_login_command = ' '.join(genezio_login_args) if use_shell else genezio_login_args
-    process = subprocess.run(genezio_login_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
+    process = subprocess.run(genezio_login_command, capture_output=True, text=True, shell=use_shell)
 
     return process.returncode, process.stderr, process.stdout
 
@@ -63,7 +63,7 @@ def genezio_logout():
     genezio_logout_args = ['genezio', 'logout']
 
     genezio_logout_command = ' '.join(genezio_logout_args) if use_shell else genezio_logout_args
-    process = subprocess.run(genezio_logout_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
+    process = subprocess.run(genezio_logout_command, capture_output=True, text=True, shell=use_shell)
 
     return process.returncode, process.stderr, process.stdout
 
@@ -75,7 +75,7 @@ def genezio_add_class(class_path, class_type):
         genezio_add_args.append(class_type)
 
     genezio_add_class = ' '.join(genezio_add_args) if use_shell else genezio_add_args
-    process = subprocess.run(genezio_add_class, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
+    process = subprocess.run(genezio_add_class, capture_output=True, text=True, shell=use_shell)
 
     return process.returncode, process.stderr, process.stdout
 
@@ -90,7 +90,7 @@ def genezio_list(identifier, details):
         genezio_list_args.append("--long-listed")
 
     genezio_list_command = ' '.join(genezio_list_args) if use_shell else genezio_list_args
-    process = subprocess.run(genezio_list_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
+    process = subprocess.run(genezio_list_command, capture_output=True, text=True, shell=use_shell)
 
     return process.returncode, process.stderr, process.stdout
 
@@ -99,7 +99,7 @@ def genezio_delete(project_id):
     genezio_delete_args = ['genezio', 'delete', '-f', project_id]
 
     genezio_delete_command = ' '.join(genezio_delete_args) if use_shell else genezio_delete_args
-    process = subprocess.run(genezio_delete_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
+    process = subprocess.run(genezio_delete_command, capture_output=True, text=True, shell=use_shell)
 
     return process.returncode, process.stderr, process.stdout
 
@@ -108,8 +108,7 @@ def genezio_generate_sdk(language):
     genezio_generate_sdk_args = ['genezio', 'generateSdk', "-lang", language]
 
     genezio_generate_sdk_command = ' '.join(genezio_generate_sdk_args) if use_shell else genezio_generate_sdk_args
-    process = subprocess.run(genezio_generate_sdk_command, capture_output=True, text=True, shell=use_shell,
-                             encoding='utf-8')
+    process = subprocess.run(genezio_generate_sdk_command, capture_output=True, text=True, shell=use_shell)
 
     return process.returncode, process.stderr, process.stdout
 
@@ -118,7 +117,7 @@ def genezio_account():
     genezio_account_args = ['genezio', 'account']
 
     genezio_account_command = ' '.join(genezio_account_args) if use_shell else genezio_account_args
-    process = subprocess.run(genezio_account_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
+    process = subprocess.run(genezio_account_command, capture_output=True, text=True, shell=use_shell)
 
     return process.returncode, process.stderr, process.stdout
 
@@ -134,7 +133,7 @@ def genezio_local(args=[]):
     genezio_local_command = ' '.join(genezio_local_args) if use_shell else genezio_local_args
     with open(stdout_file, "wb") as out_logs, open(stderr_file, "wb") as out_err:
         process = subprocess.Popen(genezio_local_command, stdout=out_logs, stderr=out_err, text=True, close_fds=True,
-                                   shell=use_shell, encoding='utf-8')
+                                   shell=use_shell)
     start = time.time()
 
     while True:
@@ -178,6 +177,6 @@ def genezio_create(name_value, region_value, backend_value, frontend_value):
     genezio_create_args = ['genezio', 'create', "fullstack", '--name', name_value, '--region', region_value,
                            '--backend', backend_value, '--frontend', frontend_value]
     genezio_create_command = ' '.join(genezio_create_args) if use_shell else genezio_create_args
-    process = subprocess.run(genezio_create_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
+    process = subprocess.run(genezio_create_command, capture_output=True, text=True, shell=use_shell)
 
     return process.returncode
