@@ -29,11 +29,11 @@ def test_genezio_create():
                               "frontend": frontend})
 
     for project in to_create:
+
         if os.path.exists(project["name"]):
-            os.system("rm -rf " + project["name"])
-
+            os.chmod(project["name"], 0o777)
+            os.remove(project["name"])
         create_result = genezio_create(project["name"], project["region"], project["backend"], project["frontend"])
-
         assert create_result == 0, "genezio create returned non-zero exit code"
 
         os.chdir(project["name"])
@@ -49,8 +49,10 @@ def test_genezio_create():
         print(project["name"] + " test passed!")
         os.chdir("..")
 
-    print("Test passed!")
+    for project in to_create:
+        os.remove(project["name"])
 
+    print("Test passed!")
 
 if __name__ == '__main__':
     test_genezio_create()
