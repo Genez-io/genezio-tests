@@ -18,15 +18,12 @@ class DeployResult:
         self.stderr = stderr
 
         link_regex = re.compile('((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', re.DOTALL)
-        print(stdout)
         links = re.findall(link_regex, str(stdout))
-        print(links)
         links = [x for x in links if "genezio.com/docs" not in x[0]]
 
         if (len(links) > 0):
             self.web_urls = [x[0] for x in links[:-1]]
             self.project_url = links[-1][0]
-            print(self.project_url)
 
 
 def genezio_deploy(deploy_frontend, with_config="./genezio.yaml", args=[]):
@@ -41,7 +38,8 @@ def genezio_deploy(deploy_frontend, with_config="./genezio.yaml", args=[]):
         genezio_deploy_args.append(arg)
 
     genezio_deploy_command = ' '.join(genezio_deploy_args) if use_shell else genezio_deploy_args
-    process = subprocess.run(genezio_deploy_command, capture_output=True, text=True, shell=use_shell)
+    process = subprocess.run(genezio_deploy_command, text=True, shell=use_shell,
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     if process.returncode != 0:
         print(process.stderr)
