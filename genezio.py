@@ -18,7 +18,7 @@ class DeployResult:
         self.stderr = stderr
 
         link_regex = re.compile('((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', re.DOTALL)
-        links = re.findall(link_regex, stdout)
+        links = re.findall(link_regex, str(stdout))
         links = [x for x in links if "genezio.com/docs" not in x[0]]
 
         if (len(links) > 0):
