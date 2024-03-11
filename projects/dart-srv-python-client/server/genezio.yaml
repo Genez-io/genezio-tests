@@ -7,12 +7,12 @@ backend:
         name: dart
         runtime: nodejs18.x
         packageManager: npm
-    cloudProvider: genezio
+    cloudProvider: capybaraLinux
     classes:
         - name: HelloWorldService
           path: lib/server.dart
           type: jsonrpc
 
 frontend:
-  path: ../client
-  language: python
+    path: ../client
+    language: python

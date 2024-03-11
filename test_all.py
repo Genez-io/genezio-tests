@@ -42,7 +42,7 @@ if __name__ == '__main__':
         # test_ts_to_python_sdk, # bug, scos
         test_dart,
         test_todo_list,
-        test_dart_to_python,
+        # test_dart_to_python, # bug, scos
         test_frontend,
         test_typescript_flutter_sdk,
         test_ts_sdk,

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local
+from genezio import genezio_deploy, genezio_login, genezio_local, delete_project
 from os.path import exists
 from utils import kill_process
 
@@ -55,8 +55,9 @@ def test_js_sdk():
     assert process != None, "genezio local returned None"
 
     check_output()
-
     kill_process(process)
+    delete_project()
+
     print("Test passed!")
 
 

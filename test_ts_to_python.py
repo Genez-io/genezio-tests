@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local
+from genezio import genezio_deploy, genezio_login, genezio_local, delete_project
 from utils import run_npm_run_build, run_script, kill_process
 
 
@@ -41,6 +41,9 @@ def test_ts_to_python_sdk():
     assert output in "Hello from server!1string2name0typeTrueFalse22[11, 22]None", "Wrong output from python test: " + output
 
     kill_process(process)
+    os.chdir("../")
+    delete_project()
+
     print("Test passed!")
 
 

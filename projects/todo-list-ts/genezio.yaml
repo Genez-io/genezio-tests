@@ -17,3 +17,4 @@ frontend:
     publish: ./build
     scripts:
         deploy: npm install
+    subdomain: chocolate-ashamed-ferret
