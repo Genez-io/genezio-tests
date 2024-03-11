@@ -7,7 +7,7 @@ backend:
         name: dart
         runtime: nodejs18.x
         packageManager: npm
-    cloudProvider: capybaraLinux
+    cloudProvider: genezio
     classes:
         - name: HelloWorldService
           path: lib/hello_world.dart
