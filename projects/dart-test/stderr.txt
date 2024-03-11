@@ -1,1 +1,0 @@
-√ [32mRunning backend local scripts[39m

@@ -1,6 +1,0 @@
-10[0m[0m:44[0m[0m:29[0m[0m:557[0m[0m [34m[1mINFO[22m[39m[0m[0m	[37mlocalDartBundler.js:28[39m[0m[0m	Copy files in temp folder C:\Users\Home\AppData\Local\Temp\genezio-21124\9cd7ok
-10[0m[0m:44[0m[0m:30[0m[0m:949[0m[0m [34m[1mINFO[22m[39m[0m[0m	[37mlocalDartBundler.js:37[39m[0m[0m	Compiling Dart...
-10[0m[0m:44[0m[0m:33[0m[0m:881[0m[0m [34m[1mINFO[22m[39m[0m[0m	[37mlocalDartBundler.js:39[39m[0m[0m	Compiling Dart finished.
-Server listening on port 8083
-[36mYour local server is running and the SDK was successfully generated![0m
-[36mTest your code at http://localhost:8083/explore[39m
