@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local
+from genezio import genezio_deploy, genezio_login, genezio_local, delete_project
 from utils import run_node_script, kill_process
 import time
 
@@ -64,6 +64,10 @@ def test_hello():
     assert numberAfterOneMinute > number, "Cron job did not run"
 
     kill_process(process)
+
+    os.chdir("../")
+
+    delete_project()
     print("Test passed!")
 
 

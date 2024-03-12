@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local
+
+from genezio import genezio_deploy, genezio_login, genezio_local, delete_project
 from utils import run_node_script, kill_process
 
 
@@ -47,6 +48,8 @@ def test_webhooks():
     kill_process(process)
 
     os.chdir("../")
+
+    delete_project()
     print("Test passed!")
 
 

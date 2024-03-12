@@ -1,1 +1,4 @@
 node_modules
+stderr.txt
+stdout.txt
+server/pubspec.lock

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local
+from genezio import genezio_deploy, genezio_login, genezio_local, delete_project
 from os.path import exists
 from utils import kill_process
 
@@ -48,6 +48,8 @@ def test_swift_sdk():
     assert "static func methodWithMultipleParameters(test1: String, test2: Double) async -> String" in content, "Wrong exported method with multiple parameters"
 
     kill_process(process)
+    delete_project()
+
     print("Test passed!")
 
 

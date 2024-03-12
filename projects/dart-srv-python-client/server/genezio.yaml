@@ -14,5 +14,5 @@ backend:
           type: jsonrpc
 
 frontend:
-  path: ../client
-  language: python
+    path: ../client
+    language: python

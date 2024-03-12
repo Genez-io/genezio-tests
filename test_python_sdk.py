@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local
+from genezio import genezio_deploy, genezio_login, genezio_local, delete_project
 from utils import run_script, kill_process
 from os.path import exists
 
@@ -44,6 +44,9 @@ def test_python_sdk():
     assert output in "Nonestringstringstring", "Wrong output from python test: " + output
 
     kill_process(process)
+    os.chdir("../")
+    delete_project()
+
     print("Test passed!")
 
 
