@@ -1,0 +1,18 @@
+{
+    "name": "binary-dependency-test",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@genezio/types": "^1.0.14",
+        "aws-sdk": "^2.1575.0",
+        "bcrypt": "^5.1.0",
+        "mock-aws-s3": "^4.0.2",
+        "nock": "^13.5.4"
+    }
+}

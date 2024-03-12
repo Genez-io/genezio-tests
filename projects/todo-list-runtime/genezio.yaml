@@ -1,4 +1,4 @@
-name: cron-example
+name: todo-list-runtime
 region: us-east-1
 yamlVersion: 2
 backend:
@@ -14,5 +14,4 @@ backend:
 frontend:
     path: ./client
     language: js
-    scripts:
-        deploy: npm install @genezio-sdk/cron-example
+    scripts: {}

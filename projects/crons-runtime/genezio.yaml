@@ -1,4 +1,4 @@
-name: todo-list
+name: cron-example-runtime
 region: us-east-1
 yamlVersion: 2
 backend:
@@ -9,11 +9,10 @@ backend:
         packageManager: npm
     cloudProvider: capybaraLinux
     scripts:
-        deploy:
-            - npm install
-        local:
-            - npm install
+        deploy: npm install
+        local: npm install
 frontend:
     path: ./client
     language: js
-    scripts: {}
+    scripts:
+        deploy: npm install @genezio-sdk/cron-example-runtime

@@ -11,8 +11,8 @@ def test_runtime_linux_todo_list():
 
     genezio_login(token)
 
-    os.chdir("./projects/todo-list/")
-    deploy_result = genezio_deploy(False, "./genezio-runtime-linux.yaml")
+    os.chdir("./projects/todo-list-runtime/")
+    deploy_result = genezio_deploy(False)
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"

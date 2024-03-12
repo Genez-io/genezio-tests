@@ -11,9 +11,8 @@ def test_runtime_linux_binary_dependency():
 
     genezio_login(token)
 
-    os.chdir("./projects/binary-dependency/")
-    deploy_result = genezio_deploy(deploy_frontend=False, with_config="./genezio-runtime-linux.yaml",
-                                   args=["--install-deps"])
+    os.chdir("./projects/binary-dependency-runtime/")
+    deploy_result = genezio_deploy(deploy_frontend=False, args=["--install-deps"])
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"

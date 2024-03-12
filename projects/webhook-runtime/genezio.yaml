@@ -1,4 +1,4 @@
-name: webhook-example
+name: webhook-example-runtime
 region: us-east-1
 yamlVersion: 2
 backend:

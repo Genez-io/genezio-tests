@@ -11,8 +11,8 @@ def test_runtime_linux_hello():
 
     genezio_login(token)
 
-    os.chdir("./projects/hello-world/")
-    deploy_result = genezio_deploy(False, "./genezio-runtime-linux.yaml")
+    os.chdir("./projects/hello-world-runtime/")
+    deploy_result = genezio_deploy(False)
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"

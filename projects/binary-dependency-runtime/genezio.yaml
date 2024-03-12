@@ -1,5 +1,5 @@
-name: hello-world
-region: eu-central-1
+name: binary-dependency-runtime
+region: us-east-1
 yamlVersion: 2
 backend:
     path: ./server
@@ -15,4 +15,4 @@ frontend:
     path: ./client
     language: js
     scripts:
-        deploy: npm install @genezio-sdk/hello-world
+      deploy: npm install @genezio-sdk/binary-dependency-runtime

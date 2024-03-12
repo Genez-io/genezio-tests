@@ -11,9 +11,9 @@ def test_runtime_linux_webhooks():
 
     genezio_login(token)
 
-    os.chdir("./projects/webhook/")
+    os.chdir("./projects/webhook-runtime/")
 
-    deploy_result = genezio_deploy(False, "./genezio-runtime-linux.yaml")
+    deploy_result = genezio_deploy(False)
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
