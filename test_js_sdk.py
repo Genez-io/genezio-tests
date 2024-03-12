@@ -10,13 +10,13 @@ def check_output():
     assert exists(
         "./client/node_modules/@genezio-sdk/javascript-sdk-example/node_modules/genezio-remote/dist/cjs/remote.d.ts") == True, "Remote js cjs sdk not found"
     assert exists(
-        "./client/node_modules/@genezio-sdk/javascript-sdk-example/cjs/server.sdk.d.ts") == True, "Class js cjs sdk not found"
+        "./client/node_modules/@genezio-sdk/javascript-sdk-example/lib/server.sdk.d.ts") == True, "Class js lib sdk not found"
     assert exists(
         "./client/node_modules/@genezio-sdk/javascript-sdk-example/node_modules/genezio-remote/dist/esm/remote.d.ts") == True, "Remote js esm sdk not found"
     assert exists(
-        "./client/node_modules/@genezio-sdk/javascript-sdk-example/esm/server.sdk.d.ts") == True, "Class js esm sdk not found"
+        "./client/node_modules/@genezio-sdk/javascript-sdk-example/node_modules/genezio-remote/dist/lib/remote.d.ts") == True, "Remote js esm sdk not found"
 
-    with open("./client/node_modules/@genezio-sdk/javascript-sdk-example/cjs/server.sdk.d.ts", "r") as f:
+    with open("./client/node_modules/@genezio-sdk/javascript-sdk-example/lib/server.sdk.d.ts", "r") as f:
         content = f.read()
 
     assert "static method()" in content, "Wrong exported method without parameters"
@@ -24,7 +24,7 @@ def check_output():
     assert "static methodWithOneParameter(test1: any)" in content, "Wrong exported method with one parameter"
     assert "static methodWithMultipleParameters(test1: any, test2: any)" in content, "Wrong exported method with multiple parameters"
 
-    with open("./client/node_modules/@genezio-sdk/javascript-sdk-example/esm/server.sdk.d.ts", "r") as f:
+    with open("./client/node_modules/@genezio-sdk/javascript-sdk-example/lib/server.sdk.d.ts", "r") as f:
         content = f.read()
 
     assert "static method()" in content, "Wrong exported method without parameters"

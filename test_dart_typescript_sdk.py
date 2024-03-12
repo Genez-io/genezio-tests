@@ -20,8 +20,8 @@ def test_dart_typescript_sdk():
 
     assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/cjs/remote.d.ts") == True, "Remote typescript cjs sdk not found"
     assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/esm/remote.d.ts") == True, "Remote typescript esm sdk not found"
-    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/esm/task.sdk.d.ts") == True, "Class typescript esm sdk not found"
-    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/cjs/task.sdk.d.ts") == True, "Class typescript cjs sdk not found"
+    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/lib/remote.d.ts") == True, "Remote typescript lib sdk not found"
+    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/lib/task.sdk.d.ts") == True, "Class typescript lib sdk not found"
 
     process = genezio_local()
 
@@ -29,10 +29,10 @@ def test_dart_typescript_sdk():
 
     assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/cjs/remote.d.ts") == True, "Remote typescript cjs sdk not found"
     assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/esm/remote.d.ts") == True, "Remote typescript esm sdk not found"
-    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/esm/task.sdk.d.ts") == True, "Class typescript esm sdk not found"
-    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/cjs/task.sdk.d.ts") == True, "Class typescript cjs sdk not found"
+    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/lib/remote.d.ts") == True, "Remote typescript lib sdk not found"
+    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/lib/task.sdk.d.ts") == True, "Class typescript lib sdk not found"
 
-    assert compare_files("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/esm/task.sdk.d.ts",
+    assert compare_files("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/lib/task.sdk.d.ts",
                          "../client/todo_list.ts.template") == True, "Wrong class sdk content"
 
     kill_process(process)
