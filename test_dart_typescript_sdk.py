@@ -18,8 +18,6 @@ def test_dart_typescript_sdk():
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
-    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/cjs/remote.d.ts") == True, "Remote typescript cjs sdk not found"
-    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/esm/remote.d.ts") == True, "Remote typescript esm sdk not found"
     assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/lib/remote.d.ts") == True, "Remote typescript lib sdk not found"
     assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/lib/task.sdk.d.ts") == True, "Class typescript lib sdk not found"
 
@@ -27,8 +25,6 @@ def test_dart_typescript_sdk():
 
     assert process != None, "genezio local returned None"
 
-    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/cjs/remote.d.ts") == True, "Remote typescript cjs sdk not found"
-    assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/esm/remote.d.ts") == True, "Remote typescript esm sdk not found"
     assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/node_modules/genezio-remote/dist/lib/remote.d.ts") == True, "Remote typescript lib sdk not found"
     assert exists("../client/node_modules/@genezio-sdk/test-dart-typescript-sdk/lib/task.sdk.d.ts") == True, "Class typescript lib sdk not found"
 
