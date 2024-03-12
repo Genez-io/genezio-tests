@@ -20,14 +20,6 @@ def check_output():
     assert "static methodWithOneParameter(test1: string): Promise<string>" in content, "Wrong exported method with one parameter"
     assert "static methodWithMultipleParameters(test1: string, test2: number): Promise<string>" in content, "Wrong exported method with multiple parameters"
 
-    with open("./client/node_modules/@genezio-sdk/typescript-sdk-example/lib/server.sdk.d.ts", "r",  encoding="utf-8") as f:
-        content = f.read()
-
-    assert "static method(): Promise<any>" in content, "Wrong exported method without parameters"
-    assert "static methodWithoutParameters(): Promise<string>" in content, "Wrong exported method with return type"
-    assert "static methodWithOneParameter(test1: string): Promise<string>" in content, "Wrong exported method with one parameter"
-    assert "static methodWithMultipleParameters(test1: string, test2: number): Promise<string>" in content, "Wrong exported method with multiple parameters"
-
 
 def test_ts_sdk_dev_stage():
     print("Starting typescript dev stage test...")

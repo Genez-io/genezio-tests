@@ -13,19 +13,10 @@ def check_output():
     with open("./client/node_modules/@genezio-sdk/javascript-sdk-example/lib/server.sdk.d.ts", "r") as f:
         content = f.read()
 
-    assert "static method()" in content, "Wrong exported method without parameters"
-    assert "static methodWithoutParameters()" in content, "Wrong exported method with return type"
-    assert "static methodWithOneParameter(test1: any)" in content, "Wrong exported method with one parameter"
-    assert "static methodWithMultipleParameters(test1: any, test2: any)" in content, "Wrong exported method with multiple parameters"
-
-    with open("./client/node_modules/@genezio-sdk/javascript-sdk-example/lib/server.sdk.d.ts", "r", encoding="utf-8") as f:
-        content = f.read()
-
-    assert "static method()" in content, "Wrong exported method without parameters"
-    assert "static methodWithoutParameters()" in content, "Wrong exported method with return type"
-    assert "static methodWithOneParameter(test1: any)" in content, "Wrong exported method with one parameter"
-    assert "static methodWithMultipleParameters(test1: any, test2: any)" in content, "Wrong exported method with multiple parameters"
-
+    assert "static method(): Promise<any>" in content, "Wrong exported method without parameters"
+    assert "static methodWithoutParameters(): Promise<string>" in content, "Wrong exported method with return type"
+    assert "static methodWithOneParameter(test1: string): Promise<string>" in content, "Wrong exported method with one parameter"
+    assert "static methodWithMultipleParameters(test1: string, test2: number): Promise<string>" in content, "Wrong exported method with multiple parameters"
 
 def test_js_sdk():
     print("Starting javascript sdk test...")

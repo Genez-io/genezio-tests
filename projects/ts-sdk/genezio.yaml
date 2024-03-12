@@ -13,7 +13,6 @@ backend:
         local: npm install
 frontend:
     path: ./client
-    language: ts
     scripts:
         deploy:
             - npm install @genezio-sdk/typescript-sdk-example

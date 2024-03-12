@@ -10,6 +10,5 @@ backend:
     cloudProvider: genezio
 frontend:
     path: ./client
-    language: js
     scripts:
         deploy: npm install @genezio-sdk/javascript-sdk-example
