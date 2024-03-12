@@ -32,7 +32,7 @@ if __name__ == '__main__':
     tests_to_run = [
         test_webhooks,
         test_python_sdk,
-        test_binary_dependency,  # bug
+        test_binary_dependency,
         test_genezio_misc_cmds,
         test_create_list_delete,
         test_swift_sdk,
@@ -50,7 +50,7 @@ if __name__ == '__main__':
         test_js_sdk,
         test_hello,
         test_ts_sdk_dev_stage,
-        test_runtime_linux_binary_dependency,  # bug
+        test_runtime_linux_binary_dependency,
         test_runtime_linux_hello,
         test_runtime_linux_todo_list,
         test_runtime_linux_webhooks,
