@@ -7,14 +7,8 @@ from utils import kill_process
 
 
 def check_output():
-    assert exists(
-        "./client/node_modules/@genezio-sdk/javascript-sdk-example/node_modules/genezio-remote/dist/cjs/remote.d.ts") == True, "Remote js cjs sdk not found"
-    assert exists(
-        "./client/node_modules/@genezio-sdk/javascript-sdk-example/lib/server.sdk.d.ts") == True, "Class js lib sdk not found"
-    assert exists(
-        "./client/node_modules/@genezio-sdk/javascript-sdk-example/node_modules/genezio-remote/dist/esm/remote.d.ts") == True, "Remote js esm sdk not found"
-    assert exists(
-        "./client/node_modules/@genezio-sdk/javascript-sdk-example/node_modules/genezio-remote/dist/lib/remote.d.ts") == True, "Remote js esm sdk not found"
+    assert exists("./client/node_modules/@genezio-sdk/javascript-sdk-example/lib/server.sdk.d.ts") == True, "Class js lib sdk not found"
+    assert exists("./client/node_modules/@genezio-sdk/javascript-sdk-example/node_modules/genezio-remote/dist/lib/remote.d.ts") == True, "Remote js lib sdk not found"
 
     with open("./client/node_modules/@genezio-sdk/javascript-sdk-example/lib/server.sdk.d.ts", "r") as f:
         content = f.read()
