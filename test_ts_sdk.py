@@ -10,7 +10,7 @@ def check_output():
     assert exists("./client/node_modules/@genezio-sdk/typescript-sdk-example/lib/server.sdk.d.ts") == True, "Class ts lib server sdk not found"
     assert exists("./client/node_modules/@genezio-sdk/typescript-sdk-example/node_modules/genezio-remote/dist/lib/remote.d.ts") == True, "Remote ts sdk lib not found"
 
-    with open("./client/node_modules/@genezio-sdk/typescript-sdk-example/lib/server.sdk.d.ts", "r") as f:
+    with open("./client/node_modules/@genezio-sdk/typescript-sdk-example/lib/server.sdk.d.ts", "r",  encoding="utf-8") as f:
         content = f.read()
 
     assert "static method(): Promise<any>" in content, "Wrong exported method without parameters"
@@ -18,7 +18,7 @@ def check_output():
     assert "static methodWithOneParameter(test1: string): Promise<string>" in content, "Wrong exported method with one parameter"
     assert "static methodWithMultipleParameters(test1: string, test2: number): Promise<string>" in content, "Wrong exported method with multiple parameters"
 
-    with open("./client/node_modules/@genezio-sdk/typescript-sdk-example/lib/server.sdk.d.ts", "r") as f:
+    with open("./client/node_modules/@genezio-sdk/typescript-sdk-example/lib/server.sdk.d.ts", "r",  encoding="utf-8") as f:
         content = f.read()
 
     assert "static method(): Promise<any>" in content, "Wrong exported method without parameters"

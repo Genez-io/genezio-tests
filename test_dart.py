@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import locale
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete
 from utils import run_script, kill_process
@@ -8,8 +7,6 @@ from utils import run_script, kill_process
 def test_dart():
     print("Starting dart sdk test...")
     token = os.environ.get('GENEZIO_TOKEN')
-    file_encoding = locale.getpreferredencoding()
-    print("File Encoding:", file_encoding)
     genezio_login(token)
 
     os.chdir("./projects/dart-test/server")

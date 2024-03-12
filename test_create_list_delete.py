@@ -13,7 +13,7 @@ def test_create_list_delete():
 
     os.chdir("./projects/listing/")
 
-    new_project_name = yaml.safe_load(open("./genezio.yaml", "r").read())["name"]
+    new_project_name = yaml.safe_load(open("./genezio.yaml", "r", encoding="utf-8"))["name"]
 
     # Deploy the project
     deploy_result = genezio_deploy(False)
