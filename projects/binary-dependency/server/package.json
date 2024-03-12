@@ -10,6 +10,9 @@
     "license": "ISC",
     "dependencies": {
         "@genezio/types": "^1.0.14",
-        "bcrypt": "^5.1.0"
+        "aws-sdk": "^2.1575.0",
+        "bcrypt": "^5.1.0",
+        "mock-aws-s3": "^4.0.2",
+        "nock": "^13.5.4"
     }
 }

@@ -48,7 +48,7 @@ def test_hello():
     kill_process(process)
 
     os.chdir("../")
-    delete_project()
+    # delete_project()
 
     print("Test passed!")
 

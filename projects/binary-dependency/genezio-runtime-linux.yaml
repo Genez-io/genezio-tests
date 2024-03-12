@@ -14,4 +14,5 @@ backend:
 frontend:
     path: ./client
     language: js
-    scripts: {}
+    scripts:
+      deploy: npm install @genezio-sdk/binary-dependency

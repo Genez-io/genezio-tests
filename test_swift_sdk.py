@@ -48,7 +48,7 @@ def test_swift_sdk():
     assert "static func methodWithMultipleParameters(test1: String, test2: Double) async -> String" in content, "Wrong exported method with multiple parameters"
 
     kill_process(process)
-    delete_project()
+    # delete_project()
 
     print("Test passed!")
 

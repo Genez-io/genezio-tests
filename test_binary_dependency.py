@@ -43,12 +43,6 @@ def test_binary_dependency():
     kill_process(process)
 
     os.chdir("../")
-    with open("stdout.txt", "r") as f:
-        stdout = f.read()
-        print(stdout)
-    with open("stderr.txt", "r") as f:
-        stderr = f.read()
-        print(stderr)
 
     new_project_name = yaml.safe_load(open("./genezio.yaml", "r").read())["name"]
 
