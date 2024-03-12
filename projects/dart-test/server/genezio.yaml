@@ -14,4 +14,5 @@ backend:
           type: jsonrpc
 frontend:
     path: ../client
-    language: dart
+    sdk:
+      language: dart

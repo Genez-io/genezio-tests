@@ -10,4 +10,5 @@ backend:
     cloudProvider: genezio
 frontend:
     path: ./client
-    language: dart
+    sdk:
+      language: dart

@@ -10,4 +10,5 @@ backend:
     cloudProvider: genezio
 frontend:
     path: ./client
-    language: swift
+    sdk:
+        language: swift

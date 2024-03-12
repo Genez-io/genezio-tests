@@ -10,4 +10,5 @@ backend:
     cloudProvider: genezio
 frontend:
     path: ./client
-    language: python
+    sdk:
+      language: python

@@ -13,4 +13,5 @@ backend:
         local: npm install
 frontend:
     path: ./client
-    language: python
+    sdk:
+      language: python
