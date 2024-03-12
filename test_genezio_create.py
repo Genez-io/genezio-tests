@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local, genezio_create, delete_project
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_create, genezio_delete
 from utils import kill_process
 
 
@@ -47,7 +47,8 @@ def test_genezio_create():
 
         kill_process(process_local)
         print(project["name"] + " test passed!")
-        delete_project()
+        print("Prepared to delete project " + project["name"] + "...")
+        genezio_delete(deploy_result.project_id)
 
         os.chdir("..")
 

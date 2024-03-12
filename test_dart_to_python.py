@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local, delete_project
-from utils import run_script, run_node_script, run_npm_run_build, kill_process
-from os.path import exists
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete
+from utils import run_script, run_npm_run_build, kill_process
 
 
 def test_dart_to_python():
@@ -45,7 +44,9 @@ def test_dart_to_python():
     kill_process(process)
 
     os.chdir("../")
-    delete_project()
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
+
     print("Test passed!")
 
 

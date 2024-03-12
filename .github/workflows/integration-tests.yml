@@ -63,11 +63,11 @@ jobs:
               test_frontend.py, # 33s
             ],
             [
-              test_runtime_binary_dependency.py,
               test_runtime_cron.py,
+              test_runtime_webhooks.py,
               test_runtime_hello.py,
               test_runtime_todo_list.py,
-              test_runtime_webhooks.py,
+              test_runtime_binary_dependency.py,
             ],
           ]
     steps:

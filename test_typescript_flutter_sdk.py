@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local, delete_project
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete
 from os.path import exists
 from utils import compare_files, kill_process
 
@@ -32,7 +32,8 @@ def test_typescript_flutter_sdk():
                          "./client/chat_backend.dart.template") == True, "Wrong class sdk content"
 
     kill_process(process)
-    delete_project()
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
 
     print("Test passed!")
 

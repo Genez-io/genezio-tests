@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local, delete_project
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete
 from os.path import exists
 from utils import kill_process
 
@@ -56,7 +56,8 @@ def test_js_sdk():
 
     check_output()
     kill_process(process)
-    delete_project()
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
 
     print("Test passed!")
 

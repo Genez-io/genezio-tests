@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local, delete_project
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete
 from utils import run_node_script, kill_process
 
 
@@ -41,14 +41,10 @@ def test_runtime_linux_binary_dependency():
     kill_process(process)
 
     os.chdir("../")
-    with open("stdout.txt", "r") as f:
-        stdout = f.read()
-        print(stdout)
-    with open("stderr.txt", "r") as f:
-        stderr = f.read()
-        print(stderr)
 
-    delete_project()
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
+
     print("Test passed!")
 
 

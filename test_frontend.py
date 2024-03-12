@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, delete_project
+from genezio import genezio_deploy, genezio_login, genezio_delete
 from utils import run_curl
 
 
@@ -23,7 +23,8 @@ def test_frontend():
     assert status == 0, "`curl` returned non-zero exit code"
     assert "Hello World" in output, "page " + deploy_result.project_url + " doesn't contain 'Hello World'"
 
-    delete_project()
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
     print("Test passed!")
 
 

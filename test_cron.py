@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local, delete_project
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete
 from utils import run_node_script, kill_process
 import time
 
@@ -67,7 +67,9 @@ def test_hello():
 
     os.chdir("../")
 
-    delete_project()
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
+
     print("Test passed!")
 
 

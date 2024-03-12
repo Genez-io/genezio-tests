@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_logout, genezio_login, genezio_account, genezio_deploy, genezio_local, delete_project
+from genezio import genezio_logout, genezio_login, genezio_account, genezio_deploy
 
 
 def test_unauthenticated():
