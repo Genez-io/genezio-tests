@@ -18,3 +18,4 @@ projects/stdout.txt
 .idea/
 # Ignore all sdks
 **/sdk*
+.env

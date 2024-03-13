@@ -11,14 +11,13 @@ import psycopg2
 
 
 def confirmEmail(email: str):
-    result = psycopg2.connect(
-        "")
+    result = psycopg2.connect(os.environ.get('AUTH_TEST_DB_URL'))
     cursor = result.cursor()
     cursor.execute('SELECT "tokenConfirmEmail" FROM users WHERE email = %s', (email,))
     result = cursor.fetchone()
     cursor.close()
 
-    webhook_url = "?token=" + result[0]
+    webhook_url = os.environ.get('CONFIRM_EMAIL_WEBHOOK_URL') + "/confirm-email/" + result[0]
     response = requests.get(webhook_url).status_code
     return response == 200
 def test_react_auth():
