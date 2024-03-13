@@ -1,0 +1,15 @@
+name: binary-dependency
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: ./server
+    language:
+        name: js
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+frontend:
+    path: ./client
+    language: js
+    scripts:
+        deploy: npm install @genezio-sdk/binary-dependency

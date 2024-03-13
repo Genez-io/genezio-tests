@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local
-from utils import run_script, run_node_script, run_npm_run_build, kill_process
-from os.path import exists
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete
+from utils import run_script, run_npm_run_build, kill_process
+
 
 def test_dart_to_python():
     print("Starting dart sdk test...")
@@ -11,7 +11,7 @@ def test_dart_to_python():
 
     genezio_login(token)
 
-    os.chdir("./projects/dart-srv-python-client/server/")
+    os.chdir("./projects/dart-srv-python-client/server")
     run_script(["dart", "pub", "get"])
     deploy_result = genezio_deploy(False)
 
@@ -24,7 +24,7 @@ def test_dart_to_python():
 
     assert status == 0, "Node test script returned non-zero exit code"
     assert output in "100string12hello42True[1, 2, 3]['string1', 'string2', 'string3'][1, 2, 3][{'x': 0, 'y': 0}, {'x': 1, 'y': 2}, {'x': 2, 'y': 4}][{'x': 0, 'y': 0}, {'x': 1, 'y': 2}, {'x': 2, 'y': 4}][{'x': 11, 'y': 12}, {'x': 13, 'y': 14}, {'x': 15, 'y': 16}]", "Wrong output from python test: " + output
-    os.chdir("../server/")
+    os.chdir("../server")
 
     process = genezio_local()
 
@@ -42,7 +42,13 @@ def test_dart_to_python():
     assert output in "100string12hello42True[1, 2, 3]['string1', 'string2', 'string3'][1, 2, 3][{'x': 0, 'y': 0}, {'x': 1, 'y': 2}, {'x': 2, 'y': 4}][{'x': 0, 'y': 0}, {'x': 1, 'y': 2}, {'x': 2, 'y': 4}][{'x': 11, 'y': 12}, {'x': 13, 'y': 14}, {'x': 15, 'y': 16}]", "Wrong output from python test: " + output
 
     kill_process(process)
+
+    os.chdir("../")
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
+
     print("Test passed!")
+
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

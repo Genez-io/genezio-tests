@@ -1,11 +1,13 @@
 name: test-create-list-delete
 region: eu-central-1
-packageManager: npm
-sdk:
-  language: js
-  options:
-    runtime: node
-  path: ./sdk/
-classes:
-  - path: ./test.js
-    type: jsonrpc
+yamlVersion: 2
+backend:
+    path: ./
+    language:
+        name: js
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: capybaraLinux
+    scripts:
+        deploy: npm install
+        local: npm install

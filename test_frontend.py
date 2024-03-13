@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login
+from genezio import genezio_deploy, genezio_login, genezio_delete
 from utils import run_curl
+
 
 def test_frontend():
     print("Starting frontend test...")
@@ -10,7 +11,7 @@ def test_frontend():
 
     genezio_login(token)
 
-    os.chdir("./projects/mini-frontend/server/")
+    os.chdir("./projects/mini-frontend/")
 
     deploy_result = genezio_deploy(True)
 
@@ -22,7 +23,10 @@ def test_frontend():
     assert status == 0, "`curl` returned non-zero exit code"
     assert "Hello World" in output, "page " + deploy_result.project_url + " doesn't contain 'Hello World'"
 
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
     print("Test passed!")
+
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

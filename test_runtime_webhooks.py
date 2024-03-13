@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete
 from utils import run_node_script, kill_process
+
 
 def test_runtime_linux_webhooks():
     print("Starting webhook linux runtime test...")
@@ -10,15 +11,15 @@ def test_runtime_linux_webhooks():
 
     genezio_login(token)
 
-    os.chdir("./projects/webhook/server/")
+    os.chdir("./projects/webhook-runtime/")
 
-    deploy_result = genezio_deploy(False, "./genezio-runtime-linux.yaml")
+    deploy_result = genezio_deploy(False)
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
     assert len(deploy_result.web_urls) == 4, "incorrect number of web urls exported"
 
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     status, output = run_node_script("test-webhook-example.js", deploy_result.web_urls)
 
@@ -28,13 +29,13 @@ def test_runtime_linux_webhooks():
     assert components[2] == "{ name: 'John' }", "Component 2 returned wrong output"
     assert components[3] == "contents of file", "Component 3 returned wrong output"
 
-    os.chdir("../server/")
+    os.chdir("../")
 
     process = genezio_local()
 
     assert process != None, "genezio local returned None"
 
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     status, output = run_node_script("test-webhook-example.js", deploy_result.web_urls)
 
@@ -46,7 +47,11 @@ def test_runtime_linux_webhooks():
     kill_process(process)
 
     os.chdir("../")
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
+
     print("Test passed!")
+
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

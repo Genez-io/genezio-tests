@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_list, genezio_delete
 from utils import run_node_script, kill_process
+
 
 def test_binary_dependency():
     print("Starting binary_dependency test...")
@@ -10,26 +11,26 @@ def test_binary_dependency():
 
     genezio_login(token)
 
-    os.chdir("./projects/binary-dependency/server/")
+    os.chdir("./projects/binary-dependency/")
     deploy_result = genezio_deploy(deploy_frontend=False, args=["--install-deps"])
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     status, output = run_node_script("test-binary-dependency.js")
 
     assert status == 0, "Node test script returned non-zero exit code"
     assert output == "Ok\n", "Node script returned wrong output"
 
-    os.chdir("../server/")
+    os.chdir("../")
 
     process = genezio_local(args=["--install-deps"])
 
     assert process != None, "genezio local returned None"
 
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     status, output = run_node_script("test-binary-dependency.js")
 
@@ -39,12 +40,9 @@ def test_binary_dependency():
     kill_process(process)
 
     os.chdir("../")
-    with open("stdout.txt", "r") as f:
-        stdout = f.read()
-        print(stdout)
-    with open("stderr.txt", "r") as f:
-        stderr = f.read()
-        print(stderr)
+
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
 
     print("Test passed!")
 

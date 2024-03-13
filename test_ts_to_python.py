@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete
 from utils import run_npm_run_build, run_script, kill_process
+
 
 def test_ts_to_python_sdk():
     print("Starting ts to python sdk test...")
@@ -10,25 +11,25 @@ def test_ts_to_python_sdk():
 
     genezio_login(token)
 
-    os.chdir("./projects/typescript-srv-python-client/server/")
+    os.chdir("./projects/typescript-srv-python-client/")
     deploy_result = genezio_deploy(False)
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     status, output = run_script(["python3", "main.py"])
 
     assert status == 0, "Node test script returned non-zero exit code"
     assert output in "Hello from server!1string2name0typeTrueFalse22[11, 22]None", "Wrong output from python test: " + output
-    os.chdir("../server/")
+    os.chdir("../")
 
     process = genezio_local()
 
     assert process != None, "genezio local returned None"
 
-    os.chdir("../client/")
+    os.chdir("./client/")
 
     run_npm_run_build()
     status, output = run_script(["python3", "main.py"])
@@ -40,7 +41,12 @@ def test_ts_to_python_sdk():
     assert output in "Hello from server!1string2name0typeTrueFalse22[11, 22]None", "Wrong output from python test: " + output
 
     kill_process(process)
+    os.chdir("../")
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
+
     print("Test passed!")
+
 
 # Test order matters because the commands are having side effects.
 if __name__ == '__main__':

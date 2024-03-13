@@ -1,0 +1,14 @@
+name: typescript-flutter-sdk
+region: eu-central-1
+yamlVersion: 2
+backend:
+    path: ./server
+    language:
+        name: ts
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+frontend:
+    path: ./client
+    sdk:
+      language: dart

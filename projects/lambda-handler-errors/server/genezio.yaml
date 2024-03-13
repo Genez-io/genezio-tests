@@ -1,9 +1,0 @@
-name: lambda-handler-errors
-packageManager: npm
-sdk:
-  options:
-    runtime: node
-  language: js
-  path: ../client/sdk/
-classes:
-  - path: "./index.js"

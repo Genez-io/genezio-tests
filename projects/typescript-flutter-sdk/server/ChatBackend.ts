@@ -1,6 +1,7 @@
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi, ChatCompletionRequestMessageRoleEnum, CreateChatCompletionResponse } from "openai";
 import mongoose from "mongoose"
 import * as dotenv from 'dotenv';
+import {GenezioDeploy} from "@genezio/types";
 dotenv.config();
 
 const OPENAI_MODEL_GPT3_5 = 'gpt-3.5-turbo';
@@ -14,7 +15,7 @@ const characters: { [name: string]: string } = {
   "chewbacca": "Respond to me as if you are Chewbacca from Star Wars: "
 };
 
-
+@GenezioDeploy()
 export class ChatBackend {
   openai: OpenAIApi | undefined = undefined;
 

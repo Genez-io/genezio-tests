@@ -1,0 +1,18 @@
+name: hello-world-runtime
+region: eu-central-1
+yamlVersion: 2
+backend:
+    path: ./server
+    language:
+        name: js
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: capybaraLinux
+    scripts:
+        deploy: npm install
+        local: npm install
+frontend:
+    path: ./client
+    language: js
+    scripts:
+        deploy: npm install @genezio-sdk/hello-world-runtime

@@ -1,27 +1,19 @@
-#File that configures what classes will be deployed in Genezio Infrastructure.
-# Add the paths to classes that you want to deploy in "classes".
-
-#Example:
-
-#name: hello-world
-#region: us-east-1
-#sdk:
-#language: js
-#path: ./sdk/
-#classes:
-#- path: ./hello.js
-#type: jsonrpc
-#methods:
-#- name: hello
-#        type: http
-
 name: dart-srv-python-client
 region: us-east-1
-sdk:
-  language: python
-  path: ../client/sdk
-classes:
-  - path: lib/server.dart
-    name: HelloWorldService
-    type: jsonrpc
-    methods: []
+yamlVersion: 2
+backend:
+    path: ./
+    language:
+        name: dart
+        runtime: nodejs18.x
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - name: HelloWorldService
+          path: lib/server.dart
+          type: jsonrpc
+
+frontend:
+    path: ../client
+    sdk:
+      language: python
