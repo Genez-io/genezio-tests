@@ -27,7 +27,7 @@ const router = createBrowserRouter([
 import { AuthService } from "@genezio/auth";
 
 // Replace <token> and <region> with your own values
-AuthService.getInstance().setTokenAndRegion("0-lr74n76mzx7ftee2zhairrercm0rzhjp", "us-east-1");
+AuthService.getInstance().setTokenAndRegion("0-4sk2qy4gpqgvgacyhcw5ci3wzm0ninuu", "us-east-1");
 
 
 
