@@ -25,7 +25,7 @@ def test_react_auth():
     print("Starting React Auth test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
-    os.chdir(os.path.join("projects", "genezio-react-auth"))
+    os.chdir(os.path.join("projects", "react-auth"))
 
     genezio_login(token)
 
