@@ -9,8 +9,8 @@ import random
 import string
 import psycopg2
 
-
 def confirmEmail(email: str):
+    print("Confirming email " + email+"...")
     result = psycopg2.connect(os.environ.get('AUTH_TEST_DB_URL'))
     cursor = result.cursor()
     cursor.execute('SELECT "tokenConfirmEmail" FROM users WHERE email = %s', (email,))
@@ -55,7 +55,6 @@ def test_react_auth():
         page.get_by_label("Email:").press("Tab")
         page.get_by_label("Password:").fill(password)
         page.get_by_role("button", name="Sign Up").click()
-        page.screenshot(path="signup.png")
         try:
             page.wait_for_timeout(10000)
         except TimeoutError:
