@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {BackendService} from "@genezio-sdk/genezio-auth-tutorial"
+import {BackendService} from "@genezio-sdk/genezio-auth-test"
 import {useNavigate} from 'react-router-dom';
 import {AuthService} from "@genezio/auth";
 

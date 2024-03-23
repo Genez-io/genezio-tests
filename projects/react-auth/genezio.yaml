@@ -1,4 +1,4 @@
-name: genezio-auth-tutorial
+name: genezio-auth-test
 region: us-east-1
 yamlVersion: 2
 backend:
@@ -15,6 +15,6 @@ frontend:
   scripts:
     deploy:
       - npm install
-      - npm install @genezio-sdk/genezio-auth-tutorial
+      - npm install @genezio-sdk/genezio-auth-test
       - npm run build
-  subdomain: amber-wide-ant
+  subdomain: amber-wide-ant-test

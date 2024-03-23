@@ -1,5 +1,4 @@
 import {GenezioDeploy, GenezioMethod, GenezioAuth, GnzContext} from "@genezio/types";
-import {AuthService} from "@genezio/auth";
 
 @GenezioDeploy()
 export class BackendService {
