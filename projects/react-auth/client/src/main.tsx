@@ -32,7 +32,7 @@ import {AuthService} from "@genezio/auth";
 import ResetPasswordForm from "./routes/reset.tsx";
 
 // Replace <token> and <region> with your own values
-AuthService.getInstance().setTokenAndRegion("0-xkux5orerrrqqxcp5vo3zpnczm0qihjh", "us-east-1");
+AuthService.getInstance().setTokenAndRegion("0-4sk2qy4gpqgvgacyhcw5ci3wzm0ninuu", "us-east-1");
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
