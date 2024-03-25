@@ -101,6 +101,8 @@ jobs:
           path: |
             **/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.node-version }}
+      - name: Install Playwright Browsers
+        run: npx playwright install
       - name: Install genezio cli prod - if Prod
         if: inputs.genezio_branch == 'main'
         run: cd genezio && npm install && npm run install-locally
