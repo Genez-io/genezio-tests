@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@genezio-sdk/genezio-auth-test": "^1.0.0-prod",
+    "@genezio-sdk/genezio-auth-tutorial": "^1.0.0-prod",
     "@genezio/auth": "^2.0.13",
     "@genezio/types": "^1.0.14",
     "@genezio/vite-plugin-genezio": "^1.0.4",
