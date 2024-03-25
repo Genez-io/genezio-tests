@@ -20,6 +20,7 @@ class DeployResult:
 
         link_regex = re.compile('((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', re.DOTALL)
         links = re.findall(link_regex, str(stdout))
+        self.stdout_all_links = links
         links = [x for x in links if "genezio.com/docs" not in x[0]]
 
         if (len(links) > 0):

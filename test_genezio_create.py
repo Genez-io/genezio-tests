@@ -33,6 +33,7 @@ def test_genezio_create():
         if os.path.exists(project["name"]):
             os.chmod(project["name"], 0o777)
             os.remove(project["name"])
+        print("Creating project " + project["name"] + "...")
         create_result = genezio_create(project["name"], project["region"], project["backend"], project["frontend"])
         assert create_result == 0, "genezio create returned non-zero exit code"
 
@@ -46,9 +47,9 @@ def test_genezio_create():
         assert process_local is not None, "genezio local returned None"
 
         kill_process(process_local)
-        print(project["name"] + " test passed!")
         print("Prepared to delete project " + project["name"] + "...")
         genezio_delete(deploy_result.project_id)
+        print(project["name"] + " test passed!")
 
         os.chdir("..")
 
