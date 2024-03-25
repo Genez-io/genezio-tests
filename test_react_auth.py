@@ -57,7 +57,7 @@ def test_react_auth():
     assert process != None, "genezio local returned None"
     kill_process(process)
 
-    frontend_link = [url[0] for url in deploy_result.stdout_all_links if 'amber-wide-ant-test' in url[0]]
+    frontend_link = [url[0] for url in deploy_result.stdout_all_links if 'amber-wide-ant' in url[0]]
     print("Frontend link: " + frontend_link[0])
 
     gmail = "".join(random.choices(string.ascii_lowercase, k=6)) + "@gmail.com"
