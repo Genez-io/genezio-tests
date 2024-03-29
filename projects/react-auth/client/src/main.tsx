@@ -9,6 +9,13 @@ import SecretView from './routes/secret';
 import Login from './routes/login';
 import Signup from './routes/signup';
 
+
+import {AuthService} from "@genezio/auth";
+import ResetPasswordForm from "./routes/reset.tsx";
+
+// Replace <token> and <region> with your own values
+AuthService.getInstance().setTokenAndRegion("0-4sk2qy4gpqgvgacyhcw5ci3wzm0ninuu", "us-east-1");
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -27,12 +34,6 @@ const router = createBrowserRouter([
         element: <ResetPasswordForm/>,
     }
 ]);
-
-import {AuthService} from "@genezio/auth";
-import ResetPasswordForm from "./routes/reset.tsx";
-
-// Replace <token> and <region> with your own values
-AuthService.getInstance().setTokenAndRegion("0-4sk2qy4gpqgvgacyhcw5ci3wzm0ninuu", "us-east-1");
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -1,4 +1,5 @@
 import os
+from urllib.parse import urlparse
 
 import requests
 
@@ -12,7 +13,16 @@ import psycopg2
 
 def confirmEmail(email: str):
     print("Confirming email " + email + "...")
-    result = psycopg2.connect(os.environ.get('AUTH_TEST_DB_URL'))
+    connection_url = os.environ.get('AUTH_TEST_DB_URL')
+    result_parse = urlparse(connection_url)
+    conn_params = {
+        'dbname': result_parse.path[1:],
+        'user': result_parse.username,
+        'password': result_parse.password,
+        'host': result_parse.hostname,
+    }
+
+    result = psycopg2.connect(**conn_params)
     cursor = result.cursor()
     cursor.execute('SELECT "tokenConfirmEmail" FROM users WHERE email = %s', (email,))
     result = cursor.fetchone()
@@ -26,11 +36,19 @@ def confirmEmail(email: str):
 def resetPassword(email: str):
     print("Resetting password for email " + email + "...")
     webhook = os.environ.get('RESET_PASSWORD_WEBHOOK_URL') + "?email=" + email
-
     if requests.get(webhook).status_code != 200:
         return None
 
-    result = psycopg2.connect(os.environ.get('AUTH_TEST_DB_URL'))
+    connection_url = os.environ.get('AUTH_TEST_DB_URL')
+    result_parse = urlparse(connection_url)
+    conn_params = {
+        'dbname': result_parse.path[1:],
+        'user': result_parse.username,
+        'password': result_parse.password,
+        'host': result_parse.hostname,
+    }
+
+    result = psycopg2.connect(**conn_params)
     cursor = result.cursor()
     cursor.execute('SELECT "tokenReset" FROM users WHERE email = %s', (email,))
     result = cursor.fetchone()

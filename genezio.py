@@ -59,7 +59,6 @@ def genezio_login(auth_token):
 
     genezio_login_command = ' '.join(genezio_login_args) if use_shell else genezio_login_args
     process = subprocess.run(genezio_login_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
-
     return process.returncode, process.stderr, process.stdout
 
 
@@ -122,8 +121,7 @@ def genezio_account():
     genezio_account_args = ['genezio', 'account']
 
     genezio_account_command = ' '.join(genezio_account_args) if use_shell else genezio_account_args
-    process = subprocess.run(genezio_account_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
-
+    process = subprocess.run(genezio_account_command, capture_output=True,  text=True, shell=use_shell, encoding='utf-8')
     return process.returncode, process.stderr, process.stdout
 
 
