@@ -14,9 +14,7 @@ import psycopg2
 def confirmEmail(email: str):
     print("Confirming email " + email + "...")
     connection_url = os.environ.get('AUTH_TEST_DB_URL')
-    if connection_url is None:
-        print("Connection url is not set")
-    print(connection_url)
+    print("Connection url: ", connection_url)
     result_parse = urlparse(connection_url)
     conn_params = {
         'dbname': result_parse.path[1:],
@@ -39,9 +37,7 @@ def confirmEmail(email: str):
 def resetPassword(email: str):
     print("Resetting password for email " + email + "...")
     webhook = os.environ.get('RESET_PASSWORD_WEBHOOK_URL') + "?email=" + email
-    if os.environ.get('RESET_PASSWORD_WEBHOOK_URL') is None:
-        print("Reset password webhook url is not set")
-    print(os.environ.get('RESET_PASSWORD_WEBHOOK_URL'))
+    print("Reset password webhook: ",os.environ.get('RESET_PASSWORD_WEBHOOK_URL'))
     if requests.get(webhook).status_code != 200:
         return None
 
