@@ -37,7 +37,7 @@ def confirmEmail(email: str):
 def resetPassword(email: str):
     print("Resetting password for email " + email + "...")
     webhook = os.environ.get('RESET_PASSWORD_WEBHOOK_URL') + "?email=" + email
-    print("Reset password webhook: ",os.environ.get('RESET_PASSWORD_WEBHOOK_URL'))
+    print(os.environ.get('RESET_PASSWORD_WEBHOOK_URL'))
     if requests.get(webhook).status_code != 200:
         return None
 

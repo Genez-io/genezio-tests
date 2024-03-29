@@ -19,6 +19,15 @@ on:
       genezio_token:
         description: "Genezio token for the specified environment"
         required: true
+      auth_test_db_url:
+        description: "Auth test db url"
+        required: true
+      confirm_email_webhook_url:
+        description: "Confirm email webhook url"
+        required: true
+      reset_password_webhook_url:
+        description: "Reset password webhook url"
+        required: true
       slack_token:
         description: "Slack token for notifications"
         required: true
@@ -134,9 +143,9 @@ jobs:
         if: matrix.tests[0] != null
         env:
           GENEZIO_TOKEN: ${{ secrets.genezio_token }}
-          AUTH_TEST_DB_URL: '${{ secrets.AUTH_TEST_DB_URL }}'
-          CONFIRM_EMAIL_WEBHOOK_URL: '${{ secrets.CONFIRM_EMAIL_WEBHOOK_URL }}'
-          RESET_PASSWORD_WEBHOOK_URL: '${{ secrets.RESET_PASSWORD_WEBHOOK_URL }}'
+          AUTH_TEST_DB_URL: ${{ secrets.AUTH_TEST_DB_URL }}
+          CONFIRM_EMAIL_WEBHOOK_URL: ${{ secrets.CONFIRM_EMAIL_WEBHOOK_URL }}
+          RESET_PASSWORD_WEBHOOK_URL: ${{ secrets.RESET_PASSWORD_WEBHOOK_URL }}
       - run: python ${{ matrix.tests[1] }}
         if: matrix.tests[1] != null
         env:
