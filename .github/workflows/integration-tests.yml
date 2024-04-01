@@ -23,13 +23,13 @@ on:
         description: "Slack token for notifications"
         required: true
       auth_test_db_url:
-        description: "Slack token for notifications"
+        description: "Auth db for auth test"
         required: true
       confirm_email_webhook_url:
-        description: "Slack token for notifications"
+        description: "Confirm email webhook for auth test"
         required: true
       reset_password_webhook_url:
-        description: "Slack token for notifications"
+        description: "Reset password webhook for auth test"
         required: true
 
 jobs:
@@ -145,7 +145,7 @@ jobs:
           GENEZIO_TOKEN: ${{ secrets.genezio_token }}
           AUTH_TEST_DB_URL: ${{ secrets.auth_test_db_url }}
           CONFIRM_EMAIL_WEBHOOK_URL: ${{ secrets.confirm_email_webhook_url }}
-          RESET_PASSWORD_WEBHOOK_URL: ${{ secrets.RESET_PASSWORD_WEBHOOK_URL }}
+          RESET_PASSWORD_WEBHOOK_URL: ${{ secrets.reset_password_webhook_url }}
       - run: python ${{ matrix.tests[1] }}
         if: matrix.tests[1] != null
         env:
