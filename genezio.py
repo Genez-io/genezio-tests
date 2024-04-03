@@ -10,6 +10,7 @@ from utils import kill_process
 # We are using shell=True on Windows for subprocess.run()
 use_shell = os.name == 'nt'
 
+os.environ["GENEZIO_NO_TELEMETRY"] = "1"
 
 # define a struct
 class DeployResult:
