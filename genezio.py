@@ -20,6 +20,7 @@ class DeployResult:
 
         link_regex = re.compile('((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', re.DOTALL)
         links = re.findall(link_regex, str(stdout))
+        self.stdout_all_links = links
         links = [x for x in links if "genezio.com/docs" not in x[0]]
 
         if (len(links) > 0):
@@ -39,7 +40,7 @@ def genezio_deploy(deploy_frontend, with_config="./genezio.yaml", args=[]):
     for arg in args:
         genezio_deploy_args.append(arg)
 
-    genezio_deploy_command = ' '.join(genezio_deploy_args) if use_shell else genezio_deploy_args
+    genezio_deploy_command = genezio_deploy_args if not use_shell else ' '.join(genezio_deploy_args)
     process = subprocess.run(genezio_deploy_command, text=True, shell=use_shell,
                              stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
 
@@ -58,7 +59,6 @@ def genezio_login(auth_token):
 
     genezio_login_command = ' '.join(genezio_login_args) if use_shell else genezio_login_args
     process = subprocess.run(genezio_login_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
-
     return process.returncode, process.stderr, process.stdout
 
 
@@ -121,8 +121,7 @@ def genezio_account():
     genezio_account_args = ['genezio', 'account']
 
     genezio_account_command = ' '.join(genezio_account_args) if use_shell else genezio_account_args
-    process = subprocess.run(genezio_account_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
-
+    process = subprocess.run(genezio_account_command, capture_output=True,  text=True, shell=use_shell, encoding='utf-8')
     return process.returncode, process.stderr, process.stdout
 
 

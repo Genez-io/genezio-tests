@@ -22,6 +22,15 @@ on:
       slack_token:
         description: "Slack token for notifications"
         required: true
+      auth_test_db_url:
+        description: "Auth db for auth test"
+        required: true
+      confirm_email_webhook_url:
+        description: "Confirm email webhook for auth test"
+        required: true
+      reset_password_webhook_url:
+        description: "Reset password webhook for auth test"
+        required: true
 
 jobs:
   test:
@@ -33,6 +42,7 @@ jobs:
       matrix:
         tests: [
             [
+              # test_react_auth.py,
               test_typescript_flutter_sdk.py, # 54s
               test_dart_typescript_sdk.py, # 2m 42s
             ],
@@ -49,7 +59,7 @@ jobs:
               test_ts_dev_stage.py, # 33s
             ],
             [
-              # test_unauthenticated.py, # 6s
+#              test_unauthenticated.py, # 6s
               test_binary_dependency.py, # 45s
               test_genezio_misc_cmds.py, # 10s
               test_cron.py, # 2m 35s
@@ -100,6 +110,8 @@ jobs:
           path: |
             **/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.node-version }}
+      - name: Install Playwright Browsers
+        run: npx playwright install
       - name: Install genezio cli prod - if Prod
         if: inputs.genezio_branch == 'main'
         run: cd genezio && npm install && npm run install-locally
@@ -131,6 +143,9 @@ jobs:
         if: matrix.tests[0] != null
         env:
           GENEZIO_TOKEN: ${{ secrets.genezio_token }}
+          AUTH_TEST_DB_URL: ${{ secrets.auth_test_db_url }}
+          CONFIRM_EMAIL_WEBHOOK_URL: ${{ secrets.confirm_email_webhook_url }}
+          RESET_PASSWORD_WEBHOOK_URL: ${{ secrets.reset_password_webhook_url }}
       - run: python ${{ matrix.tests[1] }}
         if: matrix.tests[1] != null
         env:
