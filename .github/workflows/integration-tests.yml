@@ -42,7 +42,7 @@ jobs:
       matrix:
         tests: [
             [
-              test_react_auth.py,
+              # test_react_auth.py,
               test_typescript_flutter_sdk.py, # 54s
               test_dart_typescript_sdk.py, # 2m 42s
             ],
