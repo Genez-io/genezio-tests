@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@genezio-sdk/webhook-example": "^1.0.0-prod",
     "@genezio/types": "^1.0.14",
     "parse-multipart-data": "^1.5.0"
   }

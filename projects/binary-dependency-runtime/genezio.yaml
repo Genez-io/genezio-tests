@@ -14,4 +14,6 @@ backend:
 frontend:
     path: ./client
     scripts:
-        deploy: npm install @genezio-sdk/binary-dependency-runtime
+      deploy:
+        - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
+        - npm install
