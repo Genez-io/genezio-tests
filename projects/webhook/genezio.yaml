@@ -9,12 +9,13 @@ backend:
     packageManager: npm
   cloudProvider: genezio
   scripts:
-    deploy:
-      - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
-      - npm install
+    deploy: npm install
     local: npm install
 
 frontend:
   path: ./client
   scripts:
-    deploy: npm install
+    deploy:
+      - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
+      - npm install
+    local: npm install
