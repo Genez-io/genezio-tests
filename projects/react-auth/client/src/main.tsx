@@ -14,7 +14,7 @@ import {AuthService} from "@genezio/auth";
 import ResetPasswordForm from "./routes/reset.tsx";
 
 // Replace <token> and <region> with your own values
-AuthService.getInstance().setTokenAndRegion("0-4sk2qy4gpqgvgacyhcw5ci3wzm0ninuu", "us-east-1");
+AuthService.getInstance().setTokenAndRegion("0-5qydu62omzfnovxnjgo6kcnvee0nvkui", "us-east-1");
 
 const router = createBrowserRouter([
     {
