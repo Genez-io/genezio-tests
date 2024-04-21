@@ -29,16 +29,16 @@ def confirmEmail(email: str):
     result = cursor.fetchone()
     cursor.close()
 
+    print(os.environ.get('CONFIRM_EMAIL_WEBHOOK_URL'))
     webhook_url = os.environ.get('CONFIRM_EMAIL_WEBHOOK_URL') + "?token=" + result[0]
-    print(webhook_url)
     response = requests.get(webhook_url).status_code
     return response == 200
 
 
 def resetPassword(email: str):
     print("Resetting password for email " + email + "...")
+    print( os.environ.get('RESET_PASSWORD_WEBHOOK_URL'))
     webhook = os.environ.get('RESET_PASSWORD_WEBHOOK_URL') + "?email=" + email
-    print(webhook)
     if requests.get(webhook).status_code != 200:
         return None
 
