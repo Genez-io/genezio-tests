@@ -20,7 +20,7 @@ const handleSubmit = async (event: React.FormEvent) => {
     navigate("/login");
   } catch (error: any) {
     console.log(error);
-    alert("An error has occured");
+    alert("An error has occurred");
   }
   setLoading(false);
 };

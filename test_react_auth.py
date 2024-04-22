@@ -1,3 +1,4 @@
+import fileinput
 import os
 from urllib.parse import urlparse
 
@@ -14,6 +15,8 @@ import psycopg2
 def confirmEmail(email: str, isDev:bool):
     print("Confirming email " + email + "...")
     connection_url = os.environ.get('AUTH_TEST_DB_URL')
+    confirmation_webhook_url = os.environ.get('AUTH_CONFIRMATION_EMAIL_WEBHOOK')
+
     result_parse = urlparse(connection_url)
     conn_params = {
         'dbname': result_parse.path[1:],
@@ -28,23 +31,17 @@ def confirmEmail(email: str, isDev:bool):
     result = cursor.fetchone()
     cursor.close()
 
-    if isDev:
-        webhook_url = "https://5qydu62omzfnovxnjgo6kcnvee0nvkui.lambda-url.us-east-1.on.aws/AuthService/emailConfirmationHttp"
-    else:
-        webhook_url = "prod" #TODO: Add prod webhook
-
-    webhook_url += "?token=" + result[0]
-    response = requests.get(webhook_url).status_code
+    confirmation_webhook_url += "?token=" + result[0]
+    response = requests.get(confirmation_webhook_url).status_code
     return response == 200
 
 
 def resetPassword(email: str, isDev:bool):
     print("Resetting password for email " + email + "...")
-    if isDev:
-        webhook = "https://5qydu62omzfnovxnjgo6kcnvee0nvkui.lambda-url.us-east-1.on.aws/AuthService/resetPasswordHttp" + "?email=" + email
-    else:
-        webhook = "prod" #TODO: Add prod webhook
-    if requests.get(webhook).status_code != 200:
+
+    reset_password_webhook_url = os.environ.get('AUTH_RESET_PASSWORD_WEBHOOK') + "?email=" + email
+
+    if requests.get(reset_password_webhook_url).status_code != 200:
         return None
 
     connection_url = os.environ.get('AUTH_TEST_DB_URL')
@@ -68,10 +65,14 @@ def resetPassword(email: str, isDev:bool):
 def test_react_auth():
     print("Starting React Auth test...")
     token = os.environ.get('GENEZIO_TOKEN')
+    auth_token = os.environ.get('AUTH_TOKEN')
 
     os.chdir(os.path.join("projects", "react-auth"))
 
     genezio_login(token)
+
+    # Replace token in client project
+    replace_token_in_file("./projects/react-auth/client/src/main.tsx", auth_token)
 
     deploy_result = genezio_deploy(False)
 
@@ -104,7 +105,7 @@ def test_react_auth():
         try:
             page.wait_for_timeout(10000)
         except TimeoutError:
-            assert False, "Timeout occured while waiting for signup page"
+            assert False, "Timeout occurred while waiting for signup page"
         assert page.url == frontend_link[0] + "/login", "Signup failed"
         browser.close()
 
@@ -124,7 +125,7 @@ def test_react_auth():
         try:
             page.wait_for_timeout(10000)
         except TimeoutError:
-            assert False, "Timeout occured while waiting for login"
+            assert False, "Timeout occurred while waiting for login"
         page.get_by_role("button", name="Reveal Secret").click()
         assert page.inner_text(
             "text='Capybaras are AWESOME! Shhh... don't tell the cats!'") == "Capybaras are AWESOME! Shhh... don't tell the cats!", "Get secret failed"
@@ -133,7 +134,7 @@ def test_react_auth():
         try:
             page.wait_for_timeout(10000)
         except TimeoutError:
-            assert False, "Timeout occured while waiting for logout"
+            assert False, "Timeout occurred while waiting for logout"
         assert page.url == frontend_link[0] + "/login", "Logout failed"
         browser.close()
 
@@ -154,7 +155,7 @@ def test_react_auth():
         try:
             page.wait_for_timeout(10000)
         except TimeoutError:
-            assert False, "Timeout occured while waiting for reset password"
+            assert False, "Timeout occurred while waiting for reset password"
         assert page.url == frontend_link[0] + "/login", "Reset password failed"
         browser.close()
 
@@ -171,13 +172,19 @@ def test_react_auth():
         try:
             page.wait_for_timeout(10000)
         except TimeoutError:
-            assert False, "Timeout occured while waiting for login"
+            assert False, "Timeout occurred while waiting for login"
         page.get_by_role("button", name="Reveal Secret").click()
         assert page.inner_text(
             "text='Capybaras are AWESOME! Shhh... don't tell the cats!'") == "Capybaras are AWESOME! Shhh... don't tell the cats!", "Get secret failed at login with new password"
         browser.close()
     print("Test passed!")
 
+
+def replace_token_in_file(file_path, token):
+    with fileinput.FileInput(file_path, inplace=True) as file:
+        for line in file:
+            print(line.replace('<replace-with-token>', token), end='')
+            break
 
 if __name__ == '__main__':
     test_react_auth()
