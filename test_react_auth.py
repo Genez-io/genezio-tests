@@ -13,7 +13,7 @@ import psycopg2
 
 def confirmEmail(email: str, isDev:bool):
     print("Confirming email " + email + "...")
-    connection_url = "postgresql://admin:hk0zB7xTJVDW@ep-rough-fog-a20v3sqd.eu-central-1.aws.neon.tech/auth?sslmode=require"
+    connection_url = os.environ.get('AUTH_TEST_DB_URL')
     result_parse = urlparse(connection_url)
     conn_params = {
         'dbname': result_parse.path[1:],
@@ -47,7 +47,7 @@ def resetPassword(email: str, isDev:bool):
     if requests.get(webhook).status_code != 200:
         return None
 
-    connection_url = "postgresql://admin:hk0zB7xTJVDW@ep-rough-fog-a20v3sqd.eu-central-1.aws.neon.tech/auth?sslmode=require"
+    connection_url = os.environ.get('AUTH_TEST_DB_URL')
     result_parse = urlparse(connection_url)
     conn_params = {
         'dbname': result_parse.path[1:],
