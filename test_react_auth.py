@@ -11,12 +11,9 @@ import string
 import psycopg2
 
 
-def confirmEmail(email: str):
+def confirmEmail(email: str, isDev:bool):
     print("Confirming email " + email + "...")
-    connection_url = os.environ.get('AUTH_TEST_DB_URL')
-    if connection_url is None:
-        print("AUTH_TEST_DB_URL is not set.")
-        return None
+    connection_url = "postgresql://admin:hk0zB7xTJVDW@ep-rough-fog-a20v3sqd.eu-central-1.aws.neon.tech/auth?sslmode=require"
     result_parse = urlparse(connection_url)
     conn_params = {
         'dbname': result_parse.path[1:],
@@ -31,27 +28,26 @@ def confirmEmail(email: str):
     result = cursor.fetchone()
     cursor.close()
 
-    webhook_url = os.environ.get('CONFIRM_EMAIL_WEBHOOK_URL')
-    if webhook_url is not None:
-        webhook_url += "?token=" + result[0]
-        response = requests.get(webhook_url).status_code
-        return response == 200
+    if isDev:
+        webhook_url = "https://5qydu62omzfnovxnjgo6kcnvee0nvkui.lambda-url.us-east-1.on.aws/AuthService/emailConfirmationHttp"
     else:
-        print("CONFIRM_EMAIL_WEBHOOK_URL is not set.")
-        return False
+        webhook_url = "prod" #TODO: Add prod webhook
+
+    webhook_url += "?token=" + result[0]
+    response = requests.get(webhook_url).status_code
+    return response == 200
 
 
-def resetPassword(email: str):
+def resetPassword(email: str, isDev:bool):
     print("Resetting password for email " + email + "...")
-    verifyEnv = os.environ.get('RESET_PASSWORD_WEBHOOK_URL')
-    if verifyEnv is None:
-        print("RESET_PASSWORD_WEBHOOK_URL is not set.")
-        return None
-    webhook = os.environ.get('RESET_PASSWORD_WEBHOOK_URL') + "?email=" + email
+    if isDev:
+        webhook = "https://5qydu62omzfnovxnjgo6kcnvee0nvkui.lambda-url.us-east-1.on.aws/AuthService/resetPasswordHttp" + "?email=" + email
+    else:
+        webhook = "prod" #TODO: Add prod webhook
     if requests.get(webhook).status_code != 200:
         return None
 
-    connection_url = os.environ.get('AUTH_TEST_DB_URL')
+    connection_url = "postgresql://admin:hk0zB7xTJVDW@ep-rough-fog-a20v3sqd.eu-central-1.aws.neon.tech/auth?sslmode=require"
     result_parse = urlparse(connection_url)
     conn_params = {
         'dbname': result_parse.path[1:],
@@ -113,7 +109,7 @@ def test_react_auth():
         browser.close()
 
     # Test email confirmation
-    assert confirmEmail(gmail), "Email confirmation failed"
+    assert confirmEmail(gmail, "dev" in frontend_link[0]), "Email confirmation failed"
 
     # Test login page
     with sync_playwright() as p:
@@ -142,7 +138,7 @@ def test_react_auth():
         browser.close()
 
     # Test reset password
-    token = resetPassword(gmail)
+    token = resetPassword(gmail, "dev" in frontend_link[0])
     password = "P".join(random.choices(string.ascii_lowercase, k=6)) + "12!"
     assert token != None, "Reset password failed"
 
