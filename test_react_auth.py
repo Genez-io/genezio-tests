@@ -72,7 +72,7 @@ def test_react_auth():
     genezio_login(token)
 
     # Replace token in client project
-    replace_token_in_file("./projects/react-auth/client/src/main.tsx", auth_token)
+    replace_token_in_file("./client/src/main.tsx", auth_token)
 
     deploy_result = genezio_deploy(False)
 
