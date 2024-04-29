@@ -18,3 +18,4 @@ jobs:
       auth_test_db_url: ${{ secrets.AUTH_TEST_DB_URL_DEV }}
       confirm_email_webhook_url: ${{ secrets.AUTH_CONFIRMATION_EMAIL_WEBHOOK_DEV }}
       reset_password_webhook_url: ${{ secrets.AUTH_RESET_PASSWORD_WEBHOOK_DEV }}
+      auth_token: ${{ secrets.AUTH_TOKEN_DEV }}

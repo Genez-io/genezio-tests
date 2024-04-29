@@ -25,6 +25,9 @@ on:
       auth_test_db_url:
         description: "Auth db for auth test"
         required: true
+      auth_token:
+        description: "Auth token for auth test"
+        required: true
       confirm_email_webhook_url:
         description: "Confirm email webhook for auth test"
         required: true
@@ -147,6 +150,7 @@ jobs:
         env:
           GENEZIO_TOKEN: ${{ secrets.genezio_token }}
           AUTH_TEST_DB_URL: ${{ secrets.auth_test_db_url }}
+          AUTH_TOKEN: ${{ secrets.auth_token }}
           AUTH_CONFIRMATION_EMAIL_WEBHOOK: ${{ secrets.confirm_email_webhook_url }}
           AUTH_RESET_PASSWORD_WEBHOOK: ${{ secrets.reset_password_webhook_url }}
       - run: python ${{ matrix.tests[1] }}
