@@ -182,7 +182,6 @@ def replace_token_in_file(file_path, token):
     with fileinput.FileInput(file_path, inplace=True) as file:
         for line in file:
             print(line.replace('<replace-with-token>', token), end='')
-            break
 
 if __name__ == '__main__':
     test_react_auth()

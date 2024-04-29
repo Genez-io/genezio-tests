@@ -15,7 +15,7 @@ frontend:
   scripts:
     deploy:
       - playwright install
-      - npm install @genezio-sdk/${{projectName}}
+      - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
       - npm install
       - npm run build
   subdomain: amber-wide-ant
