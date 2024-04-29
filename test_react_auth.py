@@ -16,7 +16,6 @@ def confirmEmail(email: str):
     print("Confirming email " + email + "...")
     connection_url = os.environ.get('AUTH_TEST_DB_URL')
     confirmation_webhook_url = os.environ.get('AUTH_CONFIRMATION_EMAIL_WEBHOOK')
-
     result_parse = urlparse(connection_url)
     conn_params = {
         'dbname': result_parse.path[1:],
@@ -38,7 +37,6 @@ def confirmEmail(email: str):
 
 def resetPassword(email: str):
     print("Resetting password for email " + email + "...")
-
     reset_password_webhook_url = os.environ.get('AUTH_RESET_PASSWORD_WEBHOOK') + "?email=" + email
 
     if requests.get(reset_password_webhook_url).status_code != 200:
