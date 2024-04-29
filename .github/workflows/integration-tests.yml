@@ -46,13 +46,13 @@ jobs:
       matrix:
         tests: [
             [
-              test_react_auth.py,
+              test_react_auth.py, # 2m 1s
               test_typescript_flutter_sdk.py, # 54s
               test_dart_typescript_sdk.py, # 2m 42s
-              test_collaboration.py,
+              test_collaboration.py, # 29s
             ],
             [
-              test_genezio_create.py,
+              test_genezio_create.py, # 10m 21s
               test_lambda_handler_errors.py, # 30s
               test_dart.py, # 1m 16s
               test_todo_list_ts.py, # 1m 44s
@@ -80,10 +80,9 @@ jobs:
             ],
             [
 #              test_runtime_cron.py, # Crons do not have the expected behaviour after migration.
-
-              test_runtime_webhooks.py,
-              test_runtime_hello.py,
-              test_runtime_todo_list.py,
+              test_runtime_webhooks.py, # 31s
+              test_runtime_hello.py, # 29s
+              test_runtime_todo_list.py, #
               test_runtime_binary_dependency.py,
             ],
           ]
