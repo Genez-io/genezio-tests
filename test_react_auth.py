@@ -12,7 +12,7 @@ import string
 import psycopg2
 
 
-def confirmEmail(email: str, isDev:bool):
+def confirmEmail(email: str):
     print("Confirming email " + email + "...")
     connection_url = os.environ.get('AUTH_TEST_DB_URL')
     confirmation_webhook_url = os.environ.get('AUTH_CONFIRMATION_EMAIL_WEBHOOK')
@@ -36,7 +36,7 @@ def confirmEmail(email: str, isDev:bool):
     return response == 200
 
 
-def resetPassword(email: str, isDev:bool):
+def resetPassword(email: str):
     print("Resetting password for email " + email + "...")
 
     reset_password_webhook_url = os.environ.get('AUTH_RESET_PASSWORD_WEBHOOK') + "?email=" + email
@@ -110,7 +110,7 @@ def test_react_auth():
         browser.close()
 
     # Test email confirmation
-    assert confirmEmail(gmail, "dev" in frontend_link[0]), "Email confirmation failed"
+    assert confirmEmail(gmail), "Email confirmation failed"
 
     # Test login page
     with sync_playwright() as p:
@@ -139,7 +139,7 @@ def test_react_auth():
         browser.close()
 
     # Test reset password
-    token = resetPassword(gmail, "dev" in frontend_link[0])
+    token = resetPassword(gmail)
     password = "P".join(random.choices(string.ascii_lowercase, k=6)) + "12!"
     assert token != None, "Reset password failed"
 
