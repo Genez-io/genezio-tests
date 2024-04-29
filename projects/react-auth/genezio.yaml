@@ -14,7 +14,8 @@ frontend:
   publish: dist
   scripts:
     deploy:
+      - playwright install
+      - npm install @genezio-sdk/${{projectName}}
       - npm install
-      - npm install @genezio-sdk/genezio-auth-tutorial
       - npm run build
   subdomain: amber-wide-ant

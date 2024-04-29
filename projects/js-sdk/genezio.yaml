@@ -11,4 +11,6 @@ backend:
 frontend:
     path: ./client
     scripts:
-        deploy: npm install @genezio-sdk/javascript-sdk-example
+      deploy:
+        - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
+        - npm install

@@ -25,6 +25,9 @@ on:
       auth_test_db_url:
         description: "Auth db for auth test"
         required: true
+      auth_token:
+        description: "Auth token for auth test"
+        required: true
       confirm_email_webhook_url:
         description: "Confirm email webhook for auth test"
         required: true
@@ -37,16 +40,19 @@ jobs:
     runs-on: ${{ inputs.os }}
     env:
       GENEZIO_NO_TELEMETRY: '1'
+      DISABLE_AB_TESTING: true
     strategy:
       fail-fast: false
       matrix:
         tests: [
             [
-              # test_react_auth.py,
+              test_react_auth.py,
               test_typescript_flutter_sdk.py, # 54s
               test_dart_typescript_sdk.py, # 2m 42s
+              test_collaboration.py,
             ],
             [
+              test_genezio_create.py,
               test_lambda_handler_errors.py, # 30s
               test_dart.py, # 1m 16s
               test_todo_list_ts.py, # 1m 44s
@@ -74,6 +80,7 @@ jobs:
             ],
             [
 #              test_runtime_cron.py, # Crons do not have the expected behaviour after migration.
+
               test_runtime_webhooks.py,
               test_runtime_hello.py,
               test_runtime_todo_list.py,
@@ -144,8 +151,9 @@ jobs:
         env:
           GENEZIO_TOKEN: ${{ secrets.genezio_token }}
           AUTH_TEST_DB_URL: ${{ secrets.auth_test_db_url }}
-          CONFIRM_EMAIL_WEBHOOK_URL: ${{ secrets.confirm_email_webhook_url }}
-          RESET_PASSWORD_WEBHOOK_URL: ${{ secrets.reset_password_webhook_url }}
+          AUTH_TOKEN: ${{ secrets.auth_token }}
+          AUTH_CONFIRMATION_EMAIL_WEBHOOK: ${{ secrets.confirm_email_webhook_url }}
+          AUTH_RESET_PASSWORD_WEBHOOK: ${{ secrets.reset_password_webhook_url }}
       - run: python ${{ matrix.tests[1] }}
         if: matrix.tests[1] != null
         env:

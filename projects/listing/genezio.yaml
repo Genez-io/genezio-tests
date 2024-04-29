@@ -7,7 +7,7 @@ backend:
         name: js
         runtime: nodejs18.x
         packageManager: npm
-    cloudProvider: capybaraLinux
+    cloudProvider: genezio
     scripts:
         deploy: npm install
         local: npm install

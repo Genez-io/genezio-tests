@@ -16,4 +16,6 @@ frontend:
     language: ts
     publish: ./build
     scripts:
-        deploy: npm install
+      deploy:
+        - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
+        - npm install

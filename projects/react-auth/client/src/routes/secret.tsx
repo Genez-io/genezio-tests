@@ -21,7 +21,8 @@ const SecretView: React.FC = () => {
 
         AuthService.getInstance().userInfo().then((user) => {
             setName(user.name!);
-            setEmail(user.email);
+            if (user.email)
+                setEmail(user.email);
         }).catch((error) => {
             console.error(error);
         });

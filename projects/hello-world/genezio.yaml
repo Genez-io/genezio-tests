@@ -15,4 +15,6 @@ frontend:
     path: ./client
     language: js
     scripts:
-        deploy: npm install @genezio-sdk/hello-world
+      deploy:
+        - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
+        - npm install

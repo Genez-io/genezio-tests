@@ -31,7 +31,7 @@ class DeployResult:
 
 def genezio_deploy(deploy_frontend, with_config="./genezio.yaml", args=[]):
     genezio_deploy_args = ['genezio', 'deploy', '--config', with_config]
-
+    
     if (deploy_frontend == True):
         genezio_deploy_args.append("--frontend")
     genezio_deploy_args.append("--logLevel")
