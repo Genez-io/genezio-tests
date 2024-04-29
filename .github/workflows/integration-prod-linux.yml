@@ -13,8 +13,9 @@ jobs:
       os: ubuntu-latest
       genezio_tests_branch: "main"
     secrets:
-      genezio_token: ${{ secrets.GENEZIO_TOKEN_PROD }}
+      genezio_token: ${{ secrets.GENEZIO_TOKEN_DEV }}
       slack_token: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
-      auth_test_db_url: ${{ secrets.AUTH_TEST_DB_URL }}
-      confirm_email_webhook_url: ${{ secrets.CONFIRM_EMAIL_WEBHOOK_URL }}
-      reset_password_webhook_url: ${{ secrets.RESET_PASSWORD_WEBHOOK_URL }}
+      auth_test_db_url: ${{ secrets.AUTH_TEST_DB_URL_PROD }}
+      confirm_email_webhook_url: ${{ secrets.AUTH_CONFIRMATION_EMAIL_WEBHOOK_PROD }}
+      reset_password_webhook_url: ${{ secrets.AUTH_RESET_PASSWORD_WEBHOOK_PROD }}
+      auth_token: ${{ secrets.AUTH_TOKEN_PROD }}
