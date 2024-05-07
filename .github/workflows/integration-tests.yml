@@ -88,29 +88,29 @@ jobs:
           ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ inputs.genezio_tests_branch }}
       - name: Set up Dart
         uses: dart-lang/setup-dart@v1
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.9"
           cache: "pip"
       - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v4
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: "Genez-io/genezio"
           ref: ${{ inputs.genezio_branch }}
           path: genezio
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         id: node
         with:
-          node-version: 18
+          node-version: 20
       - name: Get node_modules cache
-        uses: actions/cache@v3.0.2
+        uses: actions/cache@v4
         id: node_modules
         with:
           path: |
@@ -182,7 +182,7 @@ jobs:
         if: needs.test.result == 'success'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.slack_token }}
-        uses: voxmedia/github-action-slack-notify-build@v1
+        uses: voxmedia/github-action-slack-notify-build@v1.6.0
         with:
           channel_id: C04QR0X8CQ2
           status: SUCCESS
@@ -191,7 +191,7 @@ jobs:
         if: needs.test.result == 'failure'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.slack_token }}
-        uses: voxmedia/github-action-slack-notify-build@v1
+        uses: voxmedia/github-action-slack-notify-build@v1.6.0
         with:
           channel_id: C04QR0X8CQ2
           status: FAILED
