@@ -7,7 +7,7 @@ backend:
     name: js
     runtime: nodejs20.x
     packageManager: npm
-  cloudProvider: capybaraLinuxg
+  cloudProvider: capybaraLinux
   scripts:
     deploy: npm install
     local: npm install
