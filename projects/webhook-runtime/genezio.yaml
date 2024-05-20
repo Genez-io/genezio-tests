@@ -5,9 +5,9 @@ backend:
   path: ./server
   language:
     name: js
-    runtime: nodejs18.x
+    runtime: nodejs20.x
     packageManager: npm
-  cloudProvider: capybaraLinux
+  cloudProvider: capybaraLinuxg
   scripts:
     deploy: npm install
     local: npm install

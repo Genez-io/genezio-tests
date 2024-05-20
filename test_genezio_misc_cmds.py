@@ -11,7 +11,7 @@ backend:
   path: .
   language:
     name: ts
-    runtime: nodejs18.x
+    runtime: nodejs20.x
     packageManager: npm
   cloudProvider: genezio
 """
