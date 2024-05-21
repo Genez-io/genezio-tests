@@ -17,3 +17,5 @@ frontend:
   language: js
   scripts:
     deploy: npm install
+  sdk:
+    language: js
