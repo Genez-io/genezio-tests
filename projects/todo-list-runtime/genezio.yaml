@@ -16,6 +16,5 @@ frontend:
     language: js
     scripts:
       deploy:
+        - npm add @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
         - npm install
-    sdk:
-      language: js
