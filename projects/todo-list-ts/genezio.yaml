@@ -13,9 +13,10 @@ backend:
         local: npm install
 frontend:
     path: ./client
-    language: ts
+    sdk:
+        language: ts
     publish: ./build
     scripts:
-      deploy:
-        - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
-        - npm install
+        deploy:
+            - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
+            - npm install
