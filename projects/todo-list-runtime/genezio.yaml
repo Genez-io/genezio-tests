@@ -5,7 +5,7 @@ backend:
     path: ./server
     language:
         name: js
-        runtime: nodejs18.x
+        runtime: nodejs20.x
         packageManager: npm
     cloudProvider: capybaraLinux
     scripts:
@@ -16,5 +16,5 @@ frontend:
     language: js
     scripts:
       deploy:
-        - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
+        - npm add @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
         - npm install

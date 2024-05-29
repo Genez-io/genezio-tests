@@ -5,7 +5,7 @@ backend:
     path: ./
     language:
         name: dart
-        runtime: nodejs18.x
+        runtime: nodejs20.x
         packageManager: npm
     cloudProvider: genezio
     classes:
