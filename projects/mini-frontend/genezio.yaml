@@ -10,7 +10,8 @@ backend:
     cloudProvider: genezio
 frontend:
     path: ./client
-    language: ts
+    sdk:
+        language: ts
     # Do not change the subdomain
     subdomain: mnopqr-genezio-test-frontend
     publish: ./build
