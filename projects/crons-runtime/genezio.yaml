@@ -13,9 +13,8 @@ backend:
         local: npm install
 frontend:
     path: ./client
-    language: js
-    scripts:
-      deploy:
-        - npm install
     sdk:
-      language: js
+        language: js
+    scripts:
+        deploy:
+            - npm install

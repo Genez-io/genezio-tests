@@ -10,8 +10,9 @@ backend:
     cloudProvider: genezio
 frontend:
     path: ./client
-    language: js
+    sdk:
+        language: js
     scripts:
-      deploy:
-        - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
-        - npm install
+        deploy:
+            - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
+            - npm install

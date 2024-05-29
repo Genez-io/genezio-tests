@@ -16,6 +16,7 @@ backend:
           type: jsonrpc
 frontend:
     path: ../client
-    language: ts
+    sdk:
+        language: ts
     scripts:
         deploy: npm install @genezio-sdk/test-dart-typescript-sdk
