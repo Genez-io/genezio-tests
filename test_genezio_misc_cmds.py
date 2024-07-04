@@ -54,7 +54,7 @@ def test_genezio_misc_cmds():
 
     returnCode, stderr, _ = genezio_add_class("test-jsonrpc.js", None)
 
-    assert "Class already exists." in _, "genezio add duplicated class returned wrong output: " + stderr[:-1]
+    assert "Class already exists." in stderr, "genezio add duplicated class returned wrong output: " + stderr[:-1]
 
     # cleanup
     os.remove("./test-jsonrpc.js")
