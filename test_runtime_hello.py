@@ -17,6 +17,7 @@ def test_runtime_linux_hello():
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
+
     os.chdir("./client/")
 
     status, output = run_node_script("test-hello-sdk.cjs")
