@@ -176,7 +176,7 @@ def genezio_local(args=[]):
     return process
 
 
-def genezio_create_project(project_type, name, region, backend=None, frontend=None):
+def genezio_create(project_type, name, region, backend=None, frontend=None):
     command_args = ['genezio', 'create', project_type, '--name', name, '--region', region]
 
     if project_type == 'fullstack':

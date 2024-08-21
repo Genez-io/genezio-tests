@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete, genezio_create_project
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete, genezio_create
 from utils import kill_process
 
 
@@ -108,7 +108,7 @@ def create_project(project):
     :raises ValueError: If required parameters are missing.
     """
     if project["type"] == "fullstack":
-        create_result = genezio_create_project(
+        create_result = genezio_create(
             project_type=project["type"],
             name=project["name"],
             region=project["region"],
@@ -116,14 +116,14 @@ def create_project(project):
             frontend=project["frontend"]
         )
     elif project["type"] == "backend":
-        create_result = genezio_create_project(
+        create_result = genezio_create(
             project_type=project["type"],
             name=project["name"],
             region=project["region"],
             backend=project["backend"]
         )
     else:
-        create_result = genezio_create_project(
+        create_result = genezio_create(
             project_type=project["type"],
             name=project["name"],
             region=project["region"]
