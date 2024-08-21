@@ -31,7 +31,7 @@ class DeployResult:
 
 def genezio_deploy(deploy_frontend, with_config="./genezio.yaml", args=[]):
     genezio_deploy_args = ['genezio', 'deploy', '--config', with_config]
-    
+
     if (deploy_frontend == True):
         genezio_deploy_args.append("--frontend")
     genezio_deploy_args.append("--logLevel")
@@ -121,7 +121,7 @@ def genezio_account():
     genezio_account_args = ['genezio', 'account']
 
     genezio_account_command = ' '.join(genezio_account_args) if use_shell else genezio_account_args
-    process = subprocess.run(genezio_account_command, capture_output=True,  text=True, shell=use_shell, encoding='utf-8')
+    process = subprocess.run(genezio_account_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
     return process.returncode, process.stderr, process.stdout
 
 
@@ -176,10 +176,27 @@ def genezio_local(args=[]):
     return process
 
 
-def genezio_create(name_value, region_value, backend_value, frontend_value):
-    genezio_create_args = ['genezio', 'create', "fullstack", '--name', name_value, '--region', region_value,
-                           '--backend', backend_value, '--frontend', frontend_value]
-    genezio_create_command = ' '.join(genezio_create_args) if use_shell else genezio_create_args
-    process = subprocess.run(genezio_create_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
+def genezio_create_project(project_type, name, region, backend=None, frontend=None):
+    command_args = ['genezio', 'create', project_type, '--name', name, '--region', region]
 
-    return process.returncode
+    if project_type == 'fullstack':
+        if not backend or not frontend:
+            raise ValueError("Both 'backend' and 'frontend' must be specified for fullstack projects.")
+        command_args.extend(['--backend', backend, '--frontend', frontend])
+    elif project_type == 'backend':
+        command_args.extend(['--backend', backend])
+    elif project_type == 'nextjs':
+        command_args.append('--default')
+    elif project_type in ['expressjs', 'nitrojs', 'serverless']:
+        pass
+    else:
+        raise ValueError(f"Unsupported project type: {project_type}")
+
+    command = ' '.join(command_args) if use_shell else command_args
+    result = subprocess.run(command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
+
+    if result.returncode != 0:
+        raise RuntimeError(f"Command failed with return code {result.returncode}: {result.stderr.strip()}")
+
+    return result.returncode
+
