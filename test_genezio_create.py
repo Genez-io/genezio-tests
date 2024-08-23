@@ -50,7 +50,7 @@ def generate_project_variants():
                     "backend": backend,
                     "test_local": True
                 })
-        elif project_type == "nextjs":
+        elif project_type == "nextjs" or project_type == "nitrojs":
             projects.append({
                 "type": project_type,
                 "name": f"test-{project_type}",
