@@ -140,7 +140,7 @@ def test_parallel_calls():
     genezio_login(token)
     os.chdir("./projects/express-parallel-calls-template/")
     deploy_result = genezio_deploy(False) 
-    base_url = deploy_result.web_urls[0] + "/hello/";
+    base_url = deploy_result.web_urls[0] + "/hello/"
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned empty project url"  
 
@@ -150,8 +150,8 @@ def test_parallel_calls():
     print("FUNCTION WITH FAILS")
     call_function_with_fails(base_url=base_url)
 
-    
-    run_functions_in_parallel(base_url=base_url);
+
+    run_functions_in_parallel(base_url=base_url)
     os.chdir("../")
 
     print("Prepared to delete project...")
