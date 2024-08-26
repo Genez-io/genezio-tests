@@ -1,10 +1,9 @@
 import requests
 import time
-import asyncio
 import random
 import os
 import concurrent.futures
-from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete
+from genezio import genezio_deploy, genezio_login, genezio_delete
 from dotenv import load_dotenv
 
 
@@ -12,17 +11,14 @@ load_dotenv()
 
 base_url = os.getenv("BASE_FUNCTION_URL")
 def test_parallel_calls():
-    # print("Starting parallel calls test...")
-    # token = os.environ.get('GENEZIO_TOKEN')
-    # genezio_login(token)
-    # os.chdir("./projects/express-test-template/")
-    # deploy_result = genezio_deploy(False) 
-    # print(deploy_result.stdout_all_links[0][0])
-    # print("mama")
-    # base_url = deploy_result.stdout_all_links[0][0] + "/hello/";
-    base_url = "https://2a60caac-bcc5-4a96-b26c-622835db548f.dev-fkt.cloud.genez.io/hello/"
-    # assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
-    # assert deploy_result.project_url != "", "genezio deploy returned empty project url"
+    print("Starting parallel calls test...")
+    token = os.environ.get('GENEZIO_TOKEN')
+    genezio_login(token)
+    os.chdir("./projects/express-test-template/")
+    deploy_result = genezio_deploy(False) 
+    base_url = deploy_result.stdout_all_links[0][0] + "/hello/";
+    assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
+    assert deploy_result.project_url != "", "genezio deploy returned empty project url"
 
     def call_function():
         def send_request(random_number):
@@ -157,8 +153,10 @@ def test_parallel_calls():
          
 
     run_functions_in_parallel();
-    # call_function_with_some_js_errors()
-    # call_function_with_timeouts()
+    os.chdir("../")
+
+    print("Prepared to delete project...")
+    genezio_delete(deploy_result.project_id)
     print("ALL TESTS PASSED")      
 
 if __name__ == '__main__':
