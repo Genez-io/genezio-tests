@@ -42,7 +42,7 @@ def genezio_deploy(deploy_frontend, with_config="./genezio.yaml", args=[]):
 
     genezio_deploy_command = genezio_deploy_args if not use_shell else ' '.join(genezio_deploy_args)
     process = subprocess.run(genezio_deploy_command, text=True, shell=use_shell,
-                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')                      
 
     if process.returncode != 0:
         print(process.stderr)
