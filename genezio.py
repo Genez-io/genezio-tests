@@ -24,7 +24,6 @@ class DeployResult:
         links = [x for x in links if "genezio.com/docs" not in x[0]]
 
         if (len(links) > 0):
-            print(links)
             self.web_urls = [x[0] for x in links[:-1]]
             self.project_url = links[-1][0]
             self.project_id = self.project_url.split("/")[-1]
@@ -43,8 +42,7 @@ def genezio_deploy(deploy_frontend, with_config="./genezio.yaml", args=[]):
 
     genezio_deploy_command = genezio_deploy_args if not use_shell else ' '.join(genezio_deploy_args)
     process = subprocess.run(genezio_deploy_command, text=True, shell=use_shell,
-                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
-    print(process.stdout)                         
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')                      
 
     if process.returncode != 0:
         print(process.stderr)
