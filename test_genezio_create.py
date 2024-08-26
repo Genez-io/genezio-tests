@@ -1,59 +1,150 @@
 #!/usr/bin/python3
 
 import os
-from genezio import genezio_deploy, genezio_login, genezio_local, genezio_create, genezio_delete
+from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete, genezio_create
 from utils import kill_process
 
 
-def test_genezio_create():
-    print("Starting genezio create test...")
+def initialize_test_environment():
+    """
+    Set up the environment for testing, including changing to the appropriate directory and logging in to genezio.
+    """
     token = os.environ.get('GENEZIO_TOKEN')
 
-    os.chdir(os.path.join(os.getcwd(), "projects"))
-
-    if not os.path.exists("create"):
-        os.makedirs("create")
-
-    os.chdir("create")
+    project_root = os.path.join(os.getcwd(), "projects", "create")
+    os.makedirs(project_root, exist_ok=True)
+    os.chdir(project_root)
 
     genezio_login(token)
+    return project_root
 
-    backendVariants = ["ts", "js"]
-    frontendVariants = ["react-ts", "react-js", "vue-ts", "vue-js", "svelte-ts", "svelte-js"]
 
-    to_create = []
+def generate_project_variants():
+    """
+    Generate a list of all project configurations to be tested.
+    """
+    backend_variants = ["ts", "js"]
+    frontend_variants = ["react-ts", "react-js", "vue-ts", "vue-js", "svelte-ts", "svelte-js"]
+    project_types = ["fullstack", "backend", "nextjs", "expressjs", "serverless"]
 
-    for backend in backendVariants:
-        for frontend in frontendVariants:
-            to_create.append({"name": "test-" + backend + "-" + frontend, "region": "us-east-1", "backend": backend,
-                              "frontend": frontend})
+    projects = []
 
-    for project in to_create:
+    for project_type in project_types:
+        if project_type == "fullstack":
+            for backend in backend_variants:
+                for frontend in frontend_variants:
+                    projects.append({
+                        "type": project_type,
+                        "name": f"test-{project_type}-{backend}-{frontend}",
+                        "region": "us-east-1",
+                        "backend": backend,
+                        "frontend": frontend,
+                        "test_local": True
+                    })
+        elif project_type == "backend":
+            for backend in backend_variants:
+                projects.append({
+                    "type": project_type,
+                    "name": f"test-{project_type}-{backend}",
+                    "region": "us-east-1",
+                    "backend": backend,
+                    "test_local": True
+                })
+        elif project_type == "nextjs" or project_type == "nitrojs":
+            projects.append({
+                "type": project_type,
+                "name": f"test-{project_type}",
+                "region": "us-east-1",
+                "test_local": False
+            })
+        else:
+            projects.append({
+                "type": project_type,
+                "name": f"test-{project_type}",
+                "region": "us-east-1",
+                "test_local": True
+            })
 
-        if os.path.exists(project["name"]):
-            os.chmod(project["name"], 0o777)
-            os.remove(project["name"])
-        print("Creating project " + project["name"] + "...")
-        create_result = genezio_create(project["name"], project["region"], project["backend"], project["frontend"])
-        assert create_result == 0, "genezio create returned non-zero exit code"
+    return projects
 
-        os.chdir(project["name"])
+def create_and_test_project(project):
+    """
+    Create, deploy, test locally, and then delete the project.
+
+    :param project: A dictionary containing the project configuration.
+    """
+    project_name = project["name"]
+
+    if os.path.exists(project_name):
+        os.chmod(project_name, 0o777)
+        os.remove(project_name)
+
+    print(f"Creating project {project_name}...")
+
+    try:
+        create_project(project)
+        os.chdir(project_name)
         deploy_result = genezio_deploy(False)
 
-        assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
-        assert deploy_result.project_url != "", "genezio deploy returned empty project url"
+        assert deploy_result.return_code == 0, f"genezio deploy failed for {project_name}"
+        assert deploy_result.project_url, f"genezio deploy returned empty project URL for {project_name}"
 
-        process_local = genezio_local()
-        assert process_local is not None, "genezio local returned None"
+        if project["test_local"]:
+            process_local = genezio_local()
+            assert process_local, f"genezio local failed for {project_name}"
+            kill_process(process_local)
 
-        kill_process(process_local)
-        print("Prepared to delete project " + project["name"] + "...")
+        print(f"Deleting project {project_name}...")
         genezio_delete(deploy_result.project_id)
-        print(project["name"] + " test passed!")
-
+    finally:
         os.chdir("..")
 
-    print("Test passed!")
+
+def create_project(project):
+    """
+    Create a genezio project based on the provided configuration.
+
+    :param project: A dictionary containing the project configuration.
+    :raises ValueError: If required parameters are missing.
+    """
+    if project["type"] == "fullstack":
+        create_result = genezio_create(
+            project_type=project["type"],
+            name=project["name"],
+            region=project["region"],
+            backend=project["backend"],
+            frontend=project["frontend"]
+        )
+    elif project["type"] == "backend":
+        create_result = genezio_create(
+            project_type=project["type"],
+            name=project["name"],
+            region=project["region"],
+            backend=project["backend"]
+        )
+    else:
+        create_result = genezio_create(
+            project_type=project["type"],
+            name=project["name"],
+            region=project["region"]
+        )
+
+    assert create_result == 0, f"genezio create {project['type']} failed for {project['name']}"
+
+
+def test_genezio_create():
+    """
+    Main function to test genezio project creation, deployment, local testing, and deletion.
+    """
+    print("Starting genezio create test...")
+    project_root = initialize_test_environment()
+    projects_to_test = generate_project_variants()
+
+    for project in projects_to_test:
+        create_and_test_project(project)
+
+    print("All tests passed!")
+
 
 if __name__ == '__main__':
     test_genezio_create()
