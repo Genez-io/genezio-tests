@@ -1,0 +1,14 @@
+name: express-test-template
+region: eu-central-1
+yamlVersion: 2
+backend:
+  path: .
+  language:
+    name: js
+  functions:
+    - name: app
+      path: .
+      entry: src/app.js
+      handler: handler
+  scripts:
+    deploy: npm install
