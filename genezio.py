@@ -26,7 +26,7 @@ class DeployResult:
         if (len(links) > 0):
             self.web_urls = [x[0] for x in links[:-1]]
             self.project_url = links[-1][0]
-            self.project_id = self.project_url.split("/")[-1]
+            self.project_id = self.project_url.split("/")[-2]
 
 
 def genezio_deploy(deploy_frontend, with_config="./genezio.yaml", args=[]):
@@ -42,7 +42,7 @@ def genezio_deploy(deploy_frontend, with_config="./genezio.yaml", args=[]):
 
     genezio_deploy_command = genezio_deploy_args if not use_shell else ' '.join(genezio_deploy_args)
     process = subprocess.run(genezio_deploy_command, text=True, shell=use_shell,
-                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')                      
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
 
     if process.returncode != 0:
         print(process.stderr)
@@ -105,7 +105,6 @@ def genezio_delete(project_id):
     process = subprocess.run(genezio_delete_command, capture_output=True, text=True, shell=use_shell, encoding='utf-8')
 
     return process.returncode, process.stderr, process.stdout
-
 
 def genezio_generate_sdk(language):
     genezio_generate_sdk_args = ['genezio', 'generateSdk', "-lang", language]
