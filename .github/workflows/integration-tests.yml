@@ -46,7 +46,7 @@ jobs:
     env:
       GENEZIO_NO_TELEMETRY: '1'
       DISABLE_AB_TESTING: true
-      GENEZIO_BACKEND: ${{ inputs.genezio_backend }}
+      GENEZIO_BACKEND_ENDPOINT: ${{ inputs.genezio_backend }}
     strategy:
       fail-fast: false
       matrix:
