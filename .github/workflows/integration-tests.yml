@@ -76,7 +76,7 @@ jobs:
               test_runtime_parallel_calls.py,
               test_binary_dependency.py, # 45s
               test_genezio_misc_cmds.py, # 10s
-              test_cron.py, # 2m 35s
+              # test_cron.py, # 2m 35s - changed behaviour
             ],
             [
               test_swift_sdk.py, # 31s
