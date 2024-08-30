@@ -38,7 +38,7 @@ def test_ts_sdk_dev_stage():
 
     check_output()
 
-    process = genezio_local()
+    process = genezio_local(args=["--stage", "dev"])
 
     assert process is not None, "genezio local returned None"
 
