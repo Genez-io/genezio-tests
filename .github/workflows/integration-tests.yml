@@ -52,8 +52,8 @@ jobs:
       matrix:
         tests: [
             [
-              test_services_configuration.py, # NaN
               test_react_auth.py, # 2m 1s
+              test_services_configuration.py, # 23s
               test_typescript_flutter_sdk.py, # 54s
               test_dart_typescript_sdk.py, # 2m 42s
               test_collaboration.py, # 29s
