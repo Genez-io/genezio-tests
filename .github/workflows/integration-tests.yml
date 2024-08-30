@@ -55,13 +55,13 @@ jobs:
               test_react_auth.py, # 2m 1s
               test_services_configuration.py, # 23s
               test_typescript_flutter_sdk.py, # 54s
-              test_dart_typescript_sdk.py, # 2m 42s
+              # test_dart_typescript_sdk.py, # 2m 42s - dart backend is not supported currently
               test_collaboration.py, # 29s
             ],
             [
               test_genezio_create.py, # 10m 21s
               test_lambda_handler_errors.py, # 30s
-              # test_dart.py, # 1m 16s - dart is not supported currently
+              # test_dart.py, # 1m 16s - dart backend is not supported currently
               test_todo_list_ts.py, # 1m 44s
             ],
             [
