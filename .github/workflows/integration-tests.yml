@@ -15,6 +15,10 @@ on:
         description: "Branch to run tests on."
         required: true
         type: string
+      genezio_backend:
+        description: "Backend URL to run tests on."
+        required: true
+        type: string
     secrets:
       genezio_token:
         description: "Genezio token for the specified environment"
@@ -35,12 +39,14 @@ on:
         description: "Reset password webhook for auth test"
         required: true
 
+
 jobs:
   test:
     runs-on: ${{ inputs.os }}
     env:
       GENEZIO_NO_TELEMETRY: '1'
       DISABLE_AB_TESTING: true
+      GENEZIO_BACKEND: ${{ inputs.genezio_backend }}
     strategy:
       fail-fast: false
       matrix:

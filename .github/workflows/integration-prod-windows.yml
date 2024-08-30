@@ -12,6 +12,7 @@ jobs:
       genezio_branch: "main"
       os: windows-latest
       genezio_tests_branch: "main"
+      genezio_backend: "https://api.genez.io"
     secrets:
       genezio_token: ${{ secrets.GENEZIO_TOKEN_PROD }}
       slack_token: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
