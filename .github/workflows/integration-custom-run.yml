@@ -20,7 +20,10 @@ on:
         required: true
         type: string
         default: "main"
-
+      genezio_backend:
+        description: "Backend URL to run tests on."
+        required: true
+        type: string
 jobs:
   integration-tests:
     uses: ./.github/workflows/integration-tests.yml
@@ -28,6 +31,8 @@ jobs:
       genezio_branch: ${{ inputs.genezio_branch }}
       os: ${{ inputs.os }}
       genezio_tests_branch: ${{ inputs.genezio_tests_branch }}
+      genezio_backend: ${{ inputs.genezio_backend }}
+
     secrets:
       genezio_token: ${{ secrets.GENEZIO_TOKEN_DEV }}
       slack_token: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
