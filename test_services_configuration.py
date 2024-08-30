@@ -43,7 +43,7 @@ def test_genezio_services():
 
     print("Test passed!")
 
-def get_database(name: str, token: str) -> str | None :
+def get_database(name: str, token: str):
     backend_endpoint = os.environ.get('GENEZIO_BACKEND_ENDPOINT')
     url = f"{backend_endpoint}/databases"
 
