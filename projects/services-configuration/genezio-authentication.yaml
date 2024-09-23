@@ -6,6 +6,7 @@ services:
     databases:
       - name: it-gnz-database
         region: us-east-1
+        type: postgres-neon
     authentication:
         database:
             name: it-gnz-database
