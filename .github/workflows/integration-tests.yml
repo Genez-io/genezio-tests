@@ -93,6 +93,7 @@ jobs:
               test_runtime_hello.py, # 29s
               test_runtime_todo_list.py, #
               test_runtime_binary_dependency.py,
+              test_runtime_react_auth.py,
             ],
           ]
     steps:
