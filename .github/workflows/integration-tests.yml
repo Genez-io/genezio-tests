@@ -58,6 +58,7 @@ jobs:
               # test_dart_typescript_sdk.py, # 2m 42s - dart backend is not supported currently
               test_collaboration.py, # 29s
               test_faas_python.py,
+              test_django_python.py,
               test_flask_python.py,
             ],
             [
