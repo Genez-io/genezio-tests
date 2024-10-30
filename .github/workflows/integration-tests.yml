@@ -59,6 +59,7 @@ jobs:
               test_collaboration.py, # 29s
               test_faas_python.py,
               test_django_python.py,
+              test_flask_python.py,
             ],
             [
               test_genezio_create.py, # 10m 21s
