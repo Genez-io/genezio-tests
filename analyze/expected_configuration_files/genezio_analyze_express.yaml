@@ -1,0 +1,17 @@
+name: ai-chatbot
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: js
+    functions:
+        - name: express
+          path: .
+          entry: index.mjs
+          type: httpServer
+    scripts:
+        deploy:
+            - npm install
+        local:
+            - npm install
