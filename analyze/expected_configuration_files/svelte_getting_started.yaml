@@ -1,0 +1,9 @@
+name: ai-chatbot
+region: us-east-1
+yamlVersion: 2
+nextjs:
+    packageManager: npm
+    path: .
+    scripts:
+        deploy:
+            - npm install

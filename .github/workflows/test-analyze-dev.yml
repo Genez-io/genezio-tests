@@ -1,0 +1,82 @@
+name: Integration Tests Reusable Workflow
+
+on:
+    schedule:
+      - cron: "0 0 * * *"
+    repository_dispatch:
+      types: [integration-test-analyze]
+    workflow_dispatch:
+      inputs:
+        genezio_tests_branch:
+          description: "Branch for genezio tests"
+          required: true
+          default: "dev"
+        genezio_branch:
+          description: "Branch for Genezio CLI"
+          required: true
+          default: "dev"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GENEZIO_NO_TELEMETRY: '1'
+      DISABLE_AB_TESTING: true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.genezio_tests_branch || 'dev' }}
+          path: genezio-tests
+      - name: Check genezio code
+        uses: actions/checkout@v4
+        with:
+          repository: "Genez-io/genezio"
+          ref: ${{ inputs.genezio_branch || 'dev' }}
+          path: genezio
+      - uses: actions/setup-node@v4
+        id: node
+        with:
+          node-version: 20
+      - name: Install genezio cli prod
+        working-directory: genezio
+        if: inputs.genezio_branch == 'main'
+        run: npm install && npm run install-locally
+      - name: Install genezio cli dev
+        working-directory: genezio
+        if: inputs.genezio_branch != 'main'
+        run: npm install && npm run install-locally-dev
+      - name: Set up Python
+        uses: actions/setup-python@v5
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v4
+        with:
+          path: genezio-tests/analyze/requirements.txt
+      - name: Run tests
+        working-directory: genezio-tests/analyze
+        run: |
+          python3 test_analyze.py
+
+  # notify:
+  #   if: always()
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   steps:
+  #     - name: Notify slack success
+  #       if: needs.test.result == 'success'
+  #       env:
+  #         SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+  #       uses: voxmedia/github-action-slack-notify-build@v1.6.0
+  #       with:
+  #         channel_id: C04QR0X8CQ2
+  #         status: SUCCESS
+  #         color: good
+  #     - name: Notify slack fail
+  #       if: needs.test.result == 'failure'
+  #       env:
+  #         SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+  #       uses: voxmedia/github-action-slack-notify-build@v1.6.0
+  #       with:
+  #         channel_id: C04QR0X8CQ2
+  #         status: FAILED
+  #         color: danger
