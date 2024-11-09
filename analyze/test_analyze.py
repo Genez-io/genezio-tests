@@ -52,23 +52,21 @@ repositories = [
         "test_name": "express_react_getting_started",
         "expected_stdout": ['{"frontend": ["vite"], "backend": ["serverless-http"]}'],
     },
-    # Bug 02: detects vite instead of svelte due to checks order
-    # {
-    #     "url": "https://github.com/Genez-io/svelte-getting-started",
-    #     "test_name": "svelte_getting_started",
-    #     "expected_stdout": ['{"frontend": ["svelte"]}'],
-    # },
+    {
+        "url": "https://github.com/Genez-io/svelte-getting-started",
+        "test_name": "svelte_getting_started",
+        "expected_stdout": ['{"frontend": ["svelte"]}'],
+    },
     {
         "url": "https://github.com/Genez-io/react-getting-started",
         "test_name": "react_getting_started",
         "expected_stdout": ['{"frontend": ["vite"]}'],
     },
-    # Bug 03: Throws an error which is throws the user in a hard to recover state
-    # {
-    #     "url": "https://github.com/andreia-oca/genezio-analyze-unimportable",
-    #     "test_name": "genezio_analyze_unimportable",
-    #     "expected_stdout": ['{"backend":["other"],"frontend":["other"]}'],
-    # },
+    {
+        "url": "https://github.com/andreia-oca/genezio-analyze-unimportable",
+        "test_name": "genezio_analyze_unimportable",
+        "expected_stdout": ['{"backend":["other"],"frontend":["other"]}'],
+    },
 ]
 
 def clone_repository(repo_url, target_dir):
@@ -109,6 +107,25 @@ def assert_stdout(result, expected_stdout):
 
 def compare_yaml_files(generated_yaml, expected_yaml):
     """Compares the generated genezio.yaml with the expected one, ignoring the `name` and `frontend.subdomain` fields."""
+    # Check if the expected YAML file is empty
+    with open(expected_yaml, 'r') as expected_file:
+        expected_data = yaml.safe_load(expected_file) or {}
+
+    # If expected YAML is empty, check if generated YAML is either empty or non-existent
+    if not expected_data:
+        if not os.path.exists(generated_yaml):
+            return  # Both are considered 'empty', so no further comparison is needed
+        with open(generated_yaml, 'r') as generated_file:
+            generated_data = yaml.safe_load(generated_file) or {}
+        if not generated_data:
+            return  # Both are empty, so no mismatch
+        else:
+            # If generated YAML is not empty, raise an assertion error
+            raise AssertionError("Expected genezio.yaml is empty, but generated genezio.yaml is not empty.")
+
+    if not os.path.exists(generated_yaml):
+        raise AssertionError("Generated genezio.yaml is not found or empty, but expected genezio.yaml is not empty.")
+
     with open(generated_yaml, 'r') as generated_file, open(expected_yaml, 'r') as expected_file:
         generated_data = yaml.safe_load(generated_file)
         expected_data = yaml.safe_load(expected_file)
