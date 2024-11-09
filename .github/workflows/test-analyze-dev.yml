@@ -1,4 +1,4 @@
-name: Integration Tests Reusable Workflow
+name: Test analyze
 
 on:
     schedule:
