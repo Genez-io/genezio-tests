@@ -1,0 +1,23 @@
+name: genezio-analyze-typesafe
+region: us-east-1
+yamlVersion: 2
+frontend:
+    path: client
+    publish: dist
+    scripts:
+        deploy:
+            - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
+            - npm install
+        build:
+            - npm run build
+    sdk:
+        language: ts
+backend:
+    path: server
+    language:
+        name: ts
+    scripts:
+        deploy:
+            - npm install
+        local:
+            - npm install

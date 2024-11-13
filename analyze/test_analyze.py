@@ -31,12 +31,11 @@ repositories = [
         "test_name": "genezio_analyze_express",
         "expected_stdout": ['{"backend":["express"]}'],
     },
-    # Bug 01: entry filename is hardcoded - improve `genezio analyze` to detect the entry file
-    # {
-    #     "url": "https://github.com/andreia-oca/genezio-analyze-fastify",
-    #     "test_name": "genezio_analyze_fastify",
-    #     "expected_stdout": ['{"backend":["fastify"]}'],
-    # },
+    {
+        "url": "https://github.com/andreia-oca/genezio-analyze-fastify",
+        "test_name": "genezio_analyze_fastify",
+        "expected_stdout": ['{"backend":["fastify"]}'],
+    },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-fullstack",
         "test_name": "genezio_analyze_fullstack",
@@ -66,6 +65,11 @@ repositories = [
         "url": "https://github.com/andreia-oca/genezio-analyze-unimportable",
         "test_name": "genezio_analyze_unimportable",
         "expected_stdout": ['{"backend":["other"],"frontend":["other"]}'],
+    },
+    {
+        "url": "https://github.com/andreia-oca/genezio-analyze-typesafe",
+        "test_name": "genezio_analyze_typesafe",
+        "expected_stdout": ['{"backend":["genezio-typesafe"],"frontend":["vite"]}'],
     },
 ]
 
