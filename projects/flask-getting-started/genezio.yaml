@@ -25,3 +25,4 @@ backend:
       entry: index.py
       # The type of the function.
       type: httpServer
+      port: 8080
