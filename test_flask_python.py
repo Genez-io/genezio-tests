@@ -5,6 +5,17 @@ import requests
 from genezio import genezio_deploy, genezio_login, genezio_delete, genezio_local
 import time
 
+def wait_for_server(url, max_retries=10, delay=2):
+    for i in range(max_retries):
+        try:
+            response = requests.get(url)
+            if response.status_code == 200:
+                return True
+        except requests.exceptions.ConnectionError:
+            print(f"Server not ready, attempt {i+1}/{max_retries}. Waiting {delay} seconds...")
+            time.sleep(delay)
+    return False
+
 def test_flask_python():
     print("Starting flask_python test...")
     token = os.environ.get('GENEZIO_TOKEN')
@@ -66,10 +77,10 @@ def test_flask_python():
         assert process != None, "genezio local returned None"
         print("Local server started", process)
 
-        time.sleep(2)
-
-        # Update URL for local testing
+        # Wait for server to be ready
         url = "http://localhost:8080"
+        assert wait_for_server(url), "Server failed to start after maximum retries"
+        print("Local server is ready")
 
         # Test home route locally
         response = requests.get(f'{url}/')
