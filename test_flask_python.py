@@ -78,7 +78,7 @@ def test_flask_python():
         print("Local server started", process)
 
         # Wait for server to be ready
-        url = "http://localhost:8080"
+        url = "http://localhost:8090"
         assert wait_for_server(url), "Server failed to start after maximum retries"
         print("Local server is ready")
 
