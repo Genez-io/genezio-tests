@@ -1,0 +1,13 @@
+name: websocket-test
+region: eu-central-1
+yamlVersion: 2
+backend:
+    path: .
+    language:
+        name: js
+    functions:
+        - name: hello
+          path: .
+          entry: hello.mjs
+          handler: handler
+          type: httpServer
