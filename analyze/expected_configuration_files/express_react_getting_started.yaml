@@ -1,0 +1,28 @@
+name: ai-chatbot
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: server
+    language:
+        name: js
+    functions:
+        - name: serverless
+          path: .
+          handler: handler
+          entry: server/app.mjs
+          type: aws
+    scripts:
+        deploy:
+            - npm install
+        local:
+            - npm install
+frontend:
+  environment:
+    VITE_API_URL_SERVERLESS: ${{ backend.functions.serverless.url }}
+  path: client
+  publish: dist
+  scripts:
+    build:
+     - npm run build
+    deploy:
+     - npm install

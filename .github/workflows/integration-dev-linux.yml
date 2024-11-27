@@ -12,6 +12,7 @@ jobs:
       genezio_branch: "dev"
       os: ubuntu-latest
       genezio_tests_branch: "dev"
+      genezio_backend: "https://dev.api.genez.io"
     secrets:
       genezio_token: ${{ secrets.GENEZIO_TOKEN_DEV }}
       slack_token: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}

@@ -1,0 +1,28 @@
+name: blue-structural-meerkat
+region: us-east-1
+yamlVersion: 2
+frontend:
+    path: client
+    publish: dist
+    scripts:
+        deploy:
+            - npm install
+        build:
+            - npm run build
+    environment:
+        VITE_API_URL_SERVERLESS: ${{ backend.functions.serverless.url }}
+backend:
+    path: express
+    language:
+        name: js
+    functions:
+        - name: serverless
+          path: .
+          handler: handler
+          entry: dist/app.js
+          type: aws
+    scripts:
+        deploy:
+            - npm install
+        local:
+            - npm install

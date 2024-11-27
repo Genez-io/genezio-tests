@@ -1,0 +1,16 @@
+name: services-configuration
+region: us-east-1
+yamlVersion: 2
+
+services:
+    email: true
+
+backend:
+    path: .
+    language:
+        name: js
+    functions:
+        - name: hello
+          path: .
+          entry: hello.mjs
+          handler: handler

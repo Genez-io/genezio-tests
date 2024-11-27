@@ -1,0 +1,19 @@
+name: services-configuration
+region: us-east-1
+yamlVersion: 2
+
+services:
+    databases:
+      - name: it-gnz-database
+        region: us-east-1
+        type: postgres-neon
+
+backend:
+    path: .
+    language:
+        name: js
+    functions:
+        - name: hello
+          path: .
+          entry: hello.mjs
+          handler: handler
