@@ -7,8 +7,7 @@ import time
 
 def test_fastapi_python():
     print("Starting fastapi_python test...")
-    # token = os.environ.get("GENEZIO_TOKEN")
-    token = "090ce326d7e108cc4c76194fb4fe522784dd4d4ab24315d95cd805f1c53e21dd64290a52e0e34d6d13c3971ef76a512a0d603aec915846578b0b8c358fa6ef85"
+    token = os.environ.get("GENEZIO_TOKEN")
     # Login to genezio
     genezio_login(token)
 
@@ -27,7 +26,6 @@ def test_fastapi_python():
     try:
         # Test home route
         response = requests.get(f'{url}/')
-        print(url)
         assert response.status_code == 200
         assert response.text == '"Hello, World!"'
         print("Home route test passed")
