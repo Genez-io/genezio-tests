@@ -3,8 +3,6 @@
 import os
 import requests
 from genezio import genezio_deploy, genezio_login, genezio_delete, genezio_local
-from utils import create_python_environment, activate_python_environment, pip_install_requirements, deactivate_python_environment
-import re
 
 def test_flask_python():
     print("Starting flask_python test...")
