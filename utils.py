@@ -99,3 +99,24 @@ def kill_process(process: subprocess.Popen):
         parent.kill()
     else:
         process.kill()
+
+def create_python_environment(project_path):
+    os.chdir(project_path)
+    return run_script(['python', '-m', 'venv', 'venv'])
+
+def activate_python_environment(project_path):
+    os.chdir(project_path)
+    if os.name == 'nt':
+        return run_script(['venv\\Scripts\\activate'])
+    else:
+        process = subprocess.run('. venv/bin/activate', capture_output=True, text=True, shell=True, encoding="utf-8")
+        return process.returncode, process.stdout
+
+def deactivate_python_environment():
+    return run_script(['deactivate'])
+
+def pip_install_requirements(project_path):
+    os.chdir(project_path)
+    pip_command = 'pip' if os.name == 'nt' else 'pip3'
+    return run_script([pip_command, 'install', '-r', 'requirements.txt'])
+
