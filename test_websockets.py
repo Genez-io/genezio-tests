@@ -7,7 +7,7 @@ from utils import run_node_script, kill_process
 from websocket import create_connection
 
 
-def test_wesockets():
+def test_websockets():
     print("Starting websockets test...")
     token = os.environ.get('GENEZIO_TOKEN')
 
@@ -45,4 +45,4 @@ def test_wesockets():
         # Close the WebSocket connection
         websocket.close()
 
-test_wesockets()
+test_websockets()

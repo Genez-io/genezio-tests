@@ -1,4 +1,4 @@
-name: websocket-test
+name: test-websocket
 region: eu-central-1
 yamlVersion: 2
 backend:
@@ -11,3 +11,5 @@ backend:
           entry: hello.mjs
           handler: handler
           type: httpServer
+    scripts:
+      deploy: npm install
