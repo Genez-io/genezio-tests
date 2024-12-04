@@ -9,7 +9,7 @@ backend:
         - name: serverless
           path: .
           handler: handler
-          entry: index.js
+          entry: server/app.mjs
           type: aws
     scripts:
         deploy:

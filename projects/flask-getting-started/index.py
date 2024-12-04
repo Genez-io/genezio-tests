@@ -24,3 +24,6 @@ def stream():
 def post_data():
     data = request.get_json()
     return data
+
+if __name__ == '__main__':
+    app.run(port=8090)

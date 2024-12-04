@@ -2,7 +2,7 @@
 
 import os
 import requests
-from genezio import genezio_deploy, genezio_login, genezio_delete
+from genezio import genezio_deploy, genezio_login, genezio_delete, genezio_local
 
 def test_flask_python():
     print("Starting flask_python test...")
