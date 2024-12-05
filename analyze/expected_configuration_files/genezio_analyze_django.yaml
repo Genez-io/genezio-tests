@@ -1,0 +1,14 @@
+name: project-name
+region: us-east-1
+yamlVersion: 2
+backend:
+  path: .
+  language:
+    name: python
+    packageManager: pip
+  functions:
+    - name: django
+      path: .
+      handler: application
+      entry: mysite/asgi.py
+      type: httpServer

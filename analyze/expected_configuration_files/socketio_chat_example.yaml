@@ -1,15 +1,20 @@
 name: project-name
 region: us-east-1
 yamlVersion: 2
+services:
+    databases:
+        - name: mongo-db
+          type: mongo-atlas
+          region: us-east-1
 backend:
-    path: .
+    functions:
+        - entry: index.js
+          name: express
+          path: .
+          type: httpServer
     language:
         name: js
-    functions:
-        - name: express
-          path: .
-          entry: index.mjs
-          type: httpServer
+    path: .
     scripts:
         deploy:
             - npm install
