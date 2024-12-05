@@ -1,9 +1,10 @@
-name: project-name
+name: genezio-nextjs-getting-started
 region: us-east-1
 yamlVersion: 2
-nextjs:
+nuxt:
     packageManager: npm
     path: .
     scripts:
         deploy:
             - npm install
+
