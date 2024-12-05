@@ -24,23 +24,39 @@ repositories = [
     {
         "url": "https://github.com/andreia-oca/genezio-analyze",
         "test_name": "genezio_analyze",
-        "expected_stdout": ['{"backend":["serverless-http"]}'],
+        "expected_stdout": ['{"backend":["serverless-http"],"backendEnvironment":[]}'],
     },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-express",
         "test_name": "genezio_analyze_express",
-        "expected_stdout": ['{"backend":["express"]}'],
+        "expected_stdout": ['{"backend":["express"],"backendEnvironment":[]}'],
     },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-fastify",
         "test_name": "genezio_analyze_fastify",
-        "expected_stdout": ['{"backend":["fastify"]}'],
+        "expected_stdout": ['{"backend":["fastify"],"backendEnvironment":[]}'],
     },
     {
-        "url": "https://github.com/andreia-oca/genezio-analyze-fullstack",
-        "test_name": "genezio_analyze_fullstack",
-        "expected_stdout": ['{"backend":["serverless-http"],"frontend":["vite"]}'],
+        "url": "https://github.com/Genez-io/flask-getting-started",
+        "test_name": "genezio_analyze_flask",
+        "expected_stdout": ['{"backend":["flask"],"backendEnvironment":[]}'],
     },
+    {
+        "url": "https://github.com/Genez-io/fastapi-getting-started",
+        "test_name": "genezio_analyze_fastapi",
+        "expected_stdout": ['{"backend":["fastapi"],"backendEnvironment":[]}'],
+    },
+    {
+        "url": "https://github.com/Genez-io/django-getting-started",
+        "test_name": "genezio_analyze_django",
+        "expected_stdout": ['{"backend":["django"],"backendEnvironment":[]}'],
+    },
+    # Does not work - faulty entryfile because it's typescript
+    # {
+    #     "url": "https://github.com/andreia-oca/genezio-analyze-fullstack",
+    #     "test_name": "genezio_analyze_fullstack",
+    #     "expected_stdout": ['{"backend":["serverless-http"],"frontend":["vite"],"backendEnvironment":[], "services": [{"databases": ["mongo"]}]}'],
+    # },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-nextjs",
         "test_name": "genezio_analyze_nextjs",
@@ -49,7 +65,7 @@ repositories = [
     {
         "url": "https://github.com/Genez-io/express-react-getting-started",
         "test_name": "express_react_getting_started",
-        "expected_stdout": ['{"frontend": ["vite"], "backend": ["serverless-http"]}'],
+        "expected_stdout": ['{"frontend": ["vite"], "backend": ["express"],"backendEnvironment":[]}'],
     },
     {
         "url": "https://github.com/Genez-io/svelte-getting-started",
@@ -62,6 +78,22 @@ repositories = [
         "expected_stdout": ['{"frontend": ["vite"]}'],
     },
     {
+        "url": "https://github.com/Genez-io/nuxt-getting-started",
+        "test_name": "nuxt_getting_started",
+        "expected_stdout": ['{"ssr":["nuxt"]}'],
+    },
+    # Does not work - ssr config file is not supporting/detecting postgres
+    # {
+    #     "url": "https://github.com/vercel/ai-chatbot",
+    #     "test_name": "ai_chatbot",
+    #     "expected_stdout": ['{"ssr":["next"]}'],
+    # },
+    {
+        "url": "https://github.com/andreia-oca/genezio-analyze-socketio-chat-example",
+        "test_name": "socketio_chat_example",
+        "expected_stdout": ['{"services": [{"databases": ["mongo"]}], "backend": ["express"], "backendEnvironment": []}'],
+    },
+    {
         "url": "https://github.com/andreia-oca/genezio-analyze-unimportable",
         "test_name": "genezio_analyze_unimportable",
         "expected_stdout": ['{"backend":["other"],"frontend":["other"]}'],
@@ -69,7 +101,7 @@ repositories = [
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-typesafe",
         "test_name": "genezio_analyze_typesafe",
-        "expected_stdout": ['{"backend":["genezio-typesafe"],"frontend":["vite"]}'],
+        "expected_stdout": ['{"backend":["genezio-typesafe"],"frontend":["vite"], "backendEnvironment":[]}'],
     },
 ]
 
@@ -164,6 +196,7 @@ def compare_yaml_files(generated_yaml, expected_yaml):
 
 def main():
     all_tests_passed = True
+    failed_tests = []
     for repo_info in repositories:
         repo_url = repo_info["url"]
         test_name = repo_info["test_name"]
@@ -206,6 +239,7 @@ def main():
         except AssertionError as e:
             # If an assertion fails, display the error in red
             print(f"================\n{test_name} - test failed!\n{e}\n================\n")
+            failed_tests.append(test_name)
             all_tests_passed = False
         finally:
             # Clean up by removing the temporary directory
@@ -213,6 +247,9 @@ def main():
 
     if all_tests_passed:
         print("All tests passed!")
+    else:
+        print("Failed tests:", failed_tests)
+        exit(1)
 
 if __name__ == "__main__":
     main()

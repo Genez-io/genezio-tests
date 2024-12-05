@@ -1,6 +1,11 @@
 name: blue-structural-meerkat
 region: us-east-1
 yamlVersion: 2
+services:
+  databases:
+    - name: my-mongo-db
+      region: us-east-1
+      type: mongo-atlas
 frontend:
     path: client
     publish: dist
