@@ -3,7 +3,7 @@ region: us-east-1
 yamlVersion: 2
 services:
     databases:
-        - name: mongo-db
+        - name: my-mongo-db
           type: mongo-atlas
           region: us-east-1
 backend:
