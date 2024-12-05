@@ -1,0 +1,20 @@
+name: genezio-auth-tutorial-runtime
+region: us-east-1
+yamlVersion: 2
+backend:
+  path: server
+  language:
+    name: ts
+    packageManager: npm
+  scripts:
+    deploy: npm install
+  cloudProvider: capybaraLinux
+frontend:
+  path: client
+  publish: dist
+  scripts:
+    deploy:
+      - npm install
+      - npm install @genezio-sdk/genezio-auth-tutorial-runtime
+      - npm run build
+  subdomain: gigi
