@@ -3,7 +3,7 @@ region: us-east-1
 yamlVersion: 2
 services:
     databases:
-        - name: postgres-db
+        - name: my-postgres-db
           type: postgres-neon
           region: us-east-1
 nextjs:
