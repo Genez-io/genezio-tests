@@ -23,6 +23,7 @@ from test_runtime_cron import test_runtime_linux_cron
 from test_runtime_hello import test_runtime_linux_hello
 from test_runtime_todo_list import test_runtime_linux_todo_list
 from test_runtime_webhooks import test_runtime_linux_webhooks
+from test_nextjs import test_nextjs
 
 import pathlib
 import os
@@ -55,6 +56,7 @@ if __name__ == '__main__':
         test_runtime_linux_todo_list,
         test_runtime_linux_webhooks,
         test_runtime_linux_cron
+        test_nextjs
     ]
 
     # Run all tests
