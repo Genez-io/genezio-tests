@@ -76,6 +76,7 @@ jobs:
             ],
             [
 #              test_unauthenticated.py, # 6s
+              test_nestjs.py, 
               test_runtime_parallel_calls.py,
               test_binary_dependency.py, # 45s
               test_genezio_misc_cmds.py, # 10s
