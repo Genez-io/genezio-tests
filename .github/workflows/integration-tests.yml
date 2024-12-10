@@ -81,6 +81,7 @@ jobs:
               test_binary_dependency.py, # 45s
               test_genezio_misc_cmds.py, # 10s
               test_websockets.py
+              test_nextjs.py
               # test_cron.py, # 2m 35s - changed behaviour
             ],
             [
