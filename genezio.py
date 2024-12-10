@@ -17,7 +17,6 @@ class DeployResult:
         self.return_code = return_code
         self.stdout = stdout
         self.stderr = stderr
-        print(stdout)
 
         link_regex = re.compile('((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', re.DOTALL)
         links = re.findall(link_regex, str(stdout))
