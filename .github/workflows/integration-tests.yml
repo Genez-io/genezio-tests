@@ -65,7 +65,6 @@ jobs:
               test_django_python.py,
               test_genezio_create.py, # 10m 21s
               test_lambda_handler_errors.py, # 30s
-              test_nextjs.py
               # test_dart.py, # 1m 16s - dart backend is not supported currently
             ],
             [
@@ -81,6 +80,7 @@ jobs:
               test_binary_dependency.py, # 45s
               test_genezio_misc_cmds.py, # 10s
               test_websockets.py
+              test_nextjs.py
               # test_cron.py, # 2m 35s - changed behaviour
             ],
             [
