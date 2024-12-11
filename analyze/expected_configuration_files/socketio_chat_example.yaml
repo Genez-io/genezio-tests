@@ -5,7 +5,6 @@ services:
     databases:
         - name: my-mongo-db
           type: mongo-atlas
-          region: us-east-1
 backend:
     functions:
         - entry: index.js

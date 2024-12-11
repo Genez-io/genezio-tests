@@ -24,84 +24,83 @@ repositories = [
     {
         "url": "https://github.com/andreia-oca/genezio-analyze",
         "test_name": "genezio_analyze",
-        "expected_stdout": ['{"backend":["serverless-http"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"serverless-http"}]}'],
     },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-express",
         "test_name": "genezio_analyze_express",
-        "expected_stdout": ['{"backend":["express"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"express"}]}'],
     },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-fastify",
         "test_name": "genezio_analyze_fastify",
-        "expected_stdout": ['{"backend":["fastify"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"fastify"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/flask-getting-started",
         "test_name": "genezio_analyze_flask",
-        "expected_stdout": ['{"backend":["flask"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"flask"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/fastapi-getting-started",
         "test_name": "genezio_analyze_fastapi",
-        "expected_stdout": ['{"backend":["fastapi"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"fastapi"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/django-getting-started",
         "test_name": "genezio_analyze_django",
-        "expected_stdout": ['{"backend":["django"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"django"}]}'],
     },
     # Does not work - faulty entryfile because it's typescript
     # {
     #     "url": "https://github.com/andreia-oca/genezio-analyze-fullstack",
     #     "test_name": "genezio_analyze_fullstack",
-    #     "expected_stdout": ['{"backend":["serverless-http"],"frontend":["vite"],"backendEnvironment":[], "services": [{"databases": ["mongo"]}]}'],
+    #     "expected_stdout": ['{"backend":[{"component":"serverless-http" ,"environment":[{"key": "OPENAI_API_KEY", "defaultValue": "your-key", "genezioProvisioned": "false"}] }],"frontend":[{"component":"vite"}], "services":[{"databases": ["mongo"]}] }'],
     # },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-nextjs",
         "test_name": "genezio_analyze_nextjs",
-        "expected_stdout": ['{"ssr":["next"]}'],
+        "expected_stdout": ['{"ssr":[{"component":"next", "environment": [{"key": "OPENAI_API_KEY", "defaultValue": "****", "genezioProvisioned": false}, {"key": "AUTH_SECRET", "defaultValue": "****", "genezioProvisioned": false}, {"key": "BLOB_READ_WRITE_TOKEN", "defaultValue": "****", "genezioProvisioned": false}, {"key": "POSTGRES_URL", "defaultValue": "****", "genezioProvisioned": false}]}], "services": [{"databases": ["postgres"]}]}'],
     },
     {
         "url": "https://github.com/Genez-io/express-react-getting-started",
         "test_name": "express_react_getting_started",
-        "expected_stdout": ['{"frontend": ["vite"], "backend": ["express"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"frontend":[{"component":"vite"}], "backend":[{"component":"express"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/svelte-getting-started",
         "test_name": "svelte_getting_started",
-        "expected_stdout": ['{"frontend": ["svelte"]}'],
+        "expected_stdout": ['{"frontend":[{"component":"svelte"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/react-getting-started",
         "test_name": "react_getting_started",
-        "expected_stdout": ['{"frontend": ["vite"]}'],
+        "expected_stdout": ['{"frontend":[{"component":"vite"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/nuxt-getting-started",
         "test_name": "nuxt_getting_started",
-        "expected_stdout": ['{"ssr":["nuxt"]}'],
+        "expected_stdout": ['{"ssr":[{"component":"nuxt"}]}'],
     },
-    # Does not work - ssr config file is not supporting/detecting postgres
-    # {
-    #     "url": "https://github.com/vercel/ai-chatbot",
-    #     "test_name": "ai_chatbot",
-    #     "expected_stdout": ['{"ssr":["next"]}'],
-    # },
+    {
+        "url": "https://github.com/vercel/ai-chatbot",
+        "test_name": "ai_chatbot",
+        "expected_stdout": ['{"ssr":[{"component":"next","environment":[{"key":"OPENAI_API_KEY","defaultValue":"****","genezioProvisioned":false},{"key":"AUTH_SECRET","defaultValue":"****","genezioProvisioned":false},{"key":"BLOB_READ_WRITE_TOKEN","defaultValue":"****","genezioProvisioned":false},{"key":"POSTGRES_URL","defaultValue":"****","genezioProvisioned":false}]}],"services":[{"databases":["postgres"]}]}']
+    },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-socketio-chat-example",
         "test_name": "socketio_chat_example",
-        "expected_stdout": ['{"services": [{"databases": ["mongo"]}], "backend": ["express"], "backendEnvironment": []}'],
+        "expected_stdout": ['{"services": [{"databases": ["mongo"]}], "backend": [{"component": "express"}]}'],
     },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-unimportable",
         "test_name": "genezio_analyze_unimportable",
-        "expected_stdout": ['{"backend":["other"],"frontend":["other"]}'],
+        "expected_stdout": ['{"backend":[{"component":"other"}],"frontend":[{"component":"other"}]}'],
     },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-typesafe",
         "test_name": "genezio_analyze_typesafe",
-        "expected_stdout": ['{"backend":["genezio-typesafe"],"frontend":["vite"], "backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"genezio-typesafe"}],"frontend":[{"component":"vite"}]}'],
     },
 ]
 
