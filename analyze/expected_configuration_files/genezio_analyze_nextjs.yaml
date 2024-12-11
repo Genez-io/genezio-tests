@@ -1,6 +1,10 @@
 name: project-name
 region: us-east-1
 yamlVersion: 2
+services:
+    databases:
+    - name: my-postgres-db
+      type: postgres-neon
 nextjs:
     packageManager: npm
     path: .
