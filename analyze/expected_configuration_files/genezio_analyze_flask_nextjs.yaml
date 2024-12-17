@@ -1,0 +1,22 @@
+name: genezio_analyze_flask_nextjs
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: backend
+    language:
+        name: python
+        packageManager: pip
+    functions:
+        - name: flask
+          path: .
+          handler: app
+          entry: index.py
+          type: httpServer
+nextjs:
+    path: frontend
+    packageManager: npm
+    scripts:
+        deploy:
+            - npm install
+    environment:
+        VITE_API_URL: ${{ backend.functions.flask.url }}

@@ -1,0 +1,25 @@
+name: genezio_analyze_express_nextjs
+region: us-east-1
+yamlVersion: 2
+nextjs:
+    path: frontend
+    packageManager: npm
+    scripts:
+        deploy:
+            - npm install
+    environment:
+        VITE_API_URL: ${{ backend.functions.express.url }}
+backend:
+    path: server
+    language:
+        name: js
+    functions:
+        - name: express
+          path: .
+          entry: app.mjs
+          type: httpServer
+    scripts:
+        deploy:
+            - npm install
+        local:
+            - npm install
