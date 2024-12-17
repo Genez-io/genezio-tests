@@ -19,4 +19,4 @@ nextjs:
         deploy:
             - npm install
     environment:
-        VITE_API_URL: ${{ backend.functions.flask.url }}
+        NEXT_PUBLIC_API_URL_FLASK: ${{ backend.functions.flask.url }}

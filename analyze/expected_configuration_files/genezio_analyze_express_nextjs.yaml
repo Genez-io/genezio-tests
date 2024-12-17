@@ -8,7 +8,7 @@ nextjs:
         deploy:
             - npm install
     environment:
-        VITE_API_URL: ${{ backend.functions.express.url }}
+        NEXT_PUBLIC_API_URL_EXPRESS: ${{ backend.functions.express.url }}
 backend:
     path: server
     language:
