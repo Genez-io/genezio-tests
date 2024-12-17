@@ -1,4 +1,5 @@
 
+import argparse
 import os
 import subprocess
 import tempfile
@@ -193,62 +194,81 @@ def compare_yaml_files(generated_yaml, expected_yaml):
         # Raise an assertion error with the diff
         raise AssertionError(f"Mismatch in generated and expected genezio.yaml files:\n{diff}")
 
-def main():
-    all_tests_passed = True
-    failed_tests = []
-    for repo_info in repositories:
-        repo_url = repo_info["url"]
-        test_name = repo_info["test_name"]
-        expected_stdout = repo_info["expected_stdout"]
-        expected_yaml_path = os.path.join('./expected_configuration_files', f'{test_name}.yaml')
+def run_test(repo_info):
+    repo_url = repo_info["url"]
+    test_name = repo_info["test_name"]
+    expected_stdout = repo_info["expected_stdout"]
+    expected_yaml_path = os.path.join('./expected_configuration_files', f'{test_name}.yaml')
 
-        # Create a temporary directory in the system's /tmp directory
-        system_temp_dir = tempfile.gettempdir()
-        temp_dir = tempfile.mkdtemp(dir=system_temp_dir)
-        # print(f"Temporary directory created: {temp_dir}")
+    system_temp_dir = tempfile.gettempdir()
+    temp_dir = tempfile.mkdtemp(dir=system_temp_dir)
 
-        try:
-            # Clone the repository into temp_dir
-            clone_repository(repo_url, temp_dir)
+    try:
+        # Clone the repository into temp_dir
+        clone_repository(repo_url, temp_dir)
 
-            # Ensure repository is cloned successfully
-            if not os.listdir(temp_dir):
-                print(f"Error: Repository cloning failed or directory {temp_dir} is empty.")
-                continue
+        # Ensure repository is cloned successfully
+        if not os.listdir(temp_dir):
+            print(f"Error: Repository cloning failed or directory {temp_dir} is empty.")
+            raise AssertionError
 
-            # Path to genezio.yaml in the cloned directory
-            genezio_yaml_path = os.path.join(temp_dir, "genezio.yaml")
+        # Path to genezio.yaml in the cloned directory
+        genezio_yaml_path = os.path.join(temp_dir, "genezio.yaml")
 
-            # Remove `genezio.yaml` if it exists
-            if os.path.exists(genezio_yaml_path):
-                os.remove(genezio_yaml_path)
-                # print(f"Removed {genezio_yaml_path} for testing")
+        # Remove `genezio.yaml` if it exists
+        if os.path.exists(genezio_yaml_path):
+            os.remove(genezio_yaml_path)
 
-            # Run genezio analyze and capture the result
-            result = run_genezio_analyze(temp_dir)
+        # Run genezio analyze and capture the result
+        result = run_genezio_analyze(temp_dir)
 
-            # Assertions
-            assert_no_errors(result)
-            assert_stdout(result, expected_stdout)
+        # Assertions
+        assert_no_errors(result)
+        assert_stdout(result, expected_stdout)
 
-            # Compare generated and expected genezio.yaml
-            compare_yaml_files(genezio_yaml_path, expected_yaml_path)
+        # Compare generated and expected genezio.yaml
+        compare_yaml_files(genezio_yaml_path, expected_yaml_path)
 
-            print(f"================\n{test_name} - test passed!\n================\n")
-        except AssertionError as e:
-            # If an assertion fails, display the error in red
-            print(f"================\n{test_name} - test failed!\n{e}\n================\n")
-            failed_tests.append(test_name)
-            all_tests_passed = False
-        finally:
-            # Clean up by removing the temporary directory
+        print(f"================\n{test_name} - test passed!\n================\n")
+    except Exception as e:
+        print(f"================\n{test_name} - test failed!\n{e}\n================\n")
+        return False
+    finally:
+        # Clean up temp_dir
+        if os.path.exists(temp_dir):
             shutil.rmtree(temp_dir)
+    return True
 
-    if all_tests_passed:
-        print("All tests passed!")
+def main():
+    failed_tests = []
+
+    # Parse the command-line argument for test name
+    parser = argparse.ArgumentParser(description="Run specific a test case")
+    parser.add_argument("test_name", nargs="?", help="Name of the test to run")
+    args = parser.parse_args()
+
+    if args.test_name:
+        # Use filter to find the repository matching the test name
+        filtered_repos = list(filter(lambda r: r["test_name"] == args.test_name, repositories))
+        if filtered_repos:
+            repo_info = filtered_repos[0]
+            if not run_test(repo_info):
+                failed_tests.append(args.test_name)
+        else:
+            print(f"Test name '{args.test_name}' not found in the repository list.")
+            return
     else:
-        print("Failed tests:", failed_tests)
+        # Run all tests
+        for repo_info in repositories:
+            test_name = repo_info["test_name"]
+            if not run_test(repo_info):
+                failed_tests.append(test_name)
+
+    if failed_tests:
+        print("The following test(s) failed:", failed_tests)
         exit(1)
+    else:
+        print("All tests passed successfully.")
 
 if __name__ == "__main__":
     main()
