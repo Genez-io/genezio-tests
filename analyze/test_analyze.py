@@ -84,6 +84,11 @@ repositories = [
         "expected_stdout": ['{"ssr":[{"component":"nuxt"}]}'],
     },
     {
+        "url": "https://github.com/Genez-io/nitrojs-starter",
+        "test_name": "nitrojs_starter",
+        "expected_stdout": ['{"ssr":[{"component":"nitro"}]}'],
+    },
+    {
         "url": "https://github.com/vercel/ai-chatbot",
         "test_name": "ai_chatbot",
         "expected_stdout": ['{"ssr":[{"component":"next","environment":[{"key":"OPENAI_API_KEY","defaultValue":"****","genezioProvisioned":false},{"key":"AUTH_SECRET","defaultValue":"****","genezioProvisioned":false},{"key":"BLOB_READ_WRITE_TOKEN","defaultValue":"****","genezioProvisioned":false},{"key":"POSTGRES_URL","defaultValue":"****","genezioProvisioned":false}]}],"services":[{"databases":["postgres"]}]}']
