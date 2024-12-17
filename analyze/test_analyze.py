@@ -79,6 +79,16 @@ repositories = [
         "expected_stdout": ['{"frontend":[{"component":"vite"}]}'],
     },
     {
+        "url": "https://github.com/Genez-io/angular-getting-started",
+        "test_name": "angular_getting_started",
+        "expected_stdout": ['{"frontend":[{"component":"angular"}]}'],
+    },
+    {
+        "url": "https://github.com/Genez-io/vue-getting-started",
+        "test_name": "vue_getting_started",
+        "expected_stdout": ['{"frontend":[{"component":"vue"}]}'],
+    },
+    {
         "url": "https://github.com/Genez-io/nuxt-getting-started",
         "test_name": "nuxt_getting_started",
         "expected_stdout": ['{"ssr":[{"component":"nuxt"}]}'],
