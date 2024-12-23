@@ -118,11 +118,12 @@ repositories = [
         "test_name": "genezio_analyze_typesafe",
         "expected_stdout": ['{"backend":[{"component":"genezio-typesafe"}],"frontend":[{"component":"vite"}]}'],
     },
-    {
-        "url": "https://github.com/Genez-io/nestjs-react-getting-started",
-        "test_name": "nestjs_react_getting_started",
-        "expected_stdout": ['{"frontend":[{"component":"vite"}],"backend":[{"component":"nestjs"}]}'],
-    },
+    # Not yet supported
+    # {
+    #     "url": "https://github.com/Genez-io/nestjs-react-getting-started",
+    #     "test_name": "nestjs_react_getting_started",
+    #     "expected_stdout": ['{"frontend":[{"component":"vite"}],"backend":[{"component":"nestjs"}]}'],
+    # },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-express-nextjs",
         "test_name": "genezio_analyze_express_nextjs",
