@@ -18,5 +18,5 @@ nextjs:
     scripts:
         deploy:
             - npm install
-    environment:
-        NEXT_PUBLIC_API_URL_FLASK: ${{ backend.functions.flask.url }}
+    # environment:
+    #     NEXT_PUBLIC_API_URL_FLASK: ${{ backend.functions.flask.url }}

@@ -7,8 +7,8 @@ nextjs:
     scripts:
         deploy:
             - npm install
-    environment:
-        NEXT_PUBLIC_API_URL_EXPRESS: ${{ backend.functions.express.url }}
+    # environment:
+    #     NEXT_PUBLIC_API_URL_EXPRESS: ${{ backend.functions.express.url }}
 backend:
     path: server
     language:
