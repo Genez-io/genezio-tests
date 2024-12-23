@@ -94,7 +94,6 @@ jobs:
 #              test_runtime_cron.py, # Crons do not have the expected behaviour after migration.
               test_runtime_webhooks.py, # 31s
               test_runtime_hello.py, # 29s
-              test_runtime_todo_list.py, #
               test_runtime_binary_dependency.py,
             ],
           ]

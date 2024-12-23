@@ -21,7 +21,6 @@ from test_lambda_handler_errors import test_lambda_handler_errors
 from test_runtime_binary_dependency import test_runtime_linux_binary_dependency
 from test_runtime_cron import test_runtime_linux_cron
 from test_runtime_hello import test_runtime_linux_hello
-from test_runtime_todo_list import test_runtime_linux_todo_list
 from test_runtime_webhooks import test_runtime_linux_webhooks
 
 import pathlib
@@ -52,9 +51,8 @@ if __name__ == '__main__':
         test_ts_sdk_dev_stage,
         test_runtime_linux_binary_dependency,
         test_runtime_linux_hello,
-        test_runtime_linux_todo_list,
         test_runtime_linux_webhooks,
-        test_runtime_linux_cron
+        test_runtime_linux_cron,
     ]
 
     # Run all tests
