@@ -23,7 +23,7 @@ export class Cron {
    *
    * The method will delete all the data from the DB.
    */
-  @GenezioMethod({type: "cron", cron: "0 12 * * *"})
+  @GenezioMethod({type: "cron", cronString: "0 12 * * *"})
   async deleteAllData() {
     console.log("Deleting all data from the DB");
     try {
