@@ -118,12 +118,16 @@ repositories = [
         "test_name": "genezio_analyze_typesafe",
         "expected_stdout": ['{"backend":[{"component":"genezio-typesafe"}],"frontend":[{"component":"vite"}]}'],
     },
-    # Not yet supported
-    # {
-    #     "url": "https://github.com/Genez-io/nestjs-react-getting-started",
-    #     "test_name": "nestjs_react_getting_started",
-    #     "expected_stdout": ['{"frontend":[{"component":"vite"}],"backend":[{"component":"nestjs"}]}'],
-    # },
+    {
+        "url": "https://github.com/Genez-io/nestjs-react-getting-started",
+        "test_name": "nestjs_react_getting_started",
+        "expected_stdout": ['{"frontend":[{"component":"vite"}],"ssr":[{"component":"nestjs"}]}'],
+    },
+    {
+        "url": "https://github.com/Genez-io/nest-getting-started",
+        "test_name": "nestjs_getting_started",
+        "expected_stdout": ['{"ssr":[{"component":"nestjs"}]}'],
+    },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-express-nextjs",
         "test_name": "genezio_analyze_express_nextjs",
@@ -133,6 +137,14 @@ repositories = [
         "url":"https://github.com/andreia-oca/genezio-analyze-flask-nextjs",
         "test_name":"genezio_analyze_flask_nextjs",
         "expected_stdout": ['{"backend":[{"component":"flask"}],"ssr":[{"component":"next"}]}'],
+    },
+    {
+        "url":"https://github.com/notJust-dev/FullstackEcommerce",
+        "test_name":"notjustdev_fullstack_ecommerce",
+        "expected_stdout": ['{"services":[{"databases":["postgres"]}],"backend":[{"component":"serverless-http","environment":[{"key":"DATABASE_URL","defaultValue":"url to your postgres database","genezioProvisioned":false}]}]}'],
+        # This is a community project with a genezio.yaml in it
+        # We want to take this into account when running the test
+        "keep_yaml": True
     },
 ]
 
@@ -247,7 +259,7 @@ def run_test(repo_info):
         genezio_yaml_path = os.path.join(temp_dir, "genezio.yaml")
 
         # Remove `genezio.yaml` if it exists
-        if os.path.exists(genezio_yaml_path):
+        if os.path.exists(genezio_yaml_path) and not repo_info.get("keep_yaml"):
             os.remove(genezio_yaml_path)
 
         # Run genezio analyze and capture the result
