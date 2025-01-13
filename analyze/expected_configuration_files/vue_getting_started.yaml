@@ -9,3 +9,6 @@ frontend:
       - npm install
     build:
       - npm run build
+    start:
+        - npm install
+        - npm run dev

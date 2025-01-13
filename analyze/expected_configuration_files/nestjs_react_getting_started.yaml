@@ -15,5 +15,8 @@ frontend:
         - npm install
       build:
         - npm run build
+      start:
+        - npm install
+        - npm run dev
     environment:
         VITE_API_URL_NESTJS: ${{ nestjs.url }}

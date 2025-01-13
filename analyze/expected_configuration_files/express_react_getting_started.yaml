@@ -22,6 +22,9 @@ frontend:
   publish: dist
   scripts:
     build:
-     - npm run build
+      - npm run build
     deploy:
-     - npm install
+      - npm install
+    start:
+      - npm install
+      - npm run dev
