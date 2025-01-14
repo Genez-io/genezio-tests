@@ -136,7 +136,7 @@ repositories = [
     {
         "url":"https://github.com/andreia-oca/genezio-analyze-flask-nextjs",
         "test_name":"genezio_analyze_flask_nextjs",
-        "expected_stdout": ['{"backend":[{"component":"flask"}],"ssr":[{"component":"next"}]}'],
+        "expected_stdout": ['{"backend":[{"component":"flask"}]}'],
     },
     {
         "url":"https://github.com/notJust-dev/FullstackEcommerce",

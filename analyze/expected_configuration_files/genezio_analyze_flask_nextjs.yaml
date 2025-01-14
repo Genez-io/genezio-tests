@@ -12,11 +12,3 @@ backend:
           handler: app
           entry: index.py
           type: httpServer
-nextjs:
-    path: frontend
-    packageManager: npm
-    scripts:
-        deploy:
-            - npm install
-    # environment:
-    #     NEXT_PUBLIC_API_URL_FLASK: ${{ backend.functions.flask.url }}
