@@ -25,7 +25,7 @@ def generate_project_variants():
     """
     backend_variants = ["ts", "js"]
     frontend_variants = ["react-ts", "react-js", "vue-ts", "vue-js", "svelte-ts", "svelte-js"]
-    project_types = ["fullstack", "backend", "nextjs", "expressjs", "nitrojs", "serverless"]
+    project_types = ["fullstack", "backend", "nextjs", "expressjs", "serverless"]
 
     projects = []
 
