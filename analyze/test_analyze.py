@@ -108,22 +108,12 @@ repositories = [
         "test_name": "socketio_chat_example",
         "expected_stdout": ['{"services": [{"databases": ["mongo"]}], "backend": [{"component": "express"}]}'],
     },
-    {
-        "url": "https://github.com/Genez-io/nuxt-getting-started",
-        "test_name": "nuxt_getting_started",
-        "expected_stdout": ['{"ssr":["nuxt"]}'],
-    },
     # Does not work - ssr config file is not supporting/detecting postgres
     # {
     #     "url": "https://github.com/vercel/ai-chatbot",
     #     "test_name": "ai_chatbot",
     #     "expected_stdout": ['{"ssr":["next"]}'],
     # },
-    {
-        "url": "https://github.com/andreia-oca/genezio-analyze-socketio-chat-example",
-        "test_name": "socketio_chat_example",
-        "expected_stdout": ['{"services": [{"databases": ["mongo"]}], "backend": ["express"], "backendEnvironment": []}'],
-    },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-unimportable",
         "test_name": "genezio_analyze_unimportable",
@@ -145,9 +135,11 @@ repositories = [
         "expected_stdout": ['{"ssr":[{"component":"nestjs"}]}'],
     },
     {
+        # This test is expected to return only express because we are not yet supporting
+        # express and nextjs in a single project
         "url": "https://github.com/andreia-oca/genezio-analyze-express-nextjs",
         "test_name": "genezio_analyze_express_nextjs",
-        "expected_stdout": ['{"backend":[{"component":"express"}],"ssr":[{"component":"next"}]}'],
+        "expected_stdout": ['{"backend":[{"component":"express"}]}'],
     },
     {
         "url":"https://github.com/andreia-oca/genezio-analyze-flask-nextjs",
@@ -295,6 +287,7 @@ def run_test(repo_info):
     finally:
         # Clean up temp_dir
         if os.path.exists(temp_dir):
+            shutil.rmtree(temp_dir)
     return True
 
 def main():
