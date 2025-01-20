@@ -28,7 +28,10 @@ async def stream_data():
     
     return StreamingResponse(
         number_generator(),
-        media_type="text/event-stream"
+        media_type="text/event-stream",
+        headers ={
+            "Content-Type": "text/event-stream",
+        }
     )
 
 if __name__ == "__main__":
