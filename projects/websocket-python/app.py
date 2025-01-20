@@ -1,7 +1,7 @@
 import asyncio
 import websockets
 
-PORT = 8765
+PORT = 8080
 
 async def handle_connection(websocket):
     try:
