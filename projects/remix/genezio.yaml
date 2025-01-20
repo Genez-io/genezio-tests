@@ -1,0 +1,12 @@
+name: remix-getting-started
+region: us-east-1
+yamlVersion: 2
+remix:
+    path: .
+    packageManager: npm
+    scripts:
+        build:
+            - npm run build
+        deploy:
+            - npm install
+            - npm run build
