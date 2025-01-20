@@ -22,11 +22,11 @@ def test_nextjs():
     assert deploy_result.return_code == 0, "genezio deploy returned a non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned an empty project URL"
 
-    print("deploy_result.stdout_all_links: " + str(deploy_result.stdout_all_links))
-    print("deploy_result.project_url: " + str(deploy_result.project_url))
-
     # Extract the deployed URL for testing
-    url = deploy_result.stdout_all_links[4][0]
+    url = next(
+        (link[0] for link in deploy_result.stdout_all_links if "host-check-nextjs" in link[0]),
+        None
+    )
 
     print("Deployed URL: " + str(url))
 
