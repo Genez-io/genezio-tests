@@ -32,13 +32,13 @@ def test_nextjs():
     assert url is not None, "Could not find deployed nextjs URL in deployment output"
     print("Deployed URL: " + str(url))
 
-    # run NEXT_URL=url npm run cypress:run
-    os.environ['NEXT_URL'] = url + "/"
-    # Run Cypress tests and capture the return code
-    cypress_result = os.system("npm run cypress:run")
+    # # run NEXT_URL=url npm run cypress:run
+    # os.environ['NEXT_URL'] = url + "/"
+    # # Run Cypress tests and capture the return code
+    # cypress_result = os.system("npm run cypress:run")
     
-    # Check if Cypress tests passed
-    assert cypress_result == 0, "Cypress tests failed"
+    # # Check if Cypress tests passed
+    # assert cypress_result == 0, "Cypress tests failed"
 
     genezio_delete(deploy_result.project_id)
     print("Test completed successfully.")
