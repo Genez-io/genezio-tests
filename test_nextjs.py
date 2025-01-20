@@ -21,13 +21,15 @@ def test_nextjs():
 
     assert deploy_result.return_code == 0, "genezio deploy returned a non-zero exit code"
     assert deploy_result.project_url != "", "genezio deploy returned an empty project URL"
-
     # Extract the deployed URL for testing
-    url = next(
-        (link[0] for link in deploy_result.stdout_all_links if "host-check-nextjs" in link[0]),
-        None
-    )
+    url = None
+    for link in deploy_result.stdout_all_links:
+        if "app.geneziodev.com" in link[0] or "next.genez.io" in link[0]:
+            url = link[0]
+            break
 
+    # Add error handling for when URL is not found
+    assert url is not None, "Could not find deployed nextjs URL in deployment output"
     print("Deployed URL: " + str(url))
 
     # run NEXT_URL=url npm run cypress:run
