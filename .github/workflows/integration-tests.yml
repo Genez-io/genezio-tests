@@ -51,6 +51,7 @@ jobs:
       fail-fast: false
       matrix:
         tests: [
+          # do not put more than 5 tests in each array
             [
               test_react_auth.py, # 2m 1s
               test_services_configuration.py, # 23s
@@ -81,7 +82,6 @@ jobs:
               test_binary_dependency.py, # 45s
               test_genezio_misc_cmds.py, # 10s
               test_websockets.py
-              test_nextjs.py
               # test_cron.py, # 2m 35s - changed behaviour
             ],
             [
@@ -98,6 +98,10 @@ jobs:
               test_runtime_hello.py, # 29s
               test_runtime_binary_dependency.py,
             ],
+            [
+              test_remix.py,
+              test_nextjs.py
+            ]
           ]
     steps:
       - name: Checkout code
@@ -184,6 +188,10 @@ jobs:
           GENEZIO_TOKEN: ${{ secrets.genezio_token }}
       - run: python ${{ matrix.tests[5] }}
         if: matrix.tests[5] != null
+        env:
+          GENEZIO_TOKEN: ${{ secrets.genezio_token }}
+      - run: python ${{ matrix.tests[6] }}
+        if: matrix.tests[6] != null
         env:
           GENEZIO_TOKEN: ${{ secrets.genezio_token }}
   notify:
