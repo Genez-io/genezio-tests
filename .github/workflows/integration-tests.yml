@@ -61,9 +61,6 @@ jobs:
               test_todo_list_ts.py, # 1m 44s
             ],
             [
-              test_faas_python.py,
-              test_flask_python.py,
-              test_django_python.py,
               test_genezio_create.py, # 10m 21s
               test_lambda_handler_errors.py, # 30s
               # test_dart.py, # 1m 16s - dart backend is not supported currently
@@ -77,11 +74,9 @@ jobs:
             ],
             [
 #              test_unauthenticated.py, # 6s
-              test_nestjs.py,
               test_runtime_parallel_calls.py,
               test_binary_dependency.py, # 45s
               test_genezio_misc_cmds.py, # 10s
-              test_websockets.py
               # test_cron.py, # 2m 35s - changed behaviour
             ],
             [
@@ -93,14 +88,16 @@ jobs:
               test_frontend.py, # 33s
             ],
             [
-#              test_runtime_cron.py, # Crons do not have the expected behaviour after migration.
-              test_runtime_webhooks.py, # 31s
-              test_runtime_hello.py, # 29s
-              test_runtime_binary_dependency.py,
+              test_nextjs.py,
+              test_websockets.py, # nodejs
+              test_remix.py,
+              test_nestjs.py,
             ],
             [
-              test_remix.py,
-              test_nextjs.py
+              test_faas_python.py,
+              test_fastapi.py,
+              test_flask.py,
+              test_django.py,
             ]
           ]
     steps:
