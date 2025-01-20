@@ -19,7 +19,7 @@ async def handle_connection(websocket):
             await websocket.close(1011)
 
 async def main():
-    async with websockets.serve(handle_connection, "localhost", PORT):  
+    async with websockets.serve(handle_connection, "0.0.0.0", PORT):  
         print(f"WebSocket server is running on ws://localhost:{PORT}")
         await asyncio.Future() 
 
