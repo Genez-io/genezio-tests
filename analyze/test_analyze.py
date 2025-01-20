@@ -1,4 +1,5 @@
 
+import argparse
 import os
 import subprocess
 import tempfile
@@ -24,63 +25,88 @@ repositories = [
     {
         "url": "https://github.com/andreia-oca/genezio-analyze",
         "test_name": "genezio_analyze",
-        "expected_stdout": ['{"backend":["serverless-http"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"serverless-http"}]}'],
     },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-express",
         "test_name": "genezio_analyze_express",
-        "expected_stdout": ['{"backend":["express"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"express"}]}'],
     },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-fastify",
         "test_name": "genezio_analyze_fastify",
-        "expected_stdout": ['{"backend":["fastify"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"fastify"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/flask-getting-started",
         "test_name": "genezio_analyze_flask",
-        "expected_stdout": ['{"backend":["flask"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"flask"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/fastapi-getting-started",
         "test_name": "genezio_analyze_fastapi",
-        "expected_stdout": ['{"backend":["fastapi"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"fastapi"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/django-getting-started",
         "test_name": "genezio_analyze_django",
-        "expected_stdout": ['{"backend":["django"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"django"}]}'],
     },
     # Does not work - faulty entryfile because it's typescript
     # {
     #     "url": "https://github.com/andreia-oca/genezio-analyze-fullstack",
     #     "test_name": "genezio_analyze_fullstack",
-    #     "expected_stdout": ['{"backend":["serverless-http"],"frontend":["vite"],"backendEnvironment":[], "services": [{"databases": ["mongo"]}]}'],
+    #     "expected_stdout": ['{"backend":[{"component":"serverless-http" ,"environment":[{"key": "OPENAI_API_KEY", "defaultValue": "your-key", "genezioProvisioned": "false"}] }],"frontend":[{"component":"vite"}], "services":[{"databases": ["mongo"]}] }'],
     # },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-nextjs",
         "test_name": "genezio_analyze_nextjs",
-        "expected_stdout": ['{"ssr":["next"]}'],
+        "expected_stdout": ['{"ssr":[{"component":"next", "environment": [{"key": "OPENAI_API_KEY", "defaultValue": "****", "genezioProvisioned": false}, {"key": "AUTH_SECRET", "defaultValue": "****", "genezioProvisioned": false}, {"key": "BLOB_READ_WRITE_TOKEN", "defaultValue": "****", "genezioProvisioned": false}, {"key": "POSTGRES_URL", "defaultValue": "****", "genezioProvisioned": false}]}], "services": [{"databases": ["postgres"]}]}'],
     },
     {
         "url": "https://github.com/Genez-io/express-react-getting-started",
         "test_name": "express_react_getting_started",
-        "expected_stdout": ['{"frontend": ["vite"], "backend": ["express"],"backendEnvironment":[]}'],
+        "expected_stdout": ['{"frontend":[{"component":"vite"}], "backend":[{"component":"express"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/svelte-getting-started",
         "test_name": "svelte_getting_started",
-        "expected_stdout": ['{"frontend": ["svelte"]}'],
+        "expected_stdout": ['{"frontend":[{"component":"svelte"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/react-getting-started",
         "test_name": "react_getting_started",
-        "expected_stdout": ['{"frontend": ["vite"]}'],
+        "expected_stdout": ['{"frontend":[{"component":"vite"}]}'],
+    },
+    {
+        "url": "https://github.com/Genez-io/angular-getting-started",
+        "test_name": "angular_getting_started",
+        "expected_stdout": ['{"frontend":[{"component":"angular"}]}'],
+    },
+    {
+        "url": "https://github.com/Genez-io/vue-getting-started",
+        "test_name": "vue_getting_started",
+        "expected_stdout": ['{"frontend":[{"component":"vue"}]}'],
     },
     {
         "url": "https://github.com/Genez-io/nuxt-getting-started",
         "test_name": "nuxt_getting_started",
-        "expected_stdout": ['{"ssr":["nuxt"]}'],
+        "expected_stdout": ['{"ssr":[{"component":"nuxt"}]}'],
+    },
+    {
+        "url": "https://github.com/Genez-io/nitrojs-starter",
+        "test_name": "nitrojs_starter",
+        "expected_stdout": ['{"ssr":[{"component":"nitro"}]}'],
+    },
+    {
+        "url": "https://github.com/vercel/ai-chatbot",
+        "test_name": "ai_chatbot",
+        "expected_stdout": ['{"ssr":[{"component":"next","environment":[{"key":"OPENAI_API_KEY","defaultValue":"****","genezioProvisioned":false},{"key":"AUTH_SECRET","defaultValue":"****","genezioProvisioned":false},{"key":"BLOB_READ_WRITE_TOKEN","defaultValue":"****","genezioProvisioned":false},{"key":"POSTGRES_URL","defaultValue":"****","genezioProvisioned":false}]}],"services":[{"databases":["postgres"]}]}']
+    },
+    {
+        "url": "https://github.com/andreia-oca/genezio-analyze-socketio-chat-example",
+        "test_name": "socketio_chat_example",
+        "expected_stdout": ['{"services": [{"databases": ["mongo"]}], "backend": [{"component": "express"}]}'],
     },
     # Does not work - ssr config file is not supporting/detecting postgres
     # {
@@ -89,19 +115,44 @@ repositories = [
     #     "expected_stdout": ['{"ssr":["next"]}'],
     # },
     {
-        "url": "https://github.com/andreia-oca/genezio-analyze-socketio-chat-example",
-        "test_name": "socketio_chat_example",
-        "expected_stdout": ['{"services": [{"databases": ["mongo"]}], "backend": ["express"], "backendEnvironment": []}'],
-    },
-    {
         "url": "https://github.com/andreia-oca/genezio-analyze-unimportable",
         "test_name": "genezio_analyze_unimportable",
-        "expected_stdout": ['{"backend":["other"],"frontend":["other"]}'],
+        "expected_stdout": ['{"backend":[{"component":"other"}],"frontend":[{"component":"other"}]}'],
     },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-typesafe",
         "test_name": "genezio_analyze_typesafe",
-        "expected_stdout": ['{"backend":["genezio-typesafe"],"frontend":["vite"], "backendEnvironment":[]}'],
+        "expected_stdout": ['{"backend":[{"component":"genezio-typesafe"}],"frontend":[{"component":"vite"}]}'],
+    },
+    {
+        "url": "https://github.com/Genez-io/nestjs-react-getting-started",
+        "test_name": "nestjs_react_getting_started",
+        "expected_stdout": ['{"frontend":[{"component":"vite"}],"ssr":[{"component":"nestjs"}]}'],
+    },
+    {
+        "url": "https://github.com/Genez-io/nest-getting-started",
+        "test_name": "nestjs_getting_started",
+        "expected_stdout": ['{"ssr":[{"component":"nestjs"}]}'],
+    },
+    {
+        # This test is expected to return only express because we are not yet supporting
+        # express and nextjs in a single project
+        "url": "https://github.com/andreia-oca/genezio-analyze-express-nextjs",
+        "test_name": "genezio_analyze_express_nextjs",
+        "expected_stdout": ['{"backend":[{"component":"express"}]}'],
+    },
+    {
+        "url":"https://github.com/andreia-oca/genezio-analyze-flask-nextjs",
+        "test_name":"genezio_analyze_flask_nextjs",
+        "expected_stdout": ['{"backend":[{"component":"flask"}]}'],
+    },
+    {
+        "url":"https://github.com/notJust-dev/FullstackEcommerce",
+        "test_name":"notjustdev_fullstack_ecommerce",
+        "expected_stdout": ['{"services":[{"databases":["postgres"]}],"backend":[{"component":"serverless-http","environment":[{"key":"DATABASE_URL","defaultValue":"url to your postgres database","genezioProvisioned":false}]}]}'],
+        # This is a community project with a genezio.yaml in it
+        # We want to take this into account when running the test
+        "keep_yaml": True
     },
 ]
 
@@ -194,62 +245,81 @@ def compare_yaml_files(generated_yaml, expected_yaml):
         # Raise an assertion error with the diff
         raise AssertionError(f"Mismatch in generated and expected genezio.yaml files:\n{diff}")
 
-def main():
-    all_tests_passed = True
-    failed_tests = []
-    for repo_info in repositories:
-        repo_url = repo_info["url"]
-        test_name = repo_info["test_name"]
-        expected_stdout = repo_info["expected_stdout"]
-        expected_yaml_path = os.path.join('./expected_configuration_files', f'{test_name}.yaml')
+def run_test(repo_info):
+    repo_url = repo_info["url"]
+    test_name = repo_info["test_name"]
+    expected_stdout = repo_info["expected_stdout"]
+    expected_yaml_path = os.path.join('./expected_configuration_files', f'{test_name}.yaml')
 
-        # Create a temporary directory in the system's /tmp directory
-        system_temp_dir = tempfile.gettempdir()
-        temp_dir = tempfile.mkdtemp(dir=system_temp_dir)
-        # print(f"Temporary directory created: {temp_dir}")
+    system_temp_dir = tempfile.gettempdir()
+    temp_dir = tempfile.mkdtemp(dir=system_temp_dir)
 
-        try:
-            # Clone the repository into temp_dir
-            clone_repository(repo_url, temp_dir)
+    try:
+        # Clone the repository into temp_dir
+        clone_repository(repo_url, temp_dir)
 
-            # Ensure repository is cloned successfully
-            if not os.listdir(temp_dir):
-                print(f"Error: Repository cloning failed or directory {temp_dir} is empty.")
-                continue
+        # Ensure repository is cloned successfully
+        if not os.listdir(temp_dir):
+            print(f"Error: Repository cloning failed or directory {temp_dir} is empty.")
+            raise AssertionError
 
-            # Path to genezio.yaml in the cloned directory
-            genezio_yaml_path = os.path.join(temp_dir, "genezio.yaml")
+        # Path to genezio.yaml in the cloned directory
+        genezio_yaml_path = os.path.join(temp_dir, "genezio.yaml")
 
-            # Remove `genezio.yaml` if it exists
-            if os.path.exists(genezio_yaml_path):
-                os.remove(genezio_yaml_path)
-                # print(f"Removed {genezio_yaml_path} for testing")
+        # Remove `genezio.yaml` if it exists
+        if os.path.exists(genezio_yaml_path) and not repo_info.get("keep_yaml"):
+            os.remove(genezio_yaml_path)
 
-            # Run genezio analyze and capture the result
-            result = run_genezio_analyze(temp_dir)
+        # Run genezio analyze and capture the result
+        result = run_genezio_analyze(temp_dir)
 
-            # Assertions
-            assert_no_errors(result)
-            assert_stdout(result, expected_stdout)
+        # Assertions
+        assert_no_errors(result)
+        assert_stdout(result, expected_stdout)
 
-            # Compare generated and expected genezio.yaml
-            compare_yaml_files(genezio_yaml_path, expected_yaml_path)
+        # Compare generated and expected genezio.yaml
+        compare_yaml_files(genezio_yaml_path, expected_yaml_path)
 
-            print(f"================\n{test_name} - test passed!\n================\n")
-        except AssertionError as e:
-            # If an assertion fails, display the error in red
-            print(f"================\n{test_name} - test failed!\n{e}\n================\n")
-            failed_tests.append(test_name)
-            all_tests_passed = False
-        finally:
-            # Clean up by removing the temporary directory
+        print(f"================\n{test_name} - test passed!\n================\n")
+    except Exception as e:
+        print(f"================\n{test_name} - test failed!\n{e}\n================\n")
+        return False
+    finally:
+        # Clean up temp_dir
+        if os.path.exists(temp_dir):
             shutil.rmtree(temp_dir)
+    return True
 
-    if all_tests_passed:
-        print("All tests passed!")
+def main():
+    failed_tests = []
+
+    # Parse the command-line argument for test name
+    parser = argparse.ArgumentParser(description="Run specific a test case")
+    parser.add_argument("test_name", nargs="?", help="Name of the test to run")
+    args = parser.parse_args()
+
+    if args.test_name:
+        # Use filter to find the repository matching the test name
+        filtered_repos = list(filter(lambda r: r["test_name"] == args.test_name, repositories))
+        if filtered_repos:
+            repo_info = filtered_repos[0]
+            if not run_test(repo_info):
+                failed_tests.append(args.test_name)
+        else:
+            print(f"Test name '{args.test_name}' not found in the repository list.")
+            return
     else:
-        print("Failed tests:", failed_tests)
+        # Run all tests
+        for repo_info in repositories:
+            test_name = repo_info["test_name"]
+            if not run_test(repo_info):
+                failed_tests.append(test_name)
+
+    if failed_tests:
+        print("The following test(s) failed:", failed_tests)
         exit(1)
+    else:
+        print("All tests passed successfully.")
 
 if __name__ == "__main__":
     main()

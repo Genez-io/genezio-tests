@@ -1,0 +1,14 @@
+name: vue-getting-started
+region: us-east-1
+yamlVersion: 2
+frontend:
+  path: .
+  publish: dist
+  scripts:
+    deploy:
+      - npm install
+    build:
+      - npm run build
+    start:
+        - npm install
+        - npm run dev

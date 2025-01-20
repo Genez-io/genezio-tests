@@ -5,7 +5,10 @@ frontend:
    path: .
    publish: dist
    scripts:
-    deploy:
-     - npm install
-    build:
-     - npm run build
+      deploy:
+         - npm install
+      build:
+         - npm run build
+      start:
+         - npm install
+         - npm run dev

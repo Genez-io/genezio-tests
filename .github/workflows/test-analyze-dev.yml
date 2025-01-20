@@ -1,4 +1,4 @@
-name: Test Genezio Analyze
+name: Genezio Analyze Dev
 
 on:
   schedule:

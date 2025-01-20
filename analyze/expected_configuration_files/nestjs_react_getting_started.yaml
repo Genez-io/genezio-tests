@@ -1,0 +1,22 @@
+name: nestjs_react_getting_started
+region: us-east-1
+yamlVersion: 2
+nestjs:
+    path: backend
+    packageManager: npm
+    scripts:
+      deploy:
+        - npm install
+frontend:
+    path: frontend
+    publish: dist
+    scripts:
+      deploy:
+        - npm install
+      build:
+        - npm run build
+      start:
+        - npm install
+        - npm run dev
+    environment:
+        VITE_API_URL_NESTJS: ${{ nestjs.url }}

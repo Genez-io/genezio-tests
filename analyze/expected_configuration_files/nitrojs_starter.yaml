@@ -1,0 +1,10 @@
+name: nitrojs-starter
+region: us-east-1
+yamlVersion: 2
+nitro:
+    packageManager: npm
+    path: .
+    scripts:
+        deploy:
+            - npm install
+

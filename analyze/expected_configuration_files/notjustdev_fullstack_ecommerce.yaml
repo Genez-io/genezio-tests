@@ -1,0 +1,22 @@
+name: fullstack-ecommerce
+region: eu-central-1
+yamlVersion: 2
+backend:
+  path: ./api
+  language:
+    name: js
+    packageManager: npm
+  scripts:
+    deploy: npm install && npm run build
+    local:
+      - npm install
+  functions:
+    - name: ecom-express-api-function
+      path: ./
+      handler: handler
+      entry: dist/src/index.js
+      type: aws
+services:
+  databases:
+    - name: my-postgres-db
+      type: postgres-neon

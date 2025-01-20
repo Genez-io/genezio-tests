@@ -1,0 +1,14 @@
+name: angular-getting-started
+region: us-east-1
+yamlVersion: 2
+frontend:
+  path: .
+  publish: dist/browser
+  scripts:
+    deploy:
+      - npm install
+    build:
+      - npm run build
+    start:
+      - npm install
+      - npm start
