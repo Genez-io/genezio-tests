@@ -6,9 +6,18 @@ export default defineConfig({
     experimentalRunAllSpecs: true,
     baseUrl: process.env.NEXT_URL || 'http://localhost:3000',
     setupNodeEvents(on, config) {
+      on('before:browser:launch', (browser, launchOptions) => {
+        if (browser.name === 'chrome' || browser.name === 'chromium') {
+          launchOptions.args.push('--disable-gpu');
+          launchOptions.args.push('--no-sandbox');
+          launchOptions.args.push('--disable-dev-shm-usage');
+        }
+        return launchOptions;
+      });
     },
     video: false,
     screenshotOnRunFailure: true,
+    chromeWebSecurity: false,
   },
   env: {
     url: process.env.NEXT_URL,
