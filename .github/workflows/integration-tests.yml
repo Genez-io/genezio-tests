@@ -98,6 +98,7 @@ jobs:
               test_fastapi.py,
               test_flask.py,
               test_django.py,
+              test_websockets_python.py,
             ]
           ]
     steps:
