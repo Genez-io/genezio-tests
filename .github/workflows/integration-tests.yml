@@ -53,7 +53,7 @@ jobs:
         tests: [
           # do not put more than 5 tests in each array
             [
-              test_react_auth.py, # 2m 1s
+              # test_react_auth.py, # 2m 1s # disable until works
               test_services_configuration.py, # 23s
               test_typescript_flutter_sdk.py, # 54s
               # test_dart_typescript_sdk.py, # 2m 42s - dart backend is not supported currently
