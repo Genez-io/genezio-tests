@@ -1,0 +1,17 @@
+name: collaboration-project-runtime
+region: us-east-1
+yamlVersion: 2
+backend:
+  path: ./
+  language:
+    name: js
+    packageManager: npm
+  scripts:
+    deploy:
+      - npm install
+  functions:
+    - name: hello-world
+      path: ./
+      handler: handler
+      entry: index.mjs
+      type: aws

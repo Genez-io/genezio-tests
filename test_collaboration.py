@@ -16,8 +16,8 @@ def test_collaboration():
 
     genezio_login(token)
 
-    project_name = "collaboration-project"
-    os.chdir("./projects/hello-world/")
+    project_name = "collaboration-project-runtime"
+    os.chdir("./projects/faas-node/")
     deploy_result = genezio_deploy(False, with_config="./genezio-collaboration.yaml")
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
