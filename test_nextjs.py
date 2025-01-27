@@ -33,7 +33,10 @@ def test_nextjs():
     print("Deployed URL: " + str(url))
 
     # run NEXT_URL=url npm run cypress:run
-    os.environ['NEXT_URL'] = url + "/"
+    # create a new .env file if it doesn't exist
+    if not os.path.exists('.env'):
+        with open('.env', 'w') as f:
+            f.write(f"NEXT_URL={url}/\n")
     # Run Cypress tests and capture the return code
     cypress_result = os.system("npm run cypress:run")
     
