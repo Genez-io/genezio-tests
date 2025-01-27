@@ -7,7 +7,7 @@ dotenv.config();
 export default defineConfig({
   e2e: {
     experimentalRunAllSpecs: true,
-    baseUrl: "<NEXT_URL>",
+    baseUrl: "https://nextjs-every-feature-pages-hjailb.app.geneziodev.com/",
     setupNodeEvents(on, config) {
       on('before:browser:launch', (browser, launchOptions) => {
         if (browser.name === 'chrome' || browser.name === 'chromium') {
@@ -23,7 +23,7 @@ export default defineConfig({
     chromeWebSecurity: false,
   },
   env: {
-    url: "<NEXT_URL>",
+    url: "https://nextjs-every-feature-pages-hjailb.app.geneziodev.com/",
   },
   retries: {
     runMode: 2,

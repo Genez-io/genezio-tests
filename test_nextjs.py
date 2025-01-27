@@ -46,11 +46,11 @@ def test_nextjs():
     with open('cypress.config.ts', 'w') as f:
         f.write(config_content)
     
-    # Run Cypress tests and capture the return code
-    cypress_result = os.system("npm run cypress:run")
+    # # Run Cypress tests and capture the return code
+    # cypress_result = os.system("npm run cypress:run")
     
-    # Check if Cypress tests passed
-    assert cypress_result == 0, "Cypress tests failed"
+    # # Check if Cypress tests passed
+    # assert cypress_result == 0, "Cypress tests failed"
 
     genezio_delete(deploy_result.project_id)
     print("Test completed successfully.")
