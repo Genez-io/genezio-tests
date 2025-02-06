@@ -1,0 +1,8 @@
+name: streamlit-getting-started
+region: us-east-1
+yamlVersion: 2
+streamlit:
+    path: .
+    packageManager: pip
+    entryFile: app.py
+    runtime: python3.13.x
