@@ -92,6 +92,7 @@ jobs:
               test_websockets.py, # nodejs
               test_remix.py,
               test_nestjs.py,
+              test_streamlit.py,
             ],
             [
               test_faas_python.py,
