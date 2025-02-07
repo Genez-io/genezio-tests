@@ -6,6 +6,7 @@ backend:
   language:
     name: python
     packageManager: pip
+    runtime: python3.13.x
   functions:
     - name: django
       path: .
