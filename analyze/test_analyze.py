@@ -101,19 +101,13 @@ repositories = [
     {
         "url": "https://github.com/vercel/ai-chatbot",
         "test_name": "ai_chatbot",
-        "expected_stdout": ['{"ssr":[{"component":"next","environment":[{"key":"OPENAI_API_KEY","defaultValue":"****","genezioProvisioned":false},{"key":"AUTH_SECRET","defaultValue":"****","genezioProvisioned":false},{"key":"BLOB_READ_WRITE_TOKEN","defaultValue":"****","genezioProvisioned":false},{"key":"POSTGRES_URL","defaultValue":"****","genezioProvisioned":false}]}],"services":[{"databases":["postgres"]}]}']
+        "expected_stdout": ['{"services":[{"databases":["postgres"]}],"ssr":[{"component":"next","environment":[{"key":"OPENAI_API_KEY","defaultValue":"****","genezioProvisioned":false},{"key":"FIREWORKS_API_KEY","defaultValue":"****","genezioProvisioned":false},{"key":"AUTH_SECRET","defaultValue":"****","genezioProvisioned":false},{"key":"BLOB_READ_WRITE_TOKEN","defaultValue":"****","genezioProvisioned":false},{"key":"POSTGRES_URL","defaultValue":"****","genezioProvisioned":false}]}]}']
     },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-socketio-chat-example",
         "test_name": "socketio_chat_example",
         "expected_stdout": ['{"services": [{"databases": ["mongo"]}], "backend": [{"component": "express"}]}'],
     },
-    # Does not work - ssr config file is not supporting/detecting postgres
-    # {
-    #     "url": "https://github.com/vercel/ai-chatbot",
-    #     "test_name": "ai_chatbot",
-    #     "expected_stdout": ['{"ssr":["next"]}'],
-    # },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-unimportable",
         "test_name": "genezio_analyze_unimportable",
