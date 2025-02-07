@@ -20,6 +20,7 @@ backend:
     path: express
     language:
         name: js
+        runtime: nodejs20.x
     functions:
         - name: serverless
           path: .

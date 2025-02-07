@@ -5,6 +5,7 @@ backend:
     path: .
     language:
         name: js
+        runtime: nodejs20.x
     functions:
         - name: express
           path: .
