@@ -32,8 +32,20 @@ def test_nextjs():
     assert url is not None, "Could not find deployed nextjs URL in deployment output"
     print("Deployed URL: " + str(url))
 
-    # # run NEXT_URL=url npm run cypress:run
-    # os.environ['NEXT_URL'] = url + "/"
+    # create a new .env file if it doesn't exist
+    if not os.path.exists('.env'):
+        with open('.env', 'w') as f:
+            f.write(f"NEXT_URL={url}/\n")
+    
+    # Update cypress.config.ts with the correct URL
+    with open('cypress.config.ts', 'r') as f:
+        config_content = f.read()
+    
+    config_content = config_content.replace('"<NEXT_URL>"', f'"{url}"')
+    
+    with open('cypress.config.ts', 'w') as f:
+        f.write(config_content)
+    
     # # Run Cypress tests and capture the return code
     # cypress_result = os.system("npm run cypress:run")
     

@@ -1,10 +1,13 @@
 import { defineConfig } from "cypress";
 import process from "process";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default defineConfig({
   e2e: {
     experimentalRunAllSpecs: true,
-    baseUrl: process.env.NEXT_URL || 'http://localhost:3000',
+    baseUrl: "<NEXT_URL>",
     setupNodeEvents(on, config) {
       on('before:browser:launch', (browser, launchOptions) => {
         if (browser.name === 'chrome' || browser.name === 'chromium') {
@@ -20,7 +23,7 @@ export default defineConfig({
     chromeWebSecurity: false,
   },
   env: {
-    url: process.env.NEXT_URL,
+    url: "<NEXT_URL>",
   },
   retries: {
     runMode: 2,

@@ -7,14 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cypress:run": "cypress run"
+    "cypress:run": "cross-env CI=true LIBGL_ALWAYS_SOFTWARE=1 cypress run"
   },
   "dependencies": {
     "@genezio/nextjs-isr-eu-central-1": "^1.0.6",
     "@sitecore-jss/sitecore-jss-nextjs": "^21.7.1",
     "next": "^14.2.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@types/node": "^20",

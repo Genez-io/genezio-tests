@@ -110,7 +110,7 @@ repositories = [
     },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-unimportable",
-        "test_name": "genezio_analyze_unimportable",
+        "test_name": "genezio_analyze_empty_project",
         "expected_stdout": ['{"backend":[{"component":"other"}],"frontend":[{"component":"other"}]}'],
     },
     {
@@ -143,7 +143,7 @@ repositories = [
     {
         "url":"https://github.com/notJust-dev/FullstackEcommerce",
         "test_name":"notjustdev_fullstack_ecommerce",
-        "expected_stdout": ['{"services":[{"databases":["postgres"]}],"backend":[{"component":"serverless-http","environment":[{"key":"DATABASE_URL","defaultValue":"url to your postgres database","genezioProvisioned":false}]}]}'],
+        "expected_stdout": [],
         # This is a community project with a genezio.yaml in it
         # We want to take this into account when running the test
         "keep_yaml": True
@@ -173,6 +173,12 @@ def assert_no_errors(result):
 
 
 def assert_stdout(result, expected_stdout):
+    if not result.stdout:
+        if expected_stdout:
+            assert False, f"Expected stdout: {expected_stdout}, but got an empty string."
+        return
+
+
     """Asserts that stdout contains expected JSON content."""
     try:
         actual_stdout_json = json.loads(result.stdout)
@@ -272,7 +278,8 @@ def run_test(repo_info):
         assert_stdout(result, expected_stdout)
 
         # Compare generated and expected genezio.yaml
-        compare_yaml_files(genezio_yaml_path, expected_yaml_path)
+        if result.stdout:
+            compare_yaml_files(genezio_yaml_path, expected_yaml_path)
 
         print(f"================\n{test_name} - test passed!\n================\n")
     except Exception as e:

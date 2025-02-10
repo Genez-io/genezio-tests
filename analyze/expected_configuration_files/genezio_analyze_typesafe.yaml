@@ -19,6 +19,7 @@ backend:
     path: server
     language:
         name: ts
+        runtime: nodejs20.x
     scripts:
         deploy:
             - npm install
