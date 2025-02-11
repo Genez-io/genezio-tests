@@ -3,7 +3,7 @@
 import os
 from genezio import genezio_deploy, genezio_login, genezio_local, genezio_delete, genezio_create
 from utils import kill_process
-
+import shutil
 
 def initialize_test_environment():
     """
@@ -77,7 +77,7 @@ def create_and_test_project(project):
 
     if os.path.exists(project_name):
         os.chmod(project_name, 0o777)
-        os.remove(project_name)
+        shutil.rmtree(project_name)
 
     print(f"Creating project {project_name}...")
 
