@@ -1,0 +1,39 @@
+name: mern-typescript-starter
+region: us-east-1
+yamlVersion: 2
+services:
+  databases:
+    - name: my-postgres-db
+      type: postgres-neon
+    - name: my-mongo-db
+      type: mongo-atlas
+frontend:
+  path: client
+  publish: dist
+  scripts:
+    deploy:
+      - npm install
+    build:
+      - npm run build
+    start:
+      - npm install
+      - npm run dev
+  environment:
+    VITE_API_URL_EXPRESS: ${{ backend.functions.express.url }}
+backend:
+  path: server
+  language:
+    name: js
+    runtime: nodejs20.x
+  functions:
+    - name: express
+      path: .
+      entry: dist/app.js
+      type: httpServer
+  scripts:
+    deploy:
+      - npm install
+      - npm run build
+    local:
+      - npm install
+      - npm run build
