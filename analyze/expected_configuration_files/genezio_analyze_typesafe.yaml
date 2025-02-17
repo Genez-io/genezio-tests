@@ -18,7 +18,7 @@ frontend:
 backend:
     path: server
     language:
-        name: js
+        name: ts
         runtime: nodejs20.x
     scripts:
         deploy:
