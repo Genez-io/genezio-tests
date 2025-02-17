@@ -1,10 +1,9 @@
-name: blue-structural-meerkat
+name: genezio-analyze-fullstack
 region: us-east-1
 yamlVersion: 2
 services:
   databases:
     - name: my-mongo-db
-      region: us-east-1
       type: mongo-atlas
 frontend:
     path: client
@@ -14,6 +13,9 @@ frontend:
             - npm install
         build:
             - npm run build
+        start:
+            - npm install
+            - npm run dev
     environment:
         VITE_API_URL_SERVERLESS: ${{ backend.functions.serverless.url }}
 backend:
@@ -30,5 +32,7 @@ backend:
     scripts:
         deploy:
             - npm install
+            - npm run build
         local:
             - npm install
+            - npm run build

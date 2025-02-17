@@ -20,9 +20,9 @@ backend:
     # The name (label) of the function.
     - name: django-getting-started
       # The path to the function's code.
-      path: mysite
+      path: ./
       # The entry point for the function.
-      entry: wsgi.py
+      entry: mysite/wsgi.py
       # The handler for the function.
       handler: application
       # The type of the function.

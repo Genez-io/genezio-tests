@@ -52,12 +52,16 @@ repositories = [
         "test_name": "genezio_analyze_django",
         "expected_stdout": ['{"backend":[{"component":"django"}]}'],
     },
-    # Does not work - faulty entryfile because it's typescript
-    # {
-    #     "url": "https://github.com/andreia-oca/genezio-analyze-fullstack",
-    #     "test_name": "genezio_analyze_fullstack",
-    #     "expected_stdout": ['{"backend":[{"component":"serverless-http" ,"environment":[{"key": "OPENAI_API_KEY", "defaultValue": "your-key", "genezioProvisioned": "false"}] }],"frontend":[{"component":"vite"}], "services":[{"databases": ["mongo"]}] }'],
-    # },
+    {
+        "url": "https://github.com/Genez-io/mern-typescript-starter",
+        "test_name": "mern_typescript_starter",
+        "expected_stdout": ['{"services":[{"databases":["postgres"]},{"databases":["mongo"]}],"frontend":[{"component":"vite"}],"backend":[{"component":"express"}]}'],
+    },
+    {
+        "url": "https://github.com/andreia-oca/genezio-analyze-fullstack",
+        "test_name": "genezio_analyze_fullstack",
+        "expected_stdout": ['{"services":[{"databases":["mongo"]}],"frontend":[{"component":"vite"}],"backend":[{"component":"serverless-http","environment":[{"key":"OPENAI_API_KEY","defaultValue":"your-key","genezioProvisioned":false}]}]}'],
+    },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-nextjs",
         "test_name": "genezio_analyze_nextjs",
