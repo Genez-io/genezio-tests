@@ -1,0 +1,19 @@
+name: test-environment-variables
+region: us-east-1
+yamlVersion: 2
+backend:
+  path: ./
+  language:
+    name: js
+    packageManager: npm
+  scripts:
+    deploy:
+      - npm install
+  environment:
+    HELLO_WORLD_FUNCTION_URL: ${{backend.functions.missing-function.url}}
+  functions:
+    - name: hello-world
+      path: ./
+      handler: handler
+      entry: index.mjs
+      type: aws
