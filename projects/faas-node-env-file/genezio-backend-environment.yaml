@@ -1,0 +1,21 @@
+name: test-environment-variables
+region: us-east-1
+yamlVersion: 2
+backend:
+  path: ./
+  language:
+    name: js
+    packageManager: npm
+  scripts:
+    deploy:
+      - npm install
+  environment:
+    CLEARTEXT_ENV_VAR: my-value
+    SECRET_ENV_VAR: ${{ env.SECRET_ENV_VAR }}
+    HELLO_WORLD_FUNCTION_URL: ${{backend.functions.hello-world.url}}
+  functions:
+    - name: hello-world
+      path: ./
+      handler: handler
+      entry: index.mjs
+      type: aws
