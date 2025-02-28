@@ -117,6 +117,8 @@ def test_environment_variables_with_env_file():
     assert "TEST_SECOND_ENV_VAR" in env, "Missing TEST_SECOND_ENV_VAR in response"
     assert env["TEST_SECOND_ENV_VAR"] == "value-second", "Function did not receive the correct environment variables, actual value: " + env["TEST_SECOND_ENV_VAR"]
 
+    genezio_delete(deploy_result.project_id)
+
     deploy_result = genezio_deploy(False, args=["--env", ".env", "--config", "./genezio-backend-environment.yaml"])
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
