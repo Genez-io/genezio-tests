@@ -5,7 +5,13 @@ import re
 
 import requests
 
-from genezio import genezio_deploy, genezio_login, genezio_delete
+from genezio import genezio_deploy, genezio_list, genezio_login, genezio_delete
+
+def extract_project_id(output: str) -> str:
+    match = re.search(r"ID:\s*([a-f0-9\-]+)", output, re.IGNORECASE)
+    if match:
+        return match.group(1)
+    raise ValueError("Project ID not found in the output.")
 
 def test_environment_variables():
     print("Starting faas_environment_variables test...")
@@ -69,6 +75,10 @@ def test_environment_variables_with_env_file():
 
     # Deploy without setting the environment variables
     # Note: it's important that this is a first time deployment, otherwise the environment variables will not be missing
+    project_details = genezio_list("test-environment-variables-with-env")
+    project_id = extract_project_id(project_details)
+    genezio_delete(project_id)
+
     deploy_result = genezio_deploy(False)
 
     assert deploy_result.return_code == 0, "genezio deploy returned non-zero exit code"
