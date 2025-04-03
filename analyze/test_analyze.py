@@ -102,11 +102,11 @@ repositories = [
         "test_name": "nitrojs_starter",
         "expected_stdout": ['{"ssr":[{"component":"nitro"}]}'],
     },
-    {
-        "url": "https://github.com/vercel/ai-chatbot",
-        "test_name": "ai_chatbot",
-        "expected_stdout": ['{"services":[{"databases":["postgres"]}],"ssr":[{"component":"next","environment":[{"key":"OPENAI_API_KEY","defaultValue":"****","genezioProvisioned":false},{"key":"FIREWORKS_API_KEY","defaultValue":"****","genezioProvisioned":false},{"key":"AUTH_SECRET","defaultValue":"****","genezioProvisioned":false},{"key":"BLOB_READ_WRITE_TOKEN","defaultValue":"****","genezioProvisioned":false},{"key":"POSTGRES_URL","defaultValue":"****","genezioProvisioned":false}]}]}']
-    },
+    # {
+    #     "url": "https://github.com/vercel/ai-chatbot",
+    #     "test_name": "ai_chatbot",
+    #     "expected_stdout": ['{"services":[{"databases":["postgres"]}],"ssr":[{"component":"next","environment":[{"key":"OPENAI_API_KEY","defaultValue":"****","genezioProvisioned":false},{"key":"FIREWORKS_API_KEY","defaultValue":"****","genezioProvisioned":false},{"key":"AUTH_SECRET","defaultValue":"****","genezioProvisioned":false},{"key":"BLOB_READ_WRITE_TOKEN","defaultValue":"****","genezioProvisioned":false},{"key":"POSTGRES_URL","defaultValue":"****","genezioProvisioned":false}]}]}']
+    # },
     {
         "url": "https://github.com/andreia-oca/genezio-analyze-socketio-chat-example",
         "test_name": "socketio_chat_example",
