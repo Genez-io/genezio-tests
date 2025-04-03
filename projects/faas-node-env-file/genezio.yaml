@@ -1,4 +1,4 @@
-name: faas-node-env-file
+name: test-environment-variables-with-env
 region: us-east-1
 yamlVersion: 2
 backend:
